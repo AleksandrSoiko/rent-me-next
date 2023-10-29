@@ -12,6 +12,40 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      screens: {
+        md: '768px',
+        // => @media (min-width: 768px) { ... }
+        lg: '1024px',
+        // => @media (min-width: 1024px) { ... }
+        xl: '1440px',
+        // => @media (min-width: 1440px) { ... }
+      },
+      colors: {
+        blue: '#5774CD',
+        blue1: '#F2FAFD',
+        light_blue: '#D7E5FF',
+        blueText: '#008ACE',
+        black: '#000',
+        orange: '#FFB22C',
+        gray: '#444',
+        grayBg: 'rgba(255, 255, 255, 0.60)',
+        borderBlue: '#D7E5FF',
+        rose: 'rgba(255, 229, 210, 0.63)',
+      },
+      fontFamily: {
+        Comfortaa: ['Comfortaa'],
+        Lato: ['Lato'],
+        Manrope: ['Manrope'],
+        Montserrat: ['Montserrat'],
+        Roboto: ['Roboto'],
+        SourceSansPro: ['Source Sans Pro'],
+        SFProText: ['SF Pro Text'],
+        serif: ['Merriweather', 'serif'],
+      },
+      background: {
+        gradient:
+          'linear-gradient(0deg, rgba(255, 229, 210, 0.63) 0.23%, rgba(255, 244, 229, 0.00) 99.77%);',
+      },
     },
   },
   plugins: [],
