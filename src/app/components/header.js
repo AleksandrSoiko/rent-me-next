@@ -2,15 +2,12 @@ import Image from "next/image"
 
 const Header = () => {
     return (
-        <header className="flex justify-around items-center my-5 md:my-6">
+        <header className="flex justify-around items-center">
             <div className="md:hidden">
-                <svg width="41" height="40" viewBox="0 0 41 40">
-                    <use href="partials/HomePage/sprite.svg#burger"></use>
-                </svg>
+            <Image src='/header/burger.svg' width="41" height="40" alt="burger" />
             </div>
             <a href="/">
                 <Image src='/header/logo.svg' width="111" height="40" alt="logo" className="md:hidden" />
-
                 <Image src='/header/logoLg.svg' width="177" height="64" alt="logo" className="max-md:hidden" />
             </a>
             <nav className="max-md:hidden">
@@ -27,10 +24,10 @@ const Header = () => {
             </nav>
             <ul className="flex gap-4">
                 <li>
-                    <Image src='/header/like.svg' width="28" height="28" alt="like" className="max-md:hidden" />
+                    <Image src='/header/like.svg' width="28" height="28" alt="like" />
                 </li>
                 <li>
-                <Image src='/header/user.svg' width="28" height="28" alt="user" className="max-md:hidden" />
+                <Image src='/header/user.svg' width="28" height="28" alt="user"  />
                 </li>
             </ul>
         </header>

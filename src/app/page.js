@@ -15,9 +15,9 @@ export default function Home() {
       <div className="my-6 md:mt-24 md:mb-20 lg:mt-20">
         <HeroSection />
       </div>
-      {/* <section className="flex flex-col items-center mx-4 max-md:py-[1.44rem] md:pb-16">
+      <section className="flex flex-col items-center mx-4 max-md:py-[1.44rem] md:pb-16">
         <RentBuySelect />
-      </section> */}
+      </section>
       {/* <section
         className="flex flex-col items-center relative py-12 md:py-16 lg:py-[6.25rem] mx-4"
       >

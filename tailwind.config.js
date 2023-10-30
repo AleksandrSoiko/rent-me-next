@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+
+
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -31,11 +33,17 @@ module.exports = {
         grayBg: 'rgba(255, 255, 255, 0.60)',
         borderBlue: '#D7E5FF',
         rose: 'rgba(255, 229, 210, 0.63)',
+        white: '#fff'
       },
       fontFamily: {
-        Comfortaa: ['Comfortaa'],
+        Comfortaa: [
+          'Comfortaa/Comfortaa-Regular',
+          'Comfortaa-Bold',
+          'Comfortaa-Medium',
+   
+        ],
         Lato: ['Lato'],
-        Manrope: ['Manrope'],
+        Manrope: ['url("/fonts/Montserrat-Regular.ttf")','Manrope-Regular'],
         Montserrat: ['Montserrat'],
         Roboto: ['Roboto'],
         SourceSansPro: ['Source Sans Pro'],
