@@ -1,13 +1,10 @@
-import properties1 from '../images/mob/home-page/properties2@3.jpg'
-
 const LatestOffers = () => {
     return (
         <>
             <li className="mt-8 md:mt-10">
                 <div className="relative flex justify-center">
                     <img
-                        src={properties1}
-                        // src="images/mob/home-page/properties1@2.jpg"
+                        src="images/mob/home-page/properties1@2.jpg"
                         alt="properties1"
                         className="w-[328px] md:w-[336px]" />
                     <div
