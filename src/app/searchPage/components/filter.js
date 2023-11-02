@@ -78,7 +78,7 @@ const Filter = () => {
                 <p className="font-ComhtmlFortaa text-lg leading-[1.35rem] mt-4">
                     Furnished
                 </p>
-                <div className="max-lg:hidden grid grid-cols-2">
+                {/* <div className="max-lg:hidden grid grid-cols-2">
                     <label htmlFor="Any"
                         className="w-[11.25rem] h-12 flex gap-4 items-center font-Manrope text-xl leading-[1.5rem]"
                     ><input
@@ -117,7 +117,7 @@ const Filter = () => {
                             name="Unfurnished"
                             className="checked:bg-orange checked:border-orange" />
                         Unfurnished</label>
-                </div>
+                </div> */}
                 <div
                     className="flex flex-wrap justify-center mt-4 w-[17.5rem] lg:hidden"
                 >
@@ -143,7 +143,7 @@ const Filter = () => {
                     </button>
                 </div>
             </div>
-            <div className="flex flex-col md:w-[20rem] lg:w-[33.75rem]">
+            {/* <div className="flex flex-col md:w-[20rem] lg:w-[33.75rem]">
                 <p className="font-ComhtmlFortaa text-lg leading-[1.35rem] mt-2">Added</p>
                 <div className="max-lg:hidden grid grid-cols-2">
                     <label
@@ -209,7 +209,7 @@ const Filter = () => {
                         7 days
                     </button>
                 </div>
-            </div>
+            </div> */}
         </div><button
             className="flex mx-[auto] justify-center items-center gap-4 font-Montserrat text-base leading-[1.2rem] my-4 md:my-8 lg:text-xl lg:leading-[1.5rem]"
         >
