@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 
 const Header = () => {
     return (
@@ -6,19 +7,19 @@ const Header = () => {
             <div className="md:hidden">
             <Image src='/header/burger.svg' width="41" height="40" alt="burger" />
             </div>
-            <a href="/">
+            <Link href="/">
                 <Image src='/header/logo.svg' width="111" height="40" alt="logo" className="md:hidden" />
                 <Image src='/header/logoLg.svg' width="177" height="64" alt="logo" className="max-md:hidden" />
-            </a>
+            </Link>
             <nav className="max-md:hidden">
                 <ul
                     className="flex gap-10 font-Manrope text-lg font-semibold leading-[1.35rem]"
                 >
-                    <li><a href="./partials/CardPage/cardPage.html">Buy</a></li>
-                    <li><a href="partials/404/404.html">Rent</a></li>
-                    <li><a href="partials/searchPage/searchPage.html">Sell</a></li>
+                    <li><Link href="./partials/CardPage/cardPage.html">Buy</Link></li>
+                    <li><Link href="searchPage">Rent</Link></li>
+                    <li><Link href="partials/searchPage/searchPage.html">Sell</Link></li>
                     <li>
-                        <a href="partials/propertyAdding/propertyAdding.html">Agents</a>
+                        <Link href="partials/propertyAdding/propertyAdding.html">Agents</Link>
                     </li>
                 </ul>
             </nav>
