@@ -28,7 +28,7 @@ const Filter = () => {
                             type="text"
                             className="px-4 py-3 w-[8.125rem] lg:w-[11.25rem] border-[1px] border-blue1 rounded-[0.5rem] mt-2 text-sm"
                             placeholder="No min" />
-                        <Image src='/RentBuySelect/arrow.svg' width="19" height="19" alt="arrow" className="absolute top-[40px] right-[10px]" />
+                        <Image src='/RentBuySelect/Downv.svg' width="19" height="19" alt="arrow" className="absolute top-[45px] right-[10px]" />
                     </label>
                     <label
                         htmlFor="maxB"
@@ -40,7 +40,7 @@ const Filter = () => {
                             className="px-4 py-3 w-[8.125rem] lg:w-[11.25rem] border-[1px] border-blue1 rounded-[0.5rem] mt-2 text-sm"
                             placeholder="2" />
 
-                        <Image src='/RentBuySelect/arrow.svg' width="19" height="19" alt="arrow" className="absolute top-[40px] right-[16px]" />
+                        <Image src='/RentBuySelect/Downv.svg' width="19" height="19" alt="arrow" className="absolute top-[45px] right-[16px]" />
                     </label>
                 </div>
             </div>
@@ -58,7 +58,7 @@ const Filter = () => {
                             type="text"
                             className="px-4 py-3 w-[8.125rem] lg:w-[11.25rem] md:w-[9.375rem] border-[1px] border-blue1 rounded-[0.5rem] mt-2 text-sm"
                             placeholder="No min" />
-                        <Image src='/RentBuySelect/arrow.svg' width="19" height="19" alt="arrow" className="absolute top-[40px] right-[10px]" />
+                        <Image src='/RentBuySelect/Downv.svg' width="19" height="19" alt="arrow" className="absolute top-[45px] right-[10px]" />
 
                     </label>
                     <label
@@ -70,7 +70,7 @@ const Filter = () => {
                             type="text"
                             className="px-4 py-3 w-[8.125rem] lg:w-[11.25rem] md:w-[9.375rem] border-[1px] border-blue1 rounded-[0.5rem] mt-2 text-sm"
                             placeholder="No min" />
-                        <Image src='/RentBuySelect/arrow.svg' width="19" height="19" alt="arrow" className="absolute top-[40px] right-[16px]" />
+                        <Image src='/RentBuySelect/Downv.svg' width="19" height="19" alt="arrow" className="absolute top-[45px] right-[16px]" />
                     </label>
                 </div>
             </div>
@@ -78,7 +78,7 @@ const Filter = () => {
                 <p className="font-ComhtmlFortaa text-lg leading-[1.35rem] mt-4">
                     Furnished
                 </p>
-                {/* <div className="max-lg:hidden grid grid-cols-2">
+                <div className="max-lg:hidden grid grid-cols-2">
                     <label htmlFor="Any"
                         className="w-[11.25rem] h-12 flex gap-4 items-center font-Manrope text-xl leading-[1.5rem]"
                     ><input
@@ -117,7 +117,7 @@ const Filter = () => {
                             name="Unfurnished"
                             className="checked:bg-orange checked:border-orange" />
                         Unfurnished</label>
-                </div> */}
+                </div>
                 <div
                     className="flex flex-wrap justify-center mt-4 w-[17.5rem] lg:hidden"
                 >
@@ -143,11 +143,11 @@ const Filter = () => {
                     </button>
                 </div>
             </div>
-            {/* <div className="flex flex-col md:w-[20rem] lg:w-[33.75rem]">
+            <div className="flex flex-col md:w-[20rem] lg:w-[33.75rem]">
                 <p className="font-ComhtmlFortaa text-lg leading-[1.35rem] mt-2">Added</p>
                 <div className="max-lg:hidden grid grid-cols-2">
                     <label
-                    htmlFor="AnyTime"
+                        htmlFor="AnyTime"
                         className="w-[11.25rem] h-12 flex gap-4 items-center font-Manrope text-xl leading-[1.5rem]"
                     ><input
                             type="radio"
@@ -160,26 +160,26 @@ const Filter = () => {
                     <label htmlFor="24hours"
                         className="w-[11.25rem] h-12 flex gap-4 items-center font-Manrope text-xl leading-[1.5rem]"
                     ><input
-                    id="24hours"
+                            id="24hours"
                             type="radio"
                             name="Added"
                             className="checked:bg-orange checked:border-orange" />
                         24 hours</label>
                     <label
-                     htmlFor="3days"
+                        htmlFor="3days"
                         className="w-[11.25rem] h-12 flex gap-4 items-center font-Manrope text-xl leading-[1.5rem]"
                     ><input
-                    id="3days"
+                            id="3days"
                             type="radio"
                             name="Added"
                             className="checked:bg-orange checked:border-orange" />
                         3 days</label>
                     <label
-                     htmlFor="7days"
+                        htmlFor="7days"
 
                         className="w-[11.25rem] h-12 flex gap-4 items-center font-Manrope text-xl leading-[1.5rem]"
                     ><input
-                    id="7days"
+                            id="7days"
                             type="radio"
                             name="Added"
                             className="checked:bg-orange checked:border-orange" />
@@ -209,12 +209,12 @@ const Filter = () => {
                         7 days
                     </button>
                 </div>
-            </div> */}
+            </div>
         </div><button
-            className="flex mx-[auto] justify-center items-center gap-4 font-Montserrat text-base leading-[1.2rem] my-4 md:my-8 lg:text-xl lg:leading-[1.5rem]"
+            className="flex mx-[auto]  justify-center items-center gap-4 font-Montserrat text-base leading-[1.2rem] my-4 md:my-8 lg:text-xl lg:leading-[1.5rem]"
         >
                 <p>Show less filters</p>
-                <Image src='/LatestOffers/showMore.svg' width="25" height="25" alt="showLess" className="absolute top-[40px] right-[16px]" />
+                <Image src='/LatestOffers/showMore.svg' width="25" height="25" alt="showLess" className="origin-center rotate-180 " />
 
             </button></>
     )

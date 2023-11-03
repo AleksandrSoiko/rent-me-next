@@ -5,7 +5,7 @@ const Header = () => {
     return (
         <header className="flex justify-around items-center">
             <div className="md:hidden">
-            <Image src='/header/burger.svg' width="41" height="40" alt="burger" />
+                <Image src='/header/burger.svg' width="41" height="40" alt="burger" />
             </div>
             <Link href="/">
                 <Image src='/header/logo.svg' width="111" height="40" alt="logo" className="md:hidden" />
@@ -25,10 +25,14 @@ const Header = () => {
             </nav>
             <ul className="flex gap-4">
                 <li>
-                    <Image src='/header/like.svg' width="28" height="28" alt="like" />
+                    <Link href='signIn'>
+                        <Image src='/header/like.svg' width="28" height="28" alt="like" />
+                    </Link>
                 </li>
                 <li>
-                <Image src='/header/user.svg' width="28" height="28" alt="user"  />
+                    <Link href='signIn'> 
+                        <Image src='/header/user.svg' width="28" height="28" alt="user" />
+                    </Link>
                 </li>
             </ul>
         </header>
