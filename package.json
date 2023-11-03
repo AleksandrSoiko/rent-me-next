@@ -1,5 +1,5 @@
 {
-  "name": "rent-me-next",
+  "name": "c",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,11 +14,16 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/node": "^20.8.10",
     "@types/react": "18.2.33",
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "13.5.6",
     "postcss": "^8",
     "tailwindcss": "^3"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "next.config.js",
+  "author": "",
+  "license": "ISC"
 }
