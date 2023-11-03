@@ -4,7 +4,7 @@ const Footer = ()=>{
         className="py-12 px-4 md:px-8 md:pt-10 md:pb-16 font-Manrope text-lg font-semibold leading-[1.35rem] max-md:bg-gradient-to-t from-rose to-transparent"
       >
         <ul
-          className="flex flex-col md:justify-around md:flex-row-reverse max-md:grid mx-[auto] grid-cols-2 justify-items-stretch"
+          className="flex flex-col md:justify-around md:flex-row-reverse max-md:grid mx-[auto] grid-cols-2 justify-items-center"
         >
           <li className="row-span-1">
             <ul className="flex flex-col gap-4">

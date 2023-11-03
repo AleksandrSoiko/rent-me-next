@@ -5,12 +5,13 @@ import LatestOffers from './components/LatestOffers'
 import ServicesProvide from './components/ServicesProvide'
 import EasyToSell from './components/EasyToSell'
 import MobileInstaling from './components/MobileInstaling'
+import Head from './head'
 import Image from 'next/image'
 
 export default function Home() {
   return (
     <>
-   
+      <Head />
       <div className="my-6 md:mt-24 md:mb-20 lg:mt-20">
         <HeroSection />
       </div>
