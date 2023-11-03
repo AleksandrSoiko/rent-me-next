@@ -43,7 +43,7 @@ const LatestOffers = () => {
                     >
                         <div className="flex items-center gap-3">
                             <Image src="/LatestOffers/Avatar.png" width="36" height="36" alt="Avatar" className="rounded-[100%]" />
-                            <p>Mcrae's Property Services</p>
+                            <p>Mcraes Property Services</p>
                         </div>
                         <p className="flex gap-1">
                             <span>
