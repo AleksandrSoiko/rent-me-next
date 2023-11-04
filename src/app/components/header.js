@@ -3,7 +3,7 @@ import Link from "next/link"
 
 const Header = () => {
     return (
-        <header className="flex justify-around items-center">
+        <header className="flex justify-between items-center w-[1180px] mx-[auto]">
             <div className="md:hidden">
                 <Image src='/header/burger.svg' width="41" height="40" alt="burger" />
             </div>
@@ -15,11 +15,11 @@ const Header = () => {
                 <ul
                     className="flex gap-10 font-Manrope text-lg font-semibold leading-[1.35rem]"
                 >
-                    <li><Link href="./partials/CardPage/cardPage.html">Buy</Link></li>
-                    <li><Link href="searchPage">Rent</Link></li>
-                    <li><Link href="partials/searchPage/searchPage.html">Sell</Link></li>
+                    <li><Link href="/searchPage/buy">Buy</Link></li>
+                    <li><Link href="/searchPage/rent">Rent</Link></li>
+                    <li><Link href="/">Sell</Link></li>
                     <li>
-                        <Link href="partials/propertyAdding/propertyAdding.html">Agents</Link>
+                        <Link href="/">Agents</Link>
                     </li>
                 </ul>
             </nav>
@@ -30,7 +30,7 @@ const Header = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link href='signIn'> 
+                    <Link href='signIn'>
                         <Image src='/header/user.svg' width="28" height="28" alt="user" />
                     </Link>
                 </li>

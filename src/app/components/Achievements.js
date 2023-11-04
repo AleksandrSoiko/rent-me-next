@@ -3,7 +3,7 @@ import Image from "next/image"
 const Achievements = () => {
   return (
     <>
-      <Image src='/Achievements/background.svg' width="360" height="174" alt="bg"   className="absolute bottom-0  hidden max-md:block"/>
+      <Image src='/Achievements/background.svg' width="360" height="174" alt="bg"   className="absolute bottom-0   hidden max-md:block"/>
       <Image src='/Achievements/background.svg' width="768" height="348" alt="bg"     className="absolute bottom-0 hidden md:max-lg:block"/>
       <Image src='/Achievements/background.svg' width="1440" height="348" alt="bg"  className="absolute bottom-0  hidden lg:block"/>
       <p

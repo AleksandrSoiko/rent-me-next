@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const LatestOffers = () => {
   return (
     <>
       <li className="mt-8 md:mt-10">
-        <div className="relative flex justify-center">
+        <Link href={'apartament/1'} className="relative flex ">
           <Image
             src="/LatestOffers/test.png"
             width="328"
@@ -12,7 +13,7 @@ const LatestOffers = () => {
             alt="photo"
           />
           <div className="absolute bottom-0 bg-grayBg flex w-[20.5rem] md:w-[21rem] py-2 px-[1.12rem]">
-            <p className="font-Comfortaa text-xl md:font-semibold font-normal leading-[1.5rem] w-[100%] mr-3">
+            <p className="font-Comfortaa text-xl md:font-semibold font-normal leading-[1.5rem] w-[16.625rem]">
               <span>£</span>876 pcm
             </p>
             <div className="flex gap-[1.12rem]">
@@ -25,7 +26,7 @@ const LatestOffers = () => {
               <Image src="/header/like.svg" width="24" height="24" alt="like" />
             </div>
           </div>
-        </div>
+        </Link>
         <div className="pt-4 pb-6 px-4 shadow-[0px_1px_3px_0px_rgba(215,229,255,0.3),0px_3px_6px_0_rgba(215,229,255,0.3)] w-[20.5rem] md:w-[21rem]">
           <div>
             <p className="font-Manrope text-lg leading-[1.5rem] font-light flex flex-col mb-4">
