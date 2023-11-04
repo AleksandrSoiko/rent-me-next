@@ -10,27 +10,27 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-    <>
+    <div  className="flex flex-col items-center">
       <Head />
       <div className="my-6 md:mt-24 md:mb-20 lg:mt-20">
         <HeroSection />
       </div>
-      <section className="flex flex-col items-center mx-4 max-md:py-[1.44rem] md:pb-16">
+      <section className=" mx-4 max-md:py-[1.44rem] md:pb-16">
         <RentBuySelect />
       </section>
       <section
-        className="flex flex-col items-center relative py-12 md:py-16 lg:py-[6.25rem] mx-4"
+        className=" relative py-12 md:py-16 lg:py-[6.25rem] mx-4"
       >
         <Achievements />
       </section>
-      <section className="mt-12 mb-6 mx-4 md:mb-16 lg:mb-20 flex flex-col items-center">
+      <section className="mt-12 mb-6 mx-4 md:mb-16 lg:mb-20 ">
         <p
           className="text-center font-Comfortaa text-2xl font-normal leading-[1.8rem] md:text-[3.125rem] md:leading-[3.75rem]"
         >
           Latest offers
         </p>
         <ul
-          className="flex max-md:flex-col md:flex-wrap items-center md:gap-8 lg:gap-5 md:justify-center lg:w-[71.8rem]"
+          className=" max-md:flex-col md:flex-wrap  md:gap-8 lg:gap-5 md:justify-center lg:w-[71.8rem]"
         >
           <LatestOffers />
         </ul>
@@ -43,10 +43,10 @@ export default function Home() {
           </button>
         </div>
       </section>
-      <section className="relative py-12 md:py-16 flex-col flex items-center">
+      <section className="relative py-12 md:py-16">
         <ServicesProvide />
       </section>
-      <section className="my-12 lg:my-20 md:my-16 mx-4 flex flex-col items-center">
+      <section className="my-12 lg:my-20 md:my-16 mx-4">
         <EasyToSell />
       </section>
       <section
@@ -54,6 +54,6 @@ export default function Home() {
       >
         <MobileInstaling />
       </section>
-    </>
+    </div>
   )
 }

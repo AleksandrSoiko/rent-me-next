@@ -1,6 +1,6 @@
-import RentBuySelect from "../components/RentBuySelect";
-import LatestOffers from "../components/LatestOffers";
-import Filter from "./components/filter";
+import RentBuySelect from "../../components/RentBuySelect";
+import LatestOffers from "../../components/LatestOffers";
+import Filter from "./components/Filter";
 
 const fetchResultsByHouse = () => {
   return (

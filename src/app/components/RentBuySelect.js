@@ -1,19 +1,27 @@
+'use client'
 import Image from "next/image"
+import { useState } from "react"
 
 const RentBuySelect = () => {
+    const [rentOrBuy, setRentOrBuy] = useState(true)
+    const [location, setLocation] = useState('')
+    const [property, setProperty] = useState('')
+    const [rentRange, setRentRange] = useState('')
+
     return (
         <section className="flex flex-col items-center mx-4 max-md:py-[1.44rem] md:pb-16">
             <div>
                 <button
-                    className="font-Comfortaa text-lg font-normal leading-[1.8rem] px-6 py-2 bg-blue rounded text-blue1 mr-2.5 relative md:text-xl md:font-semibold md:leading-[1.5rem] md:px-8 md:py-4"
+                onClick={()=>setRentOrBuy(true)}
+                    className={`font-Comfortaa text-lg font-normal leading-[1.8rem] px-6 py-2 rounded mr-2.5 relative md:text-xl md:font-semibold md:leading-[1.5rem] md:px-8 md:py-4 ${rentOrBuy ? 'bg-blue text-blue1' : 'bg-blue1 text-blue'}`}
                 >
                     Rent
-                    <Image src='/RentBuySelect/arrow.svg' width="27" height="27" alt="arrowLg" className="absolute top-[43px] left-[40px] md:top-[55px] md:left-[46px] md:hidden" />
-                    <Image src='/RentBuySelect/arrow.svg' width="25" height="17" alt="arrow" className="absolute top-[43px] left-[40px] md:top-[55px] md:left-[46px] max-md:hidden" />
+                    <Image src='/RentBuySelect/arrow.svg' width="27" height="27" alt="arrowLg" className={`absolute top-[43px] ${!rentOrBuy ? 'left-[122px] md:left-[161px]' : 'left-[32px] md:left-[46px]'} md:top-[55px] md:hidden`} />
+                    <Image src='/RentBuySelect/arrow.svg' width="25" height="17" alt="arrow" className={`absolute top-[43px] md:top-[55px] max-md:hidden ${!rentOrBuy ? 'left-[122px] md:left-[155px]' : 'left-[40px] md:left-[46px]'}`} />
                 </button>
                 <button
-                    className="font-Comfortaa text-lg px-6 py-2 bg-blue1 rounded text-blue md:text-xl md:font-semibold md:leading-[1.5rem] md:px-8 md:py-4"
-                >
+                        onClick={()=>setRentOrBuy(false)}
+                    className={`font-Comfortaa text-lg px-6 py-2  rounded  md:text-xl md:font-semibold md:leading-[1.5rem] md:px-8 md:py-4 ${!rentOrBuy ? 'bg-blue text-blue1' : 'bg-blue1 text-blue'}`}>
                     Buy
                 </button>
             </div>
@@ -55,7 +63,7 @@ const RentBuySelect = () => {
                             <Image src='/RentBuySelect/Downv.svg' width="16" height="19" alt="PropertySvg" />
                         </div>
                     </label>
-                    
+
                     <label
                         htmlFor="rentRange"
                         className="lg:border-r-[1px] border-light_blue lg:w-[245px] max-md:px-6 max-md:py-2 font-Manrope text-lg max-md:border-b-[1px]  md:text-xl leading-[1.35rem]"
@@ -75,7 +83,7 @@ const RentBuySelect = () => {
                 </div>
                 <div className="flex gap-4 md:gap-[1.12rem] justify-center py-2">
                     <button>
-                    <Image src='/RentBuySelect/icon-park_setting-config.svg' width="33" height="32" alt="LocationSvg" />
+                        <Image src='/RentBuySelect/icon-park_setting-config.svg' width="33" height="32" alt="LocationSvg" />
 
                     </button>
                     <button
