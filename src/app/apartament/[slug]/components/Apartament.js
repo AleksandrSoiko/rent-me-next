@@ -82,7 +82,7 @@ const Apartament = () => {
                             </p>
                         </div>
                         <div className="font-Manrope text-lg leading-[1.68rem] mb-6">
-                            <p>Mcrae's Property Services</p>
+                            <p>Mcras Property Services</p>
                             <p className="font-light">Highams Park</p>
                             <p className="font-light">
                                 18 The Avenue Highams Park, London E4 9LD

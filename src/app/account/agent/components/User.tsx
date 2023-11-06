@@ -49,7 +49,7 @@ const User = () => {
           className="top-0 absolute right-[70px] max-lg:hidden"
         />
         <p className="font-Manrope text-2xl leading-[1.8rem] lg:text-[3rem] lg:font-medium lg:leading-[3.6rem] inline max-lg:hidden">
-          Welcom Diana
+          Welcome Daniel!
         </p>
         <p className="my-4 lg:my-6">With your account, you can:</p>
         <ul className="list-disc px-4">
@@ -60,7 +60,7 @@ const User = () => {
             <p>Turn on email alerts for new interests</p>
           </li>
           <li>
-            <p>Track property’s statistic</p>
+            <p>Track propert statistic</p>
           </li>
         </ul>
       </div>
