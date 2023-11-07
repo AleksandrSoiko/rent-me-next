@@ -1,6 +1,6 @@
-import './globals.css'
-import Header from './components/header'
-import Footer from './components/footer'
+import "./globals.css";
+import Header from "./components/header";
+import Footer from "./components/footer";
 
 export default function RootLayout({ children }) {
   return (
@@ -8,11 +8,12 @@ export default function RootLayout({ children }) {
       <head />
 
       <body>
-        <main className="min-w-min bg-white">
+        <main className="min-w-min bg-white ">
           <Header />
           {children}
           <Footer />
-        </main></body>
+        </main>
+      </body>
     </html>
-  )
+  );
 }
