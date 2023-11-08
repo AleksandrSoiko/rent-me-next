@@ -9,6 +9,7 @@ const RentBuySelect = () => {
   const [location, setLocation] = useState("");
   const [property, setProperty] = useState("");
   const [rentRange, setRentRange] = useState("");
+  const [openFilter, setOpenFilter] = useState(true);
 
   useEffect(() => {
     if (params.slug === "rent") {
@@ -73,6 +74,8 @@ const RentBuySelect = () => {
                 type="text"
                 id="location"
                 placeholder="Enter post code"
+                onChange={(e) => setLocation(e.target.value)}
+                value={location}
               />
               <Image
                 src="/RentBuySelect/Group.svg"
@@ -93,6 +96,8 @@ const RentBuySelect = () => {
                 type="text"
                 id="property"
                 placeholder="Select property type"
+                onChange={(e) => setProperty(e.target.value)}
+                value={property}
               />
               <Image
                 src="/RentBuySelect/Downv.svg"
@@ -110,6 +115,8 @@ const RentBuySelect = () => {
             Rent Range
             <div className="flex items-center w-[232px] max-md:mt-2 mt-4 md:w-[13rem]">
               <input
+                onChange={(e) => setRentRange(e.target.value)}
+                value={rentRange}
                 className="w-[100%] text-sm font-extralight md:text-lg md:font-light leading-[1.05rem] md:leading-[1.35]"
                 type="text"
                 id="rentRange"
@@ -125,7 +132,7 @@ const RentBuySelect = () => {
           </label>
         </div>
         <div className="flex gap-4 md:gap-[1.12rem] justify-center py-2">
-          <button>
+          <button onClick={() => setOpenFilter(!openFilter)}>
             <Image
               src="/RentBuySelect/icon-park_setting-config.svg"
               width="33"
@@ -133,7 +140,10 @@ const RentBuySelect = () => {
               alt="LocationSvg"
             />
           </button>
-          <button className="bg-orange px-6 py-[6px] flex gap-2 rounded-[10px] items-center font-Comfortaa font-bold text-lg height-normal text-white-700 text-center">
+          <button
+            onClick={() => setOpenFilter(!openFilter)}
+            className="bg-orange px-6 py-[6px] flex gap-2 rounded-[10px] items-center font-Comfortaa font-bold text-lg height-normal text-white-700 text-center"
+          >
             <Image
               src="/RentBuySelect/searchIcon.svg"
               width="16"

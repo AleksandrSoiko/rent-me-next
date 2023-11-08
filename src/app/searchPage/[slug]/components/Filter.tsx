@@ -2,6 +2,11 @@
 import Image from "next/image";
 import { useState } from "react";
 
+const minBeds = [1, 2, 3, 4, 5, 6];
+const maxBeds = [1, 2, 3, 4, 5, 6];
+const minPrice = [];
+const maxPrice = [];
+
 const Filter = () => {
   const [isChecked, setIsChecked] = useState(true);
 
