@@ -110,6 +110,7 @@ const Apartament = () => {
                 </span>
               </p>
             </div>
+<<<<<<< HEAD:src/app/apartament/[slug]/components/Apartament.js
         </div><div className="flex flex-col gap-8 md:gap-10">
                 <div className="flex justify-between md:hidden">
                     <div className="flex gap-2">
@@ -183,5 +184,20 @@ const Apartament = () => {
     
     
 }
+=======
+            <div className="font-Manrope text-lg leading-[1.68rem] mb-6">
+              <p>Mcras Property Services</p>
+              <p className="font-light">Highams Park</p>
+              <p className="font-light">
+                18 The Avenue Highams Park, London E4 9LD
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+>>>>>>> 8840115bb6e048c9c5df10ed431d907eaa727c48:src/app/apartament/[slug]/components/Apartament.tsx
 
 export default Apartament;

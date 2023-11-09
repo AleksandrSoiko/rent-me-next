@@ -5,7 +5,7 @@ const LatestOffers = () => {
   return (
     <>
       <li className="mt-8 md:mt-10">
-        <Link href={'apartament/1'} className="relative flex ">
+        <Link href={"apartament/1"} className="relative flex ">
           <Image
             src="/LatestOffers/test.png"
             width="328"
@@ -43,8 +43,8 @@ const LatestOffers = () => {
           <p className="text-blueText text-sm font-normal mb-2">
             Agent details
           </p>
-          <a
-            href="partials/accountCustomer/accountCustomer.html"
+          <Link
+            href="/account/customer"
             className="flex justify-between items-center font-Manrope text-[0.75rem] leading-[1.125rem] mb-4"
           >
             <div className="flex items-center gap-3">
@@ -69,7 +69,7 @@ const LatestOffers = () => {
               </span>
               4.9
             </p>
-          </a>
+          </Link>
           <div className="flex gap-4 justify-center">
             <button className="px-2 py-[0.625rem] text-[#fff] whitespace-nowrap text-center bg-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[8.75rem] rounded-[0.625rem]">
               Email
