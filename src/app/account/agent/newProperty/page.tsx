@@ -47,7 +47,7 @@ const NewProperty = () => {
           className="flex flex-col gap-6 lg:mb-[2.19rem] lg:grid-cols-2 lg:grid lg:rounded-[0.75rem] lg:shadow-[0px_4px_16px_0px_#D7E5FF] lg:py-10 lg:px-10"
         >
           <label
-            for="title"
+            htmlFor="title"
             className="font-Manrope text-base font-medium leading-[1.2rem]"
           >
             Title*
@@ -59,7 +59,7 @@ const NewProperty = () => {
             />
           </label>
           <label
-            for="Address"
+            htmlFor="Address"
             className="font-Manrope text-base font-medium leading-[1.2rem]"
           >
             Address*
@@ -71,7 +71,7 @@ const NewProperty = () => {
             />
           </label>
           <label
-            for="Price"
+            htmlFor="Price"
             className="font-Manrope text-base font-medium leading-[1.2rem] lg:mt-8"
           >
             Price*
@@ -83,7 +83,7 @@ const NewProperty = () => {
             />
           </label>
           <label
-            for="bedrooms"
+            htmlFor="bedrooms"
             className="font-Manrope text-base font-medium leading-[1.2rem] lg:mt-8"
           >
             Number of bedrooms*
@@ -95,12 +95,11 @@ const NewProperty = () => {
             />
           </label>
           <label
-            for="bedrooms"
+            htmlFor="bedrooms"
             className="font-Manrope text-base font-medium leading-[1.2rem] col-span-2 lg:mt-6"
           >
             Description*
             <textarea
-              type="text"
               name="Description"
               id="Description"
               className="w-[100%] h-[7.5rem] px-4 py-4 bg-light_blue mt-2 rounded-[0.5rem] opacity-[0.4]"
@@ -192,7 +191,7 @@ const NewProperty = () => {
             </div>
           </div>
           <label
-            for="Conpamy"
+            htmlFor="Conpamy"
             className="font-Manrope text-base font-medium leading-[1.2rem] lg:mt-14"
           >
             Conpamy*
@@ -204,7 +203,7 @@ const NewProperty = () => {
             />
           </label>
           <label
-            for="Agent"
+            htmlFor="Agent"
             className="font-Manrope text-base font-medium leading-[1.2rem] lg:mt-14"
           >
             Agent name*
@@ -216,7 +215,7 @@ const NewProperty = () => {
             />
           </label>
           <label
-            for="Phone"
+            htmlFor="Phone"
             className="font-Manrope text-base font-medium leading-[1.2rem] lg:mt-8"
           >
             Phone number*
@@ -228,7 +227,7 @@ const NewProperty = () => {
             />
           </label>
           <label
-            for="Email"
+            htmlFor="Email"
             className="font-Manrope text-base font-medium leading-[1.2rem] lg:mt-8"
           >
             Email address*

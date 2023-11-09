@@ -32,6 +32,7 @@ const Apartament = () => {
               Map
             </p>
           </div>
+          </div>
           <div className="flex gap-[1.12rem]">
             <Image
               src="/header/like.svg"
@@ -176,8 +177,11 @@ const Apartament = () => {
                         </div>
                     </div>
                 </div>
-            </div></>
-    )
+        </div>
+      </>
+      )
+    
+    
 }
 
 export default Apartament;
