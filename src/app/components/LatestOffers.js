@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { btnHoverOrange, btnHoverOrangeReverse } from "../page";
 
 const LatestOffers = () => {
   return (
@@ -71,10 +72,14 @@ const LatestOffers = () => {
             </p>
           </Link>
           <div className="flex gap-4 justify-center">
-            <button className="px-2 py-[0.625rem] text-[#fff] whitespace-nowrap text-center bg-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[8.75rem] rounded-[0.625rem]">
+            <button
+              className={`${btnHoverOrange} px-2 py-[0.625rem] text-[#fff] whitespace-nowrap text-center bg-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[8.75rem] rounded-[0.625rem]`}
+            >
               Email
             </button>
-            <button className="px-2 py-[0.625rem] whitespace-nowrap text-center border-[1px] border-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[8.75rem] rounded-[0.625rem]">
+            <button
+              className={`${btnHoverOrangeReverse} px-2 py-[0.625rem] whitespace-nowrap text-center border-[1px] border-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[8.75rem] rounded-[0.625rem]`}
+            >
               Call
             </button>
           </div>
