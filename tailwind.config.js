@@ -22,6 +22,7 @@ module.exports = {
         // => @media (min-width: 1440px) { ... }
       },
       colors: {
+        black: "#444",
         blue: "#5774CD",
         blue1: "#F2FAFD",
         light_blue: "#D7E5FF",
@@ -33,6 +34,8 @@ module.exports = {
         borderBlue: "#D7E5FF",
         rose: "rgba(255, 229, 210, 0.63)",
         white: "#fff",
+        light_blue_opacity: "rgba(215, 229, 255, 0.60)",
+        light_red_opacity: "#ff8484",
       },
       fontFamily: {
         Comfortaa: [
