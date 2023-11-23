@@ -30,11 +30,11 @@ const LatestOffers = () => {
         </Link>
         <div className="pt-4 pb-6 px-4 shadow-[0px_1px_3px_0px_rgba(215,229,255,0.3),0px_3px_6px_0_rgba(215,229,255,0.3)] w-[20.5rem] md:w-[21rem]">
           <div>
-            <p className="font-Manrope text-lg leading-[1.5rem] font-light flex flex-col mb-4">
+            <p className="font-Manrope text-lg leading-[1.5rem] font-light flex flex-col mb-4 text-[#000]">
               <span className="font-semibold">Two bedrooms flat for rent</span>
               Whitehill Place, Glasgow, G31
             </p>
-            <p className="text-base font-light leading-[1.2rem] mb-4">
+            <p className="text-base font-light leading-[1.2rem] mb-4 text-[#000]">
               This modern two bedroom property will come fully furnished and is
               suitable for students. The property comprises of a large hall with
               plenty of storage cupboards. Off the hall the modern...

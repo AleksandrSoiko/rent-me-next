@@ -24,7 +24,7 @@ const Header = () => {
         />
       </Link>
       <nav className="max-md:hidden">
-        <ul className="flex gap-10 font-Manrope text-lg font-semibold leading-[1.35rem]">
+        <ul className="flex gap-10 font-Manrope text-lg font-semibold leading-[1.35rem] text-[#000]">
           <li>
             <Link href="/searchPage/buy">Buy</Link>
           </li>

@@ -36,10 +36,10 @@ const YourProperties = () => {
             </div>
           </div>
           <div className="">
-            <div className="flex flex-col lg:w-[36.25rem] font-Comfortaa text-xl md:text-2xl md:font-semibold md:leading-[1.8rem] font-medium leading-[1.5rem]">
+            <div className="flex flex-col text-[#000] lg:w-[36.25rem] font-Comfortaa text-xl md:text-2xl md:font-semibold md:leading-[1.8rem] font-medium leading-[1.5rem]">
               <p className="md:mb-5 font-semibold">£876 pcm</p>
               <p className="text-xl md:mb-6">Property description</p>
-              <p className="font-light font-Manrope md:text-xl leading-[1.875rem]">
+              <p className="font-light font-Manrope md:text-xl leading-[1.875rem] text-[#000]">
                 This modern two bedroom property will come fully furnished and
                 is suitable for students. The property comprises of a large hall
                 with plenty of storage cupboards. Off the hall the modern
