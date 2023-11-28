@@ -30,6 +30,7 @@ module.exports = {
         black: "#000",
         orange: "#FFB22C",
         gray: "#444",
+        grayText: "#6B7280",
         grayBg: "rgba(255, 255, 255, 0.60)",
         borderBlue: "#D7E5FF",
         rose: "rgba(255, 229, 210, 0.63)",

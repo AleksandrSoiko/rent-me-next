@@ -1,14 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const MyProfile = () => {
+function MyProfile({ activeLabel }: { activeLabel: string }) {
   return (
     <div className="w-[14.75rem] p-[1.5rem] h-[100] bg-gradient-to-t from-rose to-transparent text-base font-semibold height-[1.2rem] font-Manrope">
       <ul className="flex flex-col gap-[0.88rem]">
         <li>
           <Link
             href="myprofile/Reservation"
-            className="flex gap-[1rem] py-[1rem] px-[0.62rem] hover:bg-orange hover:text-[#fff] rounded-[0.5rem] transition"
+            className={`flex gap-[1rem] py-[1rem] px-[0.62rem] hover:bg-orange hover:text-[#fff] rounded-[0.5rem] transition ${
+              activeLabel === "reserv" && "bg-orange text-[#fff]"
+            }`}
           >
             <span>
               <Image
@@ -106,7 +108,7 @@ const MyProfile = () => {
             </span>
             <span>Notification</span>
             <span className="bg-[#FACA15] w-[1rem] h-[1rem] text-xs font-medium font-Inter text-center rounded-[100%]">
-              1
+              0
             </span>
           </Link>
         </li>
@@ -128,6 +130,6 @@ const MyProfile = () => {
       </ul>
     </div>
   );
-};
+}
 
 export default MyProfile;
