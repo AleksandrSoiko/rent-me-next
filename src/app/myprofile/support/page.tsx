@@ -1,4 +1,3 @@
-import LatestOffers from "../../components/LatestOffers";
 import MyProfile from "../page";
 import SupportForm from "./component/SupportForm";
 
