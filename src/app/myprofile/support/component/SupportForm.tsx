@@ -38,11 +38,13 @@ const SupportForm = () => {
             />
           </label>
         </div>
-        <button
-          className={`${btnHoverOrange} px-2 py-[0.625rem] text-[#fff] whitespace-nowrap text-center bg-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[8.75rem] rounded-[0.625rem]`}
-        >
-          Send
-        </button>
+        <div className="flex justify-end">
+          <button
+            className={`${btnHoverOrange} px-2 py-[0.625rem] text-[#fff] whitespace-nowrap text-center bg-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[8.75rem] rounded-[0.625rem]`}
+          >
+            Send
+          </button>
+        </div>
       </form>
     </div>
   );
