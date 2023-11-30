@@ -7,7 +7,7 @@ function MyProfile({ activeLabel }: { activeLabel: string }) {
       <ul className="flex flex-col gap-[0.88rem]">
         <li>
           <Link
-            href="myprofile/Reservation"
+            href="/myprofile/Reservation"
             className={`flex gap-[1rem] py-[1rem] px-[0.62rem] hover:bg-orange hover:text-[#fff] rounded-[0.5rem] transition ${
               activeLabel === "reserv" && "bg-orange text-[#fff]"
             }`}
@@ -26,8 +26,10 @@ function MyProfile({ activeLabel }: { activeLabel: string }) {
         </li>
         <li>
           <Link
-            href="myprofile/favorite"
-            className="flex gap-[1rem] py-[1rem] px-[0.62rem] hover:bg-orange hover:text-[#fff] rounded-[0.5rem] transition"
+            href="/myprofile/favorite"
+            className={`flex gap-[1rem] py-[1rem] px-[0.62rem] hover:bg-orange hover:text-[#fff] rounded-[0.5rem] transition ${
+              activeLabel === "favorite" && "bg-orange text-[#fff]"
+            }`}
           >
             <span>
               <Image
@@ -43,8 +45,10 @@ function MyProfile({ activeLabel }: { activeLabel: string }) {
         </li>
         <li>
           <Link
-            href="myprofile/chat"
-            className="flex gap-[1rem] py-[1rem] px-[0.62rem] hover:bg-orange hover:text-[#fff] rounded-[0.5rem] transition"
+            href="/myprofile/chat"
+            className={`flex gap-[1rem] py-[1rem] px-[0.62rem] hover:bg-orange hover:text-[#fff] rounded-[0.5rem] transition ${
+              activeLabel === "chat" && "bg-orange text-[#fff]"
+            }`}
           >
             <span>
               <Image
@@ -60,8 +64,10 @@ function MyProfile({ activeLabel }: { activeLabel: string }) {
         </li>
         <li>
           <Link
-            href="myprofile/support"
-            className="flex gap-[1rem] py-[1rem] px-[0.62rem] hover:bg-orange hover:text-[#fff] rounded-[0.5rem] transition"
+            href="/myprofile/support"
+            className={`flex gap-[1rem] py-[1rem] px-[0.62rem] hover:bg-orange hover:text-[#fff] rounded-[0.5rem] transition ${
+              activeLabel === "support" && "bg-orange text-[#fff]"
+            }`}
           >
             <span>
               <Image
@@ -77,8 +83,10 @@ function MyProfile({ activeLabel }: { activeLabel: string }) {
         </li>
         <li>
           <Link
-            href="myprofile/profile"
-            className="flex gap-[1rem] py-[1rem] px-[0.62rem] hover:bg-orange hover:text-[#fff] rounded-[0.5rem] transition"
+            href="/myprofile/profile"
+            className={`flex gap-[1rem] py-[1rem] px-[0.62rem] hover:bg-orange hover:text-[#fff] rounded-[0.5rem] transition ${
+              activeLabel === "profile" && "bg-orange text-[#fff]"
+            }`}
           >
             <span>
               <Image
@@ -94,8 +102,10 @@ function MyProfile({ activeLabel }: { activeLabel: string }) {
         </li>
         <li>
           <Link
-            href="myprofile/notification"
-            className="flex gap-[1rem] py-[1rem] px-[0.62rem] hover:bg-orange hover:text-[#fff] rounded-[0.5rem] transition"
+            href="/myprofile/notification"
+            className={`flex gap-[1rem] py-[1rem] px-[0.62rem] hover:bg-orange hover:text-[#fff] rounded-[0.5rem] transition ${
+              activeLabel === "notification" && "bg-orange text-[#fff]"
+            }`}
           >
             <span>
               <Image
