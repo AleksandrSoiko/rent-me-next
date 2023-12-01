@@ -1,4 +1,4 @@
-import { btnHoverOrange } from "../../../page";
+import { btnHoverOrange, btnHoverOrangeReverse } from "../../../page";
 
 export const PasswordResetForm = () => {
   return (

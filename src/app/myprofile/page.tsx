@@ -118,7 +118,7 @@ function MyProfile({ activeLabel }: { activeLabel: string }) {
             </span>
             <span>Notification</span>
             <span className="bg-[#FACA15] w-[1rem] h-[1rem] text-xs font-medium font-Inter text-center rounded-[100%]">
-              0
+              2
             </span>
           </Link>
         </li>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { btnHoverOrange, btnHoverOrangeReverse } from "../../../page";
+import { btnHoverOrangeReverse } from "../../../page";
 import Image from "next/image";
 
 export const FirstBlockUser = () => {
