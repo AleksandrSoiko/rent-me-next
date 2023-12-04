@@ -2,7 +2,7 @@ import { btnHoverOrange } from "../../../page";
 
 const EmailNotifications = () => {
   return (
-    <form className="flex flex-col gap-[1.5rem] ">
+    <form className="flex flex-col gap-[1.5rem] " id="Notifications">
       <label
         htmlFor="House"
         className="bg-blue1 rounded-[0.625rem] py-[0.62rem] px-[1rem] mt-[1.5rem]"

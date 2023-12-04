@@ -6,12 +6,12 @@ export const PasswordResetForm = () => {
       <ul className="flex flex-col gap-[1.5rem]">
         <li>
           <label htmlFor="" className="flex gap-[1.5rem] items-center">
-            <p className="block w-[12.5rem] text-[0.875rem]">
+            <p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
               Current password
             </p>
             <input
               type="password"
-              placeholder="password"
+              placeholder=" Current password"
               id=""
               className="bg-blue1 px-[1rem] py-[0.75rem] rounded-[0.625rem] w-[100%]"
             />
@@ -19,10 +19,12 @@ export const PasswordResetForm = () => {
         </li>
         <li>
           <label htmlFor="" className="flex gap-[1.5rem] items-center">
-            <p className="block w-[12.5rem] text-[0.875rem]">New password</p>
+            <p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
+              New password
+            </p>
             <input
               type="password"
-              placeholder="password"
+              placeholder="  New password"
               id=""
               className="bg-blue1 px-[1rem] py-[0.75rem] rounded-[0.625rem] w-[100%]"
             />
@@ -30,12 +32,12 @@ export const PasswordResetForm = () => {
         </li>
         <li>
           <label htmlFor="" className="flex gap-[1.5rem] items-center">
-            <p className="block w-[12.5rem] text-[0.875rem]">
+            <p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
               Confirm new password
             </p>
             <input
               type="password"
-              placeholder="password"
+              placeholder="  Confirm new password"
               id=""
               className="bg-blue1 px-[1rem] py-[0.75rem] rounded-[0.625rem] w-[100%]"
             />

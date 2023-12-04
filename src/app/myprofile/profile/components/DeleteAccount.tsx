@@ -3,7 +3,10 @@ import Image from "next/image";
 const DeleteAccount = () => {
   return (
     <>
-      <div className="flex gap-[1rem] bg-[#FFE6E6] rounded-[0.625rem] p-4 my-[1.5rem]">
+      <div
+        className="flex gap-[1rem] bg-[#FFE6E6] rounded-[0.625rem] p-4 my-[1.5rem]"
+        id="deleteaccount"
+      >
         <Image src="/warn.svg" width="28" height="28" alt="warn" />
         <p className="text-sm">
           If you wish to delete your account, please confirm this action. All

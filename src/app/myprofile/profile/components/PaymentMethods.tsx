@@ -2,7 +2,10 @@
 
 const PaymentMethods = () => {
   return (
-    <div className="py-[0.62rem] mt-[1.5rem] px-[1rem] bg-blue1 gap-[1rem] justify-between w-[100%] flex rounded-[0.625rem] my-[1.5rem]">
+    <div
+      id="Payment-methods"
+      className="py-[0.62rem] mt-[1.5rem] px-[1rem] bg-blue1 gap-[1rem] justify-between w-[100%] flex rounded-[0.625rem] my-[1.5rem]"
+    >
       <div className="flex gap-[1rem]">
         {/* <Image
           src="/"

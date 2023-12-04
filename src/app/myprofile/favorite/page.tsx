@@ -3,12 +3,17 @@ import MyProfile from "../page";
 
 const MyReservation = () => {
   return (
-    <div className="flex   w-[1180px] mx-[auto]">
+    <div className="flex  max-w-[1180px] mx-[auto]">
       <MyProfile activeLabel={"favorite"} />
-      <ul className="flex wrap gap-[1.5rem] m-[1.5rem] max-w-[72.25rem] w-[75%]">
-        <LatestOffers />
-        <LatestOffers />
-      </ul>
+      <div>
+        <p className="lg:hidden text-xl height-[1.8rem] mt-[1.5rem] ml-[1.5rem]">
+          My Favorite
+        </p>
+        <ul className="flex max-lg:justify-center max-lg:flex-wrap gap-[1.5rem] m-[1.5rem] max-w-[72.25rem] lg:w-[75%]">
+          <LatestOffers />
+          <LatestOffers />
+        </ul>
+      </div>
     </div>
   );
 };

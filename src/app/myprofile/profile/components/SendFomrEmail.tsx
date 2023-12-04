@@ -2,11 +2,17 @@ import { btnHoverOrange } from "../../../page";
 
 export const SendFomrEmail = () => {
   return (
-    <form action="" className="my-[1.5rem] flex flex-col gap-[1.5rem]">
+    <form
+      action=""
+      className="my-[1.5rem] flex flex-col gap-[1.5rem]"
+      id="Sign-in-Method"
+    >
       <ul className="flex flex-col gap-[1.5rem]">
         <li>
           <label htmlFor="" className="flex gap-[1.5rem] items-center">
-            <p className="block w-[12.5rem] text-[0.875rem]">Enter new email</p>
+            <p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
+              Enter new email
+            </p>
             <input
               type="email"
               placeholder="Email"
@@ -17,7 +23,7 @@ export const SendFomrEmail = () => {
         </li>
         <li>
           <label htmlFor="" className="flex gap-[1.5rem] items-center">
-            <p className="block w-[12.5rem] text-[0.875rem]">
+            <p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
               Confirm password
             </p>
             <input

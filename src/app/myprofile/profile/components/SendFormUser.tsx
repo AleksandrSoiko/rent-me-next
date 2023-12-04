@@ -82,11 +82,12 @@ export const SendFormUser: React.FC = () => {
     <form
       onSubmit={formik.handleSubmit}
       className="my-[1.5rem] flex flex-col gap-[1.5rem]"
+      id="contactInformation"
     >
       <ul className="flex flex-col gap-[1.5rem]">
         <li>
           <label htmlFor="firstName" className="flex gap-[1.5rem] items-center">
-            <p className="block w-[12.5rem] text-[0.875rem]">
+            <p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
               First Name<span className="text-[red]">*</span>
             </p>
             <div className="flex flex-col w-[100%] relative">
@@ -112,7 +113,7 @@ export const SendFormUser: React.FC = () => {
         </li>
         <li>
           <label htmlFor="lastName" className="flex gap-[1.5rem] items-center">
-            <p className="block w-[12.5rem] text-[0.875rem]">
+            <p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
               Last Name<span className="text-[red]">*</span>
             </p>
             <div className="flex flex-col w-[100%] relative">
@@ -138,7 +139,7 @@ export const SendFormUser: React.FC = () => {
         </li>
         <li>
           <label htmlFor="email" className="flex gap-[1.5rem] items-center">
-            <p className="block w-[12.5rem] text-[0.875rem]">
+            <p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
               Your email<span className="text-[red]">*</span>
             </p>
             <div className="flex flex-col w-[100%] relative">
@@ -164,7 +165,7 @@ export const SendFormUser: React.FC = () => {
         </li>
         <li>
           <label htmlFor="phone" className="flex gap-[1.5rem] items-center">
-            <p className="block w-[12.5rem] text-[0.875rem]">
+            <p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
               Phone number<span className="text-[red]">*</span>
             </p>
             <div className="flex flex-col w-[100%] relative">
@@ -190,7 +191,7 @@ export const SendFormUser: React.FC = () => {
         </li>
         <li>
           <label htmlFor="age" className="flex gap-[1.5rem] items-center">
-            <p className="block w-[12.5rem] text-[0.875rem]">
+            <p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
               Your age<span className="text-[red]">*</span>
             </p>
             <div className="flex flex-col w-[100%] relative">
@@ -212,7 +213,7 @@ export const SendFormUser: React.FC = () => {
         </li>
         <li>
           <label htmlFor="country" className="flex gap-[1.5rem] items-center">
-            <p className="block w-[12.5rem] text-[0.875rem]">
+            <p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
               Country<span className="text-[red]">*</span>
             </p>
             <div className="flex flex-col w-[100%] relative">
@@ -238,7 +239,7 @@ export const SendFormUser: React.FC = () => {
         </li>
         <li>
           <label htmlFor="city" className="flex gap-[1.5rem] items-center">
-            <p className="block w-[12.5rem] text-[0.875rem]">
+            <p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
               City<span className="text-[red]">*</span>
             </p>
             <div className="flex flex-col w-[100%] relative">
@@ -264,7 +265,9 @@ export const SendFormUser: React.FC = () => {
         </li>
         <li>
           <label htmlFor="address" className="flex gap-[1.5rem] items-center">
-            <p className="block w-[12.5rem] text-[0.875rem]">Address</p>
+            <p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
+              Address
+            </p>
             <div className="flex flex-col w-[100%] relative">
               <input
                 type="text"
