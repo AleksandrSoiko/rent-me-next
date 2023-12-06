@@ -7,7 +7,7 @@ const ApratamentReserv = () => {
     <li className="border-[1px] border-[#D4F3FF] p-[1rem]">
       <div className="flex justify-between">
         <div className="flex gap-[1.2rem]">
-          <Link href={"/"}>
+          <Link href={"/apartament/1"}>
             <Image
               src="/LatestOffers/test.png"
               width="75"

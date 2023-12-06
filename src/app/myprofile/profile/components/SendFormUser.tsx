@@ -42,9 +42,9 @@ export const styleInputProfile = (
   formikError: string,
   formikTouch: undefined | boolean
 ) => {
-  return `bg-blue1 px-[1rem] py-[0.75rem] rounded-[0.625rem] w-[100%] ${
-    formikError && formikTouch ? "bg-[#ffe3e3]" : "bg-[blue1]"
-  }`;
+  return `px-[1rem] py-[0.75rem] rounded-[0.625rem] w-[100%] ${
+    formikError && formikTouch ? "bg-[#ffe3e3]" : "bg-blue1"
+  } `;
 };
 
 export const ErrorMessageText = (text: string) => {

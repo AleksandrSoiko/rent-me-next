@@ -6,7 +6,7 @@ const LatestOffers = () => {
   return (
     <>
       <li className="mt-8 md:mt-10">
-        <Link href={"apartament/1"} className="relative flex ">
+        <Link href={"/apartament/1"} className="relative flex ">
           <Image
             src="/LatestOffers/test.png"
             width="328"
