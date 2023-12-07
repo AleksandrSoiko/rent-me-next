@@ -3,12 +3,17 @@ import ApratamentReserv from "./components/apartament";
 
 const MyReservation = () => {
   return (
-    <div className="flex   w-[1180px] mx-[auto]">
+    <div className="flex   max-w-[1180px] mx-[auto]">
       <MyProfile activeLabel={"reserv"} />
-      <ul className="flex flex-col gap-[1.5rem] m-[1.5rem] max-w-[72.25rem] w-[75%]">
-        <ApratamentReserv />
-        <ApratamentReserv />
-      </ul>
+      <div className="max-w-[72.25rem] w-[100%] lg:w-[80%]">
+        <p className="lg:hidden text-xl height-[1.8rem] mt-[1.5rem] ml-[1.5rem]">
+          My reservation
+        </p>
+        <ul className="flex flex-col gap-[1.5rem] m-[1.5rem] ">
+          <ApratamentReserv />
+          <ApratamentReserv />
+        </ul>
+      </div>
     </div>
   );
 };

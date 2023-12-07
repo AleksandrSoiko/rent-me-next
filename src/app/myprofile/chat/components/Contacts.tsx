@@ -3,7 +3,7 @@ import { ContactUser } from "./ContactUser";
 
 export const Contacts = () => {
   return (
-    <div className="p-[1rem] border-[1px] border-blue1 rounded-[0.5rem]">
+    <div className="p-[1rem] max-lg:mx-[auto] border-[1px] border-blue1 rounded-[0.5rem]">
       <div className="flex justify-between">
         <p className="font-semibold text-base height-[1.2rem] font-Manrope">
           Contacts

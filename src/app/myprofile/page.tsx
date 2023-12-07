@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function MyProfile({ activeLabel }: { activeLabel: string }) {
   return (
-    <div className="w-[14.75rem] p-[1.5rem] h-[100] bg-gradient-to-t from-rose to-transparent text-base font-semibold height-[1.2rem] font-Manrope">
+    <div className="hidden lg:block w-[14.75rem] p-[1.5rem] h-[100] bg-gradient-to-t from-rose to-transparent text-base font-semibold height-[1.2rem] font-Manrope">
       <ul className="flex flex-col gap-[0.88rem]">
         <li>
           <Link
@@ -21,7 +21,7 @@ function MyProfile({ activeLabel }: { activeLabel: string }) {
                 className="fill-[red]"
               />
             </span>
-            <span> My reservation</span>
+            <span>My reservation</span>
           </Link>
         </li>
         <li>

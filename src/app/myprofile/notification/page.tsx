@@ -4,10 +4,10 @@ import { Notify } from "./components/Notify";
 
 const MyReservation = () => {
   return (
-    <div className="flex w-[1180px] mx-[auto]">
+    <div className="flex  max-w-[1180px] mx-[auto]">
       <MyProfile activeLabel={"notification"} />
-      <div className="m-[1.5rem] w-[75%]">
-        <div className="flex justify-between mb-[2.3rem] ">
+      <div className="mx-[auto] lg:m-[1.5rem] w-[75%] ">
+        <div className="flex flex-col lg:flex-row justify-between mb-[2.3rem] gap-[1.5rem]">
           <p className="font-semibold text-2xl height-[1.8rem]">
             Your notifications
           </p>

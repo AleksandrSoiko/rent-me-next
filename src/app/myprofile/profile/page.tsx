@@ -10,12 +10,12 @@ import { SendFormUser } from "./components/SendFormUser";
 
 const MyReservation = () => {
   return (
-    <div className="flex  gap-[1.5rem]  w-[1180px] mx-[auto]">
+    <div className="flex flex-col lg:flex-row gap-[1.5rem]  max-w-[1180px] mx-[auto]">
       <MyProfile activeLabel={"profile"} />
       <div className="border-[1px] border-blue1">
         <FirstBlockUser />
       </div>
-      <div className="w-[52%] gap-[1.5rem] flex flex-col">
+      <div className="lg:w-[52%] gap-[1.5rem] flex flex-col">
         <div className="border-[1px] border-blue1  p-[1.5rem] ">
           <p className="font-semibold text-base height-[1.2rem] font-Manrope">
             Contact information
