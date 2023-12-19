@@ -1,16 +1,37 @@
 import Image from "next/image";
+import Slider from "react-slick";
 
 const Apartament = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  const image = [
+    "/LatestOffers/sliderTest/qwe.webp",
+    "/LatestOffers/sliderTest/qwer.jpg",
+    "/LatestOffers/sliderTest/qwert.jpg",
+    "/LatestOffers/sliderTest/qwerty.jpg",
+    "/LatestOffers/sliderTest/qwertyu.jpg",
+  ];
   return (
     <>
       <div className="my-10 ">
-        <Image
-          src="/LatestOffers/test.png"
-          width="580"
-          height="414"
-          alt="img-Apartament"
-          className="mx-[auto] md:w-[580px]"
-        />
+        <Slider {...settings}>
+          {image.map((img) => (
+            <Image
+              key={1}
+              src={img}
+              width="580"
+              height="414"
+              alt="img-Apartament"
+              className="mx-[auto] md:w-[580px]"
+            />
+          ))}
+        </Slider>
         <div className="w-[10.125rem] md:w-[11.5rem] mx-[auto] flex gap-6 items-center mt-6">
           <button className="w-3 h-3 bg-blue1 rounded-[100%] block md:w-4 md:h-4"></button>
           <button className="w-3 h-3 bg-blue1 rounded-[100%] block md:w-4 md:h-4"></button>
