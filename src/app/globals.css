@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -82,8 +83,18 @@ button {
   padding: 0;
 }
 
+.slick-initialized .slick-slide > div {
+  margin:0 5px;
+}
+
 .slick-dots li {
-  margin: 0 5px;
+  margin: 0 10px !important;
+    background-color: #F2FAFD;
+    border-radius: 100%;
+}
+
+.slick-dots li>button:hover{
+  background-color: #5774CD;
 }
 
 .slick-dots li button {
@@ -92,11 +103,16 @@ button {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #ddd;
+  background-color: #F2FAFD;
+  color: #F2FAFD;
   border: none;
   cursor: pointer;
 }
 
 .slick-dots li.slick-active button {
-  background-color: #555;
+  background-color: #5774CD;
+}
+
+.slick-dots li button:before {
+  color: transparent !important;
 }

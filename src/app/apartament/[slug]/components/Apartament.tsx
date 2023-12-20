@@ -1,12 +1,17 @@
+"use client";
 import Image from "next/image";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Apartament = () => {
   const settings = {
+    className: "center",
     dots: true,
+    arrows: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 3,
     slidesToScroll: 1,
   };
 
@@ -19,7 +24,7 @@ const Apartament = () => {
   ];
   return (
     <>
-      <div className="my-10 ">
+      <div className="my-10 mx-[auto]">
         <Slider {...settings}>
           {image.map((img) => (
             <Image
@@ -28,17 +33,9 @@ const Apartament = () => {
               width="580"
               height="414"
               alt="img-Apartament"
-              className="mx-[auto] md:w-[580px]"
             />
           ))}
         </Slider>
-        <div className="w-[10.125rem] md:w-[11.5rem] mx-[auto] flex gap-6 items-center mt-6">
-          <button className="w-3 h-3 bg-blue1 rounded-[100%] block md:w-4 md:h-4"></button>
-          <button className="w-3 h-3 bg-blue1 rounded-[100%] block md:w-4 md:h-4"></button>
-          <button className="w-[1.125rem] h-[1.125rem] bg-blue rounded-[100%] block md:w-6 md:h-6"></button>
-          <button className="w-3 h-3 bg-blue1 rounded-[100%] block md:w-4 md:h-4"></button>
-          <button className="w-3 h-3 bg-blue1 rounded-[100%] block md:w-4 md:h-4"></button>
-        </div>
       </div>
       <div className="lg:flex lg:gap-[7.5rem]">
         <div>
