@@ -141,6 +141,10 @@ button {
 }
 }
 
+ul .slick-dots {
+  bottom: -50px;
+}
+
 div .slick-track {
   display: flex;
   align-items: center;
