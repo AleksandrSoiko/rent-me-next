@@ -116,3 +116,33 @@ button {
 .slick-dots li button:before {
   color: transparent !important;
 }
+
+.custom-slider {
+  margin: 0 15px;
+  box-sizing: border-box;
+}
+/* Стилі для активного слайда */
+.custom-slider .slick-center {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+
+.slick-slide.slick-active.slick-center.slick-current {
+  width: 600px !important;
+}
+
+.slick-slide.slick-active{
+  width: 400px !important;
+}
+
+.slick-list {
+@media (min-width:1080px) {
+    height: 395px;
+}
+}
+
+div .slick-track {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}

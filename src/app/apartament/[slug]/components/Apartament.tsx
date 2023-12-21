@@ -6,7 +6,10 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Apartament = () => {
   const settings = {
-    className: "center",
+    // className: "center",
+    centerMode: true,
+    centerPadding: "0px",
+    // adaptiveHeight: true,
     dots: true,
     arrows: false,
     infinite: true,
@@ -25,7 +28,7 @@ const Apartament = () => {
   return (
     <>
       <div className="my-10 mx-[auto]">
-        <Slider {...settings}>
+        <Slider {...settings} className="custom-slider">
           {image.map((img) => (
             <Image
               key={1}
