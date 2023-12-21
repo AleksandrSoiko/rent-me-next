@@ -7,7 +7,7 @@ const NewProperty = () => {
     <section className="py-12 px-4 flex flex-col gap-8 mx-[auto] w-[22.5rem] lg:w-[73.75rem]">
       <Link
         href="/account/agent"
-        className="flex items-center mx-4 gap-4 font-Manrope text-xl font-medium leading-[1.5rem] text-center"
+        className="inline-flex items-center mx-4 gap-4 font-Manrope text-xl font-medium leading-[1.5rem] text-center"
       >
         <Image
           src="/Latestoffers/showMore.svg"

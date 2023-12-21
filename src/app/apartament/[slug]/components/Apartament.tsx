@@ -3,6 +3,15 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import FullScreenImage from "./openImgModal";
+
+const image: string[] = [
+  "/LatestOffers/sliderTest/qwe.webp",
+  "/LatestOffers/sliderTest/qwer.jpg",
+  "/LatestOffers/sliderTest/qwert.jpg",
+  "/LatestOffers/sliderTest/qwerty.jpg",
+  "/LatestOffers/sliderTest/qwertyu.jpg",
+];
 
 const Apartament = () => {
   const settings = {
@@ -18,25 +27,14 @@ const Apartament = () => {
     slidesToScroll: 1,
   };
 
-  const image = [
-    "/LatestOffers/sliderTest/qwe.webp",
-    "/LatestOffers/sliderTest/qwer.jpg",
-    "/LatestOffers/sliderTest/qwert.jpg",
-    "/LatestOffers/sliderTest/qwerty.jpg",
-    "/LatestOffers/sliderTest/qwertyu.jpg",
-  ];
   return (
     <>
       <div className="my-10 mx-[auto]">
         <Slider {...settings} className="custom-slider">
-          {image.map((img) => (
-            <Image
-              key={1}
-              src={img}
-              width="580"
-              height="414"
-              alt="img-Apartament"
-            />
+          {image.map((image, index) => (
+            <div key={index}>
+              <FullScreenImage key={index} imageUrl={image} altText={"image"} />
+            </div>
           ))}
         </Slider>
       </div>

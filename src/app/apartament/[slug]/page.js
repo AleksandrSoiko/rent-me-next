@@ -7,7 +7,7 @@ const CardApartaments = () => {
     <section className="mx-[auto] w-[328px] px-4 md:px-8 pt-12 md:py-16 pb-10 lg:pt-15 lg:pb-20 md:w-[704px] lg:w-[1260px]">
       <Link
         href="/"
-        className="flex items-center mx-4 gap-4 font-Manrope text-xl font-medium leading-[1.5rem] text-center"
+        className="inline-flex  items-center mx-4 gap-4 font-Manrope text-xl font-medium leading-[1.5rem] text-center"
       >
         <Image
           src="/Latestoffers/showMore.svg"
