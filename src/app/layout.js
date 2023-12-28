@@ -6,7 +6,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head />
-
       <body>
         <main className="min-w-min bg-white ">
           <Header />
