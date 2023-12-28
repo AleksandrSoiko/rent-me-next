@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -72,3 +78,80 @@ button {
 }
 
 
+.slick-dots {
+  position: absolute;
+  bottom: 10px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.slick-initialized .slick-slide > div {
+  margin:0 5px;
+}
+
+.slick-dots li {
+  margin: 0 10px !important;
+    background-color: #F2FAFD;
+    border-radius: 100%;
+}
+
+.slick-dots li>button:hover{
+  background-color: #5774CD;
+}
+
+.slick-dots li button {
+  font-size: 10px;
+  line-height: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #F2FAFD;
+  color: #F2FAFD;
+  border: none;
+  cursor: pointer;
+}
+
+.slick-dots li.slick-active button {
+  background-color: #5774CD;
+}
+
+.slick-dots li button:before {
+  color: transparent !important;
+}
+
+.custom-slider {
+  margin: 0 15px;
+  box-sizing: border-box;
+}
+/* Стилі для активного слайда */
+.custom-slider .slick-center {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+
+.slick-slide.slick-active.slick-center.slick-current {
+  width: 600px !important;
+}
+
+.slick-slide.slick-active{
+  width: 400px !important;
+}
+
+.slick-list {
+@media (min-width:1080px) {
+    height: 395px;
+}
+}
+
+ul .slick-dots {
+  bottom: -50px;
+}
+
+div .slick-track {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}

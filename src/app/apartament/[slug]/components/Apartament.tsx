@@ -1,23 +1,42 @@
+"use client";
 import Image from "next/image";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import FullScreenImage from "./openImgModal";
+
+const image: string[] = [
+  "/LatestOffers/sliderTest/qwe.webp",
+  "/LatestOffers/sliderTest/qwer.jpg",
+  "/LatestOffers/sliderTest/qwert.jpg",
+  "/LatestOffers/sliderTest/qwerty.jpg",
+  "/LatestOffers/sliderTest/qwertyu.jpg",
+];
 
 const Apartament = () => {
+  const settings = {
+    // className: "center",
+    centerMode: true,
+    centerPadding: "0px",
+    // adaptiveHeight: true,
+    dots: true,
+    arrows: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+  };
+
   return (
     <>
-      <div className="my-10 ">
-        <Image
-          src="/LatestOffers/test.png"
-          width="580"
-          height="414"
-          alt="img-Apartament"
-          className="mx-[auto] md:w-[580px]"
-        />
-        <div className="w-[10.125rem] md:w-[11.5rem] mx-[auto] flex gap-6 items-center mt-6">
-          <button className="w-3 h-3 bg-blue1 rounded-[100%] block md:w-4 md:h-4"></button>
-          <button className="w-3 h-3 bg-blue1 rounded-[100%] block md:w-4 md:h-4"></button>
-          <button className="w-[1.125rem] h-[1.125rem] bg-blue rounded-[100%] block md:w-6 md:h-6"></button>
-          <button className="w-3 h-3 bg-blue1 rounded-[100%] block md:w-4 md:h-4"></button>
-          <button className="w-3 h-3 bg-blue1 rounded-[100%] block md:w-4 md:h-4"></button>
-        </div>
+      <div className="my-10 mx-[auto]">
+        <Slider {...settings} className="custom-slider">
+          {image.map((image, index) => (
+            <div key={index}>
+              <FullScreenImage key={index} imageUrl={image} altText={"image"} />
+            </div>
+          ))}
+        </Slider>
       </div>
       <div className="lg:flex lg:gap-[7.5rem]">
         <div>

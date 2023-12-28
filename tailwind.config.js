@@ -39,18 +39,14 @@ module.exports = {
         light_red_opacity: "#ff8484",
       },
       fontFamily: {
-        Comfortaa: [
-          "Comfortaa/Comfortaa-Regular",
-          "Comfortaa-Bold",
-          "Comfortaa-Medium",
-        ],
+        Comfortaa: ["Comfortaa", "sans-serif"],
         Lato: ["Lato"],
-        Manrope: ['url("/fonts/Montserrat-Regular.ttf")', "Manrope-Regular"],
-        Montserrat: ["Montserrat"],
-        Roboto: ["Roboto"],
-        SourceSansPro: ["Source Sans Pro"],
-        SFProText: ["SF Pro Text"],
-        serif: ["Merriweather", "serif"],
+        Manrope: ["Manrope", "sans-serif"],
+        Montserrat: ["Montserrat", "sans-serif"],
+        Roboto: ["Roboto", "sans-serif"],
+        SourceSansPro: ["Source Sans Pro", "sans-serif"],
+        SFProText: ["SF Pro Text", "sans-serif"],
+        serif: ["Merriweather", "sans-serif"],
       },
       background: {
         gradient:
