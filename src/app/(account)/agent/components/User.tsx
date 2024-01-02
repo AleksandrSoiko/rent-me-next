@@ -1,6 +1,11 @@
 import Image from "next/image";
+import { Session } from "next-auth";
 
-const User = () => {
+interface SesionInterface {
+  session: Session;
+}
+
+const User: React.FC<SesionInterface> = ({ session }) => {
   return (
     <div className="mt-6 relative mb-12 lg:mt-20 lg:mb-10 lg:flex justify-between">
       <div className="flex gap-4">
@@ -13,11 +18,11 @@ const User = () => {
         />
         <div>
           <p className="font-Manrope text-2xl leading-[1.8rem] lg:text-[3rem] lg:font-medium lg:leading-[3.6rem] inline lg:hidden">
-            Welcome Daniel!
+            Welcome {session.user?.name}!
           </p>
           <div className="flex gap-4 mt-2">
             <Image
-              src="/account/mail.svg"
+              src={"/account/mail.svg"}
               width="24"
               height="24"
               alt="mail"
@@ -49,7 +54,7 @@ const User = () => {
           className="top-0 absolute right-[70px] max-lg:hidden"
         />
         <p className="font-Manrope text-2xl leading-[1.8rem] lg:text-[3rem] lg:font-medium lg:leading-[3.6rem] inline max-lg:hidden">
-          Welcome Daniel!
+          Welcome {session.user?.name}!
         </p>
         <p className="my-4 lg:my-6">With your account, you can:</p>
         <ul className="list-disc px-4">

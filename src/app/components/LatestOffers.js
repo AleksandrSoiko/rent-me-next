@@ -45,7 +45,7 @@ const LatestOffers = () => {
             Agent details
           </p>
           <Link
-            href="/account/customer"
+            href="/customer"
             className="flex justify-between items-center font-Manrope text-[0.75rem] leading-[1.125rem] mb-4"
           >
             <div className="flex items-center gap-3">
