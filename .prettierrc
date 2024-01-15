@@ -1,0 +1,23 @@
+{
+	"trailingComma": "es5",
+	"tabWidth": 2,
+	"useTabs": true,
+	"semi": false,
+	"singleQuote": true,
+	"importOrder": [
+		"THIRD_PARTY_MODULES",
+		"^@/app/(.*)$",
+		"^@/config/(.*)$",
+		"^@/helper/(.*)$",
+		"^@/hooks/(.*)$",
+		"^@/lib/(.*)$",
+		"^@/pages/(.*)$",
+		"^@/shared/(.*)$",
+		"^@/store/(.*)$",
+		"^@/utils/(.*)$",
+		"^../(.*)$",
+		"^./(.*)$"
+	],
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true
+}
