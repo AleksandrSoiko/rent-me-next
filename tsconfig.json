@@ -30,6 +30,6 @@
     "**/*.tsx",
     "src/app/apartament/[slug]/components/Apartament.tsx",
     "src/app/signIn/page.tsx"
-  ],
+, "src/lib/auth.ts"  ],
   "exclude": ["node_modules"]
 }

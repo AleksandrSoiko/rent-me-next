@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { btnHoverOrange, btnHoverOrangeReverse } from '../page'
 
 const LatestOffers = ({ queryData }) => {
-	console.log(queryData[0].agent[0].firstname)
 	return (
 		queryData &&
 		queryData.map((query) => (
