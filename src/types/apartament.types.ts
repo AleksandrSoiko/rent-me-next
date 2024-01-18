@@ -1,3 +1,5 @@
+import { FormValues } from './formikProfile.types'
+
 export interface Apartament {
 	_id: string
 	title: string
@@ -6,5 +8,5 @@ export interface Apartament {
 	price: number
 	description: string
 	genres: string[]
-	agent: Object[]
+	agent: FormValues[]
 }

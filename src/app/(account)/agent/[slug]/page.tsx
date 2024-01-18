@@ -1,16 +1,12 @@
-import { authOptions } from 'lib/auth'
 import HowItWorks from './components/howItWork'
 import User from './components/User'
 import YourProperties from './components/YourProperties'
-import { getServerSession } from 'next-auth'
-import { notFound } from 'next/navigation'
 import { UserService } from 'service/user.service.ts/user.service'
 
-const AccountCustomer = async () => {
-	const session = await getServerSession(authOptions)
-	if (!session) notFound()
-
-	let profile = await UserService.getProfile()
+const AccountCustomer = async (context) => {
+	const { slug } = context.params
+	let profile = await UserService.getProfileById(slug)
+	console.log(profile)
 
 	return (
 		<section className="px-4 mx-[auto] lg:w-[73.5rem] flex flex-col items-center">

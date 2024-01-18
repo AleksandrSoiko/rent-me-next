@@ -30,6 +30,6 @@
 		"src/app/signIn/page.tsx",
 		"src/lib/auth.ts",
 		"src/app/middleware.js"
-	],
+, "src/app/components/LatestOffers.tsx"	],
 	"exclude": ["node_modules"]
 }

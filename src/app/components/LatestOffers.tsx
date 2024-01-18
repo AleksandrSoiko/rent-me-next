@@ -1,13 +1,20 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { btnHoverOrange, btnHoverOrangeReverse } from '../page'
+import { Apartament } from 'types/apartament.types'
 
-const LatestOffers = ({ apartament }) => {
+interface ApartamentArray {
+	apartament: Apartament[]
+}
+
+const LatestOffers: React.FC<ApartamentArray> = ({ apartament }) => {
+	console.log(apartament)
+
 	return (
 		apartament &&
 		apartament.map((query) => (
 			<li key={query._id} className="mt-8 md:mt-10">
-				<Link href={'/apartament/1'} className="relative flex ">
+				<Link href={`/apartament/${query._id}`} className="relative flex ">
 					<Image src={query.pictures[0]} width="328" height="336" alt="photo" />
 					<div className="absolute bottom-0 bg-grayBg flex w-[20.5rem] md:w-[21rem] py-2 px-[1.12rem]">
 						<p className="font-Comfortaa text-xl md:font-semibold font-normal leading-[1.5rem] w-[16.625rem]">
@@ -33,14 +40,16 @@ const LatestOffers = ({ apartament }) => {
 						</p>
 						<p className="text-base font-light leading-[1.2rem] mb-4 text-[#000]">
 							{query.description.slice(0, 200)}... 
-							<button className="underline">more</button>
+							<Link href={`/apartament/${query._id}`} className="underline">
+								more
+							</Link>
 						</p>
 					</div>
 					<p className="text-blueText text-sm font-normal mb-2">
 						Agent details
 					</p>
 					<Link
-						href={`/agent/${query._id}`}
+						href={`/agent/${query.agent[0]._id}`}
 						className="flex justify-between items-center font-Manrope text-[0.75rem] leading-[1.125rem] mb-4"
 					>
 						<div className="flex items-center gap-3">

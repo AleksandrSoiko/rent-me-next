@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import FullScreenImage from 'app/apartament/[slug]/components/openImgModal'
 import { btnHoverOrange, btnHoverOrangeReverse } from 'app/page'
 import { Apartament } from 'types/apartament.types'
+import Link from 'next/link'
 
 const image: string[] = [
 	'/LatestOffers/sliderTest/qwe.webp',
@@ -75,7 +76,12 @@ const YourProperties: React.FC<ApartamentProps> = ({ properties }) => {
 										? `${propertie.description.slice(0, 200)}... `
 										: propertie.description}
 									{propertie.description.length > 200 && (
-										<button className="underline">more</button>
+										<Link
+											href={`/apartament/${propertie._id}`}
+											className="underline"
+										>
+											more
+										</Link>
 									)}
 								</p>
 							</div>

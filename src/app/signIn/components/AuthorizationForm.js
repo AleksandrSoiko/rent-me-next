@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { btnHoverOrange } from '../../page'
 import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 // Form component for user authorization
 const AuthorizationForm = () => {
@@ -13,6 +14,7 @@ const AuthorizationForm = () => {
 	const [email, setEmail] = useState('')
 	// State, input-password for submit
 	const [password, setPassword] = useState('')
+	const route = useRouter()
 
 	const handleSignIn = async (e) => {
 		e.preventDefault()
@@ -25,10 +27,8 @@ const AuthorizationForm = () => {
 
 		if (result.error) {
 			console.error('Authentication error:', result.error)
-			// Обробка помилок авторизації
 		} else {
-			// Успішна авторизація, перенаправлення на '/agent' або іншу сторінку
-			console.log('good')
+			route.push('/myprofile/profile')
 		}
 	}
 
