@@ -6,7 +6,6 @@ import { UserService } from 'service/user.service.ts/user.service'
 const AccountCustomer = async (context) => {
 	const { slug } = context.params
 	let profile = await UserService.getProfileById(slug)
-	console.log(profile)
 
 	return (
 		<section className="px-4 mx-[auto] lg:w-[73.5rem] flex flex-col items-center">

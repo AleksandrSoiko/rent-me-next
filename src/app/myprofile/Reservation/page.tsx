@@ -3,7 +3,8 @@ import MyProfile from '../page'
 import ApratamentReserv from './components/apartament'
 
 const MyReservation = async () => {
-	let favorite = await UserService.getProfileById('')
+	let favorite = await UserService.getProfileById('65a4fca21ea5202b23535573')
+
 	return (
 		<div className="flex   max-w-[1180px] mx-[auto]">
 			<MyProfile activeLabel={'reserv'} />

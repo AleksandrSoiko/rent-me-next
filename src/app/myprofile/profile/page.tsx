@@ -11,7 +11,7 @@ import { SendFormUser } from './components/SendFormUser'
 import { UserService } from 'service/user.service.ts/user.service'
 
 const MyReservation = async () => {
-	let profile = await UserService.getProfileById('')
+	let profile = await UserService.getProfileById('65a4fca21ea5202b23535573')
 
 	return (
 		<div className="flex flex-col lg:flex-row gap-[1.5rem]  max-w-[1180px] mx-[auto]">
