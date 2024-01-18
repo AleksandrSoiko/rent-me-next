@@ -2,18 +2,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { btnHoverOrange, btnHoverOrangeReverse } from '../page'
 
-const LatestOffers = ({ queryData }) => {
+const LatestOffers = ({ apartament }) => {
 	return (
-		queryData &&
-		queryData.map((query) => (
+		apartament &&
+		apartament.map((query) => (
 			<li key={query._id} className="mt-8 md:mt-10">
 				<Link href={'/apartament/1'} className="relative flex ">
-					<Image
-						src="/LatestOffers/test.png"
-						width="328"
-						height="336"
-						alt="photo"
-					/>
+					<Image src={query.pictures[0]} width="328" height="336" alt="photo" />
 					<div className="absolute bottom-0 bg-grayBg flex w-[20.5rem] md:w-[21rem] py-2 px-[1.12rem]">
 						<p className="font-Comfortaa text-xl md:font-semibold font-normal leading-[1.5rem] w-[16.625rem]">
 							<span>£</span>
@@ -45,12 +40,12 @@ const LatestOffers = ({ queryData }) => {
 						Agent details
 					</p>
 					<Link
-						href="/customer"
+						href={`/agent/${query._id}`}
 						className="flex justify-between items-center font-Manrope text-[0.75rem] leading-[1.125rem] mb-4"
 					>
 						<div className="flex items-center gap-3">
 							<Image
-								src="/LatestOffers/Avatar.png"
+								src={query.agent[0].foto}
 								width="36"
 								height="36"
 								alt="Avatar"

@@ -1,34 +1,16 @@
+import { authOptions } from 'lib/auth'
 import HowItWorks from './components/howItWork'
 import User from './components/User'
-import { authOptions } from '../../../lib/auth'
 import YourProperties from './components/YourProperties'
 import { getServerSession } from 'next-auth'
 import { notFound } from 'next/navigation'
-import axios from 'axios'
+import { UserService } from 'service/user.service.ts/user.service'
 
-const AccountCustomer = async ({}) => {
+const AccountCustomer = async () => {
 	const session = await getServerSession(authOptions)
 	if (!session) notFound()
-	let profile
 
-	if (session && session.user?.name) {
-		profile = {
-			firstname: session.user.name,
-			email: session.user.email,
-		}
-	} else if (session.user && !session.user?.name) {
-		try {
-			const res = await axios.get('http://localhost:4000/api/users/profile', {
-				headers: {
-					Authorization: `Bearer ${session.user?.accessToken}`,
-				},
-			})
-
-			profile = res.data
-		} catch (error) {
-			console.error('Error fetching post:', error)
-		}
-	}
+	let profile = await UserService.getProfile()
 
 	return (
 		<section className="px-4 mx-[auto] lg:w-[73.5rem] flex flex-col items-center">
@@ -44,7 +26,7 @@ const AccountCustomer = async ({}) => {
 					Your properties
 				</p>
 				<ul>
-					<YourProperties />
+					<YourProperties properties={profile.favorite} />
 				</ul>
 			</div>
 		</section>

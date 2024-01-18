@@ -7,7 +7,7 @@ import EasyToSell from './components/EasyToSell'
 import MobileInstaling from './components/MobileInstaling'
 import Head from './head'
 import Image from 'next/image'
-import { fetchData } from 'service/url.service'
+import { ApartamentService } from 'service/apartament/apartament.service'
 
 export const btnHoverOrange = [
 	'hover:bg-[#fff] hover:text-[#000] border-[1px] border-[#FFB22C]',
@@ -15,7 +15,8 @@ export const btnHoverOrange = [
 export const btnHoverOrangeReverse = ['hover:bg-[#FFB22C] hover:text-[#fff]']
 
 export default async function Home() {
-	const queryData = await fetchData('/apartament')
+	const apartament = await ApartamentService.getAllApartament()
+
 	return (
 		<div className="flex flex-col items-center">
 			<Head />
@@ -33,7 +34,7 @@ export default async function Home() {
 					Latest offers
 				</p>
 				<ul className=" max-md:flex-col md:flex-wrap  md:gap-8 lg:gap-5 md:justify-center lg:w-[71.8rem]">
-					<LatestOffers queryData={queryData} />
+					<LatestOffers apartament={apartament} />
 				</ul>
 				<div className="flex gap-4 justify-center mt-8 md:mt-10">
 					<p className="font-Manrope font-medium text-xl leading-[1.5rem]">

@@ -1,33 +1,17 @@
 'use client'
 import Image from 'next/image'
+import { IUser } from 'types/user.types'
 
-interface profileData {
-	id: string
-	email: string
-	password: string
-	isAdmin: true
-	favorite: []
-	createdAt: string
-	updatedAt: string
-	__v: 0
-	address: string
-	city: string
-	country: string
-	firstname: string
-	lastname: string
-	phonenumber: string
-}
-
-const User: React.FC<{ profileData: profileData }> = ({ profileData }): any => {
+const User: React.FC<{ profileData: IUser }> = ({ profileData }): any => {
 	return (
 		<div className="mt-6 relative mb-12 lg:mt-20 lg:mb-10 lg:flex justify-between">
 			<div className="flex gap-4">
 				<Image
-					src="/account/avatar.png"
+					src={profileData.foto}
 					width="280"
 					height="280"
 					alt="avatar"
-					className="w-[86px] lg:w-[280px] inline"
+					className="w-[86px] lg:w-[280px] inline rounded-[100%]"
 				/>
 				<div>
 					<p className="font-Manrope text-2xl leading-[1.8rem] lg:text-[3rem] lg:font-medium lg:leading-[3.6rem] inline lg:hidden">
