@@ -65,7 +65,7 @@ const LatestOffers: React.FC<ApartamentArray> = ({ apartament }) => {
 						<p className="flex gap-1">
 							<span>
 								<Image
-									src="/LatestOffers/star.svg"
+									src="/header/star.svg"
 									width="18"
 									height="18"
 									alt="starSvg"

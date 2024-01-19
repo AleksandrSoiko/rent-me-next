@@ -42,7 +42,7 @@ export default async function Home() {
 					</p>
 					<button>
 						<Image
-							src="/Latestoffers/showMore.svg"
+							src="/LatestOffers/showMore.svg"
 							width="25"
 							height="26"
 							alt="ShowMore"
