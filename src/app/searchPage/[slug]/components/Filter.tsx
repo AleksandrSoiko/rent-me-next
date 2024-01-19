@@ -92,7 +92,7 @@ const Filter: React.FC<FilterProps> = ({ openFilter, setOpenFilter }) => {
 				<button
 					onClick={() => setOpenFilter(true)}
 					className={`
-            mx-[auto] flex justify-center items-center gap-4 font-Montserrat text-base leading-[1.2rem] my-4 md:my-8 lg:text-xl lg:leading-[1.5rem]`}
+            mx-[auto] text-[#000] flex justify-center items-center gap-4 font-Montserrat text-base leading-[1.2rem] my-4 md:my-8 lg:text-xl lg:leading-[1.5rem]`}
 				>
 					<p>Show less filters</p>
 					<Image
