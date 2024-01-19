@@ -36,7 +36,7 @@ export const authOptions: NextAuthOptions = {
 			},
 			async authorize(credentials) {
 				const response = await axios.post(
-					'https://nodejs-hw-goit-03-restapi.onrender.com/api/auth/login',
+					'https://nodejs-hw-goit-03-restapi.onrender.com/api/auth/login/',
 					{
 						email: credentials?.email,
 						password: credentials?.password,
