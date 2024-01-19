@@ -10,6 +10,7 @@ interface ApartamentArray {
 const LatestOffers: React.FC<ApartamentArray> = ({ apartament }) => {
 	return (
 		apartament &&
+		apartament.length > 0 &&
 		apartament.map((query) => (
 			<li key={query._id} className="mt-8 md:mt-10">
 				<Link href={`/apartament/${query._id}`} className="relative flex ">

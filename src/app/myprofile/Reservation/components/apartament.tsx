@@ -3,16 +3,13 @@ import Link from 'next/link'
 import { btnHoverOrange, btnHoverOrangeReverse } from '../../../page'
 import { Apartament } from 'types/apartament.types'
 
-export interface ApartamentArray {
-	favorite: Apartament[]
-}
-
-const ApratamentReserv: React.FC<{ userFavorite: ApartamentArray }> = ({
-	userFavorite,
+const ApratamentReserv: React.FC<{ userReservation: Apartament[] }> = ({
+	userReservation,
 }): any => {
 	return (
-		userFavorite &&
-		userFavorite.favorite.map((fav) => (
+		userReservation &&
+		userReservation.length > 0 &&
+		userReservation.map((fav) => (
 			<li key={fav._id} className="border-[1px] border-[#D4F3FF] p-[1rem]">
 				<div className="flex justify-between">
 					<div className="flex gap-[1.2rem]">

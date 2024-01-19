@@ -32,4 +32,16 @@ export const UserService = {
 			}
 		}
 	},
+
+	async getProfileByIdReservation(id: string) {
+		try {
+			const response = await axiosApi.get(
+				`/users/profile/reservation/?id=${id}`
+			)
+			const profile = response.data
+			return profile
+		} catch (error) {
+			console.error('Error fetching reservation profile:', error)
+		}
+	},
 }
