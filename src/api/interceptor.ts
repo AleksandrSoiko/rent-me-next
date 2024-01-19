@@ -4,7 +4,7 @@ import { authOptions } from 'lib/auth'
 import { getServerSession } from 'next-auth'
 
 const axiosApi = axios.create({
-	baseURL: 'https://nodejs-hw-goit-03-restapi.onrender.com/',
+	baseURL: 'https://nodejs-hw-goit-03-restapi.onrender.com/api',
 	timeout: 1000,
 	headers: { 'Content-Type': 'application/json' },
 })
@@ -25,7 +25,7 @@ axiosApi.interceptors.request.use(async (config) => {
 export default axiosApi
 
 export const axiosClassic = axios.create({
-	baseURL: 'https://nodejs-hw-goit-03-restapi.onrender.com/',
+	baseURL: 'https://nodejs-hw-goit-03-restapi.onrender.com/api',
 	headers: {
 		'Content-Type': 'application/json',
 	},
