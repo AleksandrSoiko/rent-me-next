@@ -14,4 +14,5 @@ export interface IUser {
 	lastname: string
 	phonenumber: string
 	foto: string
+	age: FormData
 }

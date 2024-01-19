@@ -2,15 +2,25 @@
 import { useFormik } from 'formik'
 import { btnHoverOrange } from '../../../page'
 import * as Yup from 'yup'
-import { FormValues } from 'types/formikProfile.types'
 import { IUser } from 'types/user.types'
 
+interface formikVal {
+	firstname: string,
+			lastname: string,
+			email: string,
+			phonenumber: string,
+			age: Date,
+			country: string,
+			city: string,
+			address: string,
+}
+
 const validationSchema = Yup.object().shape({
-	firstName: Yup.string()
+	firstname: Yup.string()
 		.min(2, 'Too Short First Name!')
 		.max(35, 'Too Long First Name!')
 		.required('First Name is required'),
-	lastName: Yup.string()
+	lastname: Yup.string()
 		.min(2, 'Too Short Last Name!')
 		.max(35, 'Too Long Last Name!')
 		.required('Last Name is required'),
@@ -30,7 +40,7 @@ const validationSchema = Yup.object().shape({
 })
 
 export const styleInputProfile = (
-	formikError: string,
+	formikError: string | undefined,
 	formikTouch: undefined | boolean
 ) => {
 	return `px-[1rem] py-[0.75rem] rounded-[0.625rem] w-[100%] ${
@@ -47,13 +57,13 @@ export const ErrorMessageText = (text: string) => {
 }
 
 export const SendFormUser: React.FC<{ profile: IUser }> = ({ profile }) => {
-	const formik = useFormik<FormValues>({
+	const formik = useFormik<formikVal>({
 		initialValues: {
-			firstName: '' || profile.firstname,
-			lastName: '' || profile.lastname,
+			firstname: '' || profile.firstname,
+			lastname: '' || profile.lastname,
 			email: '' || profile.email,
-			phone: '' || profile.phonenumber,
-			age: new Date(),
+			phonenumber: '' || profile.phonenumber,
+			age:new Date()|| profile.age,
 			country: '' || profile.country,
 			city: '' || profile.city,
 			address: '' || profile.address,
@@ -77,7 +87,7 @@ export const SendFormUser: React.FC<{ profile: IUser }> = ({ profile }) => {
 		>
 			<ul className="flex flex-col gap-[1.5rem]">
 				<li>
-					<label htmlFor="firstName" className="flex gap-[1.5rem] items-center">
+					<label htmlFor="firstname" className="flex gap-[1.5rem] items-center">
 						<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
 							First Name<span className="text-[red]">*</span>
 						</p>
@@ -86,24 +96,24 @@ export const SendFormUser: React.FC<{ profile: IUser }> = ({ profile }) => {
 								required
 								type="text"
 								placeholder="Name"
-								name="firstName"
-								id="firstName"
+								name="firstname"
+								id="firstname"
 								className={styleInputProfile(
-									formik.errors.firstName,
-									formik.touched.firstName
+									formik.errors.firstname,
+									formik.touched.firstname
 								)}
 								onChange={handleInputChange}
 								onBlur={formik.handleBlur}
-								value={formik.values.firstName}
+								value={formik.values.firstname}
 							/>
-							{formik.errors.firstName &&
-								formik.touched.firstName &&
-								ErrorMessageText(formik.errors.firstName)}
+							{formik.errors.firstname &&
+								formik.touched.firstname &&
+								ErrorMessageText(formik.errors.firstname)}
 						</div>
 					</label>
 				</li>
 				<li>
-					<label htmlFor="lastName" className="flex gap-[1.5rem] items-center">
+					<label htmlFor="lastname" className="flex gap-[1.5rem] items-center">
 						<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
 							Last Name<span className="text-[red]">*</span>
 						</p>
@@ -112,19 +122,19 @@ export const SendFormUser: React.FC<{ profile: IUser }> = ({ profile }) => {
 								required
 								type="text"
 								placeholder="Last Name"
-								id="lastName"
-								name="lastName"
+								id="lastname"
+								name="lastname"
 								className={styleInputProfile(
-									formik.errors.lastName,
-									formik.touched.lastName
+									formik.errors.lastname,
+									formik.touched.lastname
 								)}
 								onChange={handleInputChange}
 								onBlur={formik.handleBlur}
-								value={formik.values.lastName}
+								value={formik.values.lastname}
 							/>
-							{formik.errors.lastName &&
-								formik.touched.lastName &&
-								ErrorMessageText(formik.errors.lastName)}
+							{formik.errors.lastname &&
+								formik.touched.lastname &&
+								ErrorMessageText(formik.errors.lastname)}
 						</div>
 					</label>
 				</li>
@@ -167,16 +177,16 @@ export const SendFormUser: React.FC<{ profile: IUser }> = ({ profile }) => {
 								id="phone"
 								name="phone"
 								className={styleInputProfile(
-									formik.errors.phone,
-									formik.touched.phone
+									formik.errors.phonenumber,
+									formik.touched.phonenumber
 								)}
 								onChange={handleInputChange}
 								onBlur={formik.handleBlur}
-								value={formik.values.phone}
+								value={formik.values.phonenumber}
 							/>
-							{formik.errors.phone &&
-								formik.touched.phone &&
-								ErrorMessageText(formik.errors.phone)}
+							{formik.errors.phonenumber &&
+								formik.touched.phonenumber &&
+								ErrorMessageText(formik.errors.phonenumber)}
 						</div>
 					</label>
 				</li>
