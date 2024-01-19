@@ -2,6 +2,8 @@
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
+import 'toastr/build/toastr.css'
+import toastr from 'toastr'
 
 const Header = () => {
 	const { data } = useSession()
@@ -45,7 +47,16 @@ const Header = () => {
 			</nav>
 			<ul className="flex gap-4">
 				<li>
-					<Link href="/signIn">
+					<Link
+						href={data ? '/myprofile/favorite' : '/signIn'}
+						onClick={() =>
+							!data &&
+							toastr.error(
+								'Sign in to view your favorites',
+								'You are not authorized'
+							)
+						}
+					>
 						<Image src="/header/like.svg" width="28" height="28" alt="like" />
 					</Link>
 				</li>

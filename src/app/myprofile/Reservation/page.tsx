@@ -1,9 +1,14 @@
 import { UserService } from 'service/user.service.ts/user.service'
 import MyProfile from '../page'
 import ApratamentReserv from './components/apartament'
+import { getServerSession } from 'next-auth'
+import { authOptions } from 'lib/auth'
 
 const MyReservation = async () => {
-	let favorite = await UserService.getProfileById('65a4fca21ea5202b23535573')
+	const session = await getServerSession(authOptions)
+	const reservation = await UserService.getProfileByIdReservation(
+		String(session?.user._id)
+	)
 
 	return (
 		<div className="flex   max-w-[1180px] mx-[auto]">
@@ -13,7 +18,7 @@ const MyReservation = async () => {
 					My reservation
 				</p>
 				<ul className="flex flex-col gap-[1.5rem] m-[1.5rem] ">
-					<ApratamentReserv userFavorite={favorite} />
+					<ApratamentReserv userReservation={reservation} />
 				</ul>
 			</div>
 		</div>
