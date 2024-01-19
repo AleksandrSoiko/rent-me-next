@@ -14,7 +14,7 @@ const CardApartaments = async (context) => {
 				className="inline-flex  items-center mx-4 gap-4 font-Manrope text-xl font-medium leading-[1.5rem] text-center"
 			>
 				<Image
-					src="/Latestoffers/showMore.svg"
+					src="/LatestOffers/showMore.svg"
 					width="32"
 					height="32"
 					alt="back"

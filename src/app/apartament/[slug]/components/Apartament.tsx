@@ -45,7 +45,7 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 						<div className="flex justify-between md:hidden">
 							<div className="flex gap-2">
 								<Image
-									src="/Latestoffers/map.svg"
+									src="/LatestOffers/map.svg"
 									width="24"
 									height="24"
 									alt="map-svg"
@@ -62,7 +62,7 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 									alt="like-svg"
 								/>
 								<Image
-									src="/Latestoffers/carbon_floorplan.svg"
+									src="/LatestOffers/carbon_floorplan.svg"
 									width="24"
 									height="24"
 									alt="like-svg"
@@ -76,7 +76,7 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 									{apartament.place} |
 									<span className="flex gap-2 ml-8 max-md:hidden">
 										<Image
-											src="/Latestoffers/map.svg"
+											src="/LatestOffers/map.svg"
 											width="24"
 											height="24"
 											alt="map-svg"
@@ -93,10 +93,10 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 									alt="like-svg"
 								/>
 								<Image
-									src="/Latestoffers/carbon_floorplan.svg"
+									src="/LatestOffers/carbon_floorplan.svg"
 									width="40"
 									height="40"
-									alt="like-svg"
+									alt="floorplan"
 								/>
 							</div>
 						</div>
@@ -115,10 +115,10 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 									</p>
 									<p className="flex items-center gap-1">
 										<Image
-											src="/Latestoffers/star.svg"
+											src="/header/star.svg"
 											width="18"
 											height="18"
-											alt="like-svg"
+											alt="star-svg"
 										/>
 										<span className="font-Manrope text-xs leading-[1.125rem]">
 											4.9
