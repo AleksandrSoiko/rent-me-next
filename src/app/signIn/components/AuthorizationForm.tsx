@@ -1,13 +1,12 @@
-'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { btnHoverOrange } from '../../page'
-import { signIn } from 'next-auth/react'
+import { signIn, SignInResponse } from 'next-auth/react' // Assuming SignInResponse is the correct type
 import { useRouter } from 'next/navigation'
 
 // Form component for user authorization
-const AuthorizationForm = () => {
+const AuthorizationForm: React.FC = () => {
 	// State hidden for password
 	const [passHidden, setPassHidden] = useState(true)
 	// State, input-email for submit
@@ -16,19 +15,21 @@ const AuthorizationForm = () => {
 	const [password, setPassword] = useState('')
 	const route = useRouter()
 
-	const handleSignIn = async (e) => {
+	const handleSignIn = async (e: React.FormEvent) => {
 		e.preventDefault()
-		// Виклик функції signIn для авторизації
+		// Call the signIn function for authorization
 		const result = await signIn('credentials', {
 			redirect: false,
 			email: email,
 			password: password,
 		})
 
-		if (result.error) {
-			console.error('Authentication error:', result.error)
-		} else {
-			route.push('/myprofile/profile')
+		if (result) {
+			if ((result as SignInResponse).error) {
+				console.error('Authentication error:', (result as SignInResponse).error)
+			} else {
+				route.push('/myprofile/profile')
+			}
 		}
 	}
 
@@ -75,7 +76,7 @@ const AuthorizationForm = () => {
 				Sign In
 			</button>
 			<p className="font-Manrope text-base text-center">
-				No account? 
+				No account?{' '}
 				<Link
 					href="Register"
 					className="font-medium underline hover:text-orange"

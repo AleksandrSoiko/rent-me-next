@@ -8,8 +8,6 @@ interface ApartamentArray {
 }
 
 const LatestOffers: React.FC<ApartamentArray> = ({ apartament }) => {
-	console.log(apartament)
-
 	return (
 		apartament &&
 		apartament.map((query) => (
@@ -52,7 +50,7 @@ const LatestOffers: React.FC<ApartamentArray> = ({ apartament }) => {
 						href={`/agent/${query.agent[0]._id}`}
 						className="flex justify-between items-center font-Manrope text-[0.75rem] leading-[1.125rem] mb-4"
 					>
-						<div className="flex items-center gap-3">
+						<div className="flex items-center gap-3 text-[#000]">
 							<Image
 								src={query.agent[0].foto}
 								width="36"
