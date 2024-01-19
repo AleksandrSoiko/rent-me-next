@@ -1,9 +1,9 @@
 import axiosApi, { axiosClassic } from 'api/interceptor'
 
 export const UserService = {
-	async getProfile() {
+	async getProfile(id: string) {
 		try {
-			const response = await axiosApi.get('/users/profile')
+			const response = await axiosApi.get(`/users/profile/?id=${id}`)
 			const profile = response.data
 			return profile
 		} catch (error) {
@@ -16,6 +16,7 @@ export const UserService = {
 			}
 		}
 	},
+
 	async getProfileById(id: string) {
 		try {
 			const response = await axiosClassic.get(`/users/profile/?id=${id}`)
