@@ -1,12 +1,8 @@
 export interface IUser {
 	id: string
 	email: string
-	password: string
 	isAdmin: true
 	favorite: []
-	createdAt: string
-	updatedAt: string
-	__v: 0
 	address: string
 	city: string
 	country: string
@@ -15,4 +11,16 @@ export interface IUser {
 	phonenumber: string
 	foto: string
 	age: FormData
+}
+
+
+export interface formikVal {
+	firstname: string
+	lastname: string
+	email: string
+	phonenumber: string
+	age: Date
+	country: string
+	city: string
+	address: string
 }

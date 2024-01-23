@@ -2,6 +2,7 @@ import { NextAuthOptions, User } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import axios from 'axios'
+import { API_URL } from 'config/api.config'
 
 // function getGoogleCredentials() {
 // 	const clientId = process.env.GOOGLE_CLIENT_ID
@@ -35,13 +36,10 @@ export const authOptions: NextAuthOptions = {
 				password: { label: 'Password', type: 'password' },
 			},
 			async authorize(credentials) {
-				const response = await axios.post(
-					'https://nodejs-hw-goit-03-restapi.onrender.com/api/auth/login/',
-					{
-						email: credentials?.email,
-						password: credentials?.password,
-					}
-				)
+				const response = await axios.post(`${API_URL}/auth/login/`, {
+					email: credentials?.email,
+					password: credentials?.password,
+				})
 				const { password, ...user } = response.data.user
 				const accessToken = response.data.accessToken
 				const refreshToken = response.data.refreshToken

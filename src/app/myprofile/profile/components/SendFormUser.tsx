@@ -2,18 +2,8 @@
 import { useFormik } from 'formik'
 import { btnHoverOrange } from '../../../page'
 import * as Yup from 'yup'
-import { IUser } from 'types/user.types'
-
-interface formikVal {
-	firstname: string,
-			lastname: string,
-			email: string,
-			phonenumber: string,
-			age: Date,
-			country: string,
-			city: string,
-			address: string,
-}
+import { IUser, formikVal } from 'types/user.types'
+import { UserService } from 'service/user.service.ts/user.service'
 
 const validationSchema = Yup.object().shape({
 	firstname: Yup.string()
@@ -25,7 +15,7 @@ const validationSchema = Yup.object().shape({
 		.max(35, 'Too Long Last Name!')
 		.required('Last Name is required'),
 	email: Yup.string().email('Invalid email').required('Email is required'),
-	phone: Yup.string()
+	phonenumber: Yup.string()
 		.min(14, 'Too Short Phone number!')
 		.max(14, 'Too Long Phone number!'),
 	age: Yup.date().required('Your age is required'),
@@ -63,14 +53,15 @@ export const SendFormUser: React.FC<{ profile: IUser }> = ({ profile }) => {
 			lastname: '' || profile.lastname,
 			email: '' || profile.email,
 			phonenumber: '' || profile.phonenumber,
-			age:new Date()|| profile.age,
+			age: new Date() || profile.age,
 			country: '' || profile.country,
 			city: '' || profile.city,
 			address: '' || profile.address,
 		},
-		validationSchema: validationSchema,
-		onSubmit: (values) => {
-			console.log(JSON.stringify(values, null, 2))
+		// validationSchema: validationSchema,
+		onSubmit: async (values) => {
+			// const resp = await UserService.updateProfile(values)
+			console.log(values)
 		},
 	})
 
@@ -141,10 +132,11 @@ export const SendFormUser: React.FC<{ profile: IUser }> = ({ profile }) => {
 				<li>
 					<label htmlFor="email" className="flex gap-[1.5rem] items-center">
 						<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
-							Your email<span className="text-[red]">*</span>
+							Your email
 						</p>
 						<div className="flex flex-col w-[100%] relative">
 							<input
+								disabled
 								required
 								type="email"
 								placeholder="Email"
@@ -174,8 +166,8 @@ export const SendFormUser: React.FC<{ profile: IUser }> = ({ profile }) => {
 								required
 								type="tel"
 								placeholder="Phone number"
-								id="phone"
-								name="phone"
+								id="phonenumber"
+								name="phonenumber"
 								className={styleInputProfile(
 									formik.errors.phonenumber,
 									formik.touched.phonenumber
@@ -292,6 +284,7 @@ export const SendFormUser: React.FC<{ profile: IUser }> = ({ profile }) => {
 			</ul>
 			<div className="flex justify-end">
 				<button
+					type="submit"
 					className={`${btnHoverOrange} px-2 py-[0.625rem]  text-[#fff] whitespace-nowrap text-center bg-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[10rem] rounded-[0.625rem]`}
 				>
 					Save
