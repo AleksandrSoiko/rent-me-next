@@ -44,4 +44,18 @@ export const UserService = {
 			console.error('Error fetching reservation profile:', error)
 		}
 	},
+
+	async updateEmailPass(body: string) {
+		try {
+			const response = await axiosApi.put(`/users/profile/`, {
+				email: 'test22@gmail.com',
+			})
+			console.log(response)
+
+			const profile = response.data
+			return profile
+		} catch (error) {
+			console.error('Error fetching reservation profile:', error)
+		}
+	},
 }

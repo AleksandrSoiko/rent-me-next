@@ -1,20 +1,51 @@
 'use client'
 
+import 'toastr/build/toastr.css'
+import toastr from 'toastr'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { btnHoverOrange } from '../../page'
+import useAxiosPost from 'hooks/useAxios'
+import { useRouter } from 'next/navigation'
 
 // А form component for register
 const RegisterForm = () => {
+	const route = useRouter()
+	const { data, loading, error, fetchAxios } = useAxiosPost()
 	// State hidden for password
-	const [passHidden, setPassHidden] = useState(true)
+	const [passHidden, setPassHidden] = useState<boolean>(true)
 	// State, input-email for submit
-	const [email, setEmail] = useState('')
+	const [email, setEmail] = useState<string>('')
 	// State, input-password for submit
 	const [password, setPassword] = useState('')
 	// State, input-name for submit
 	const [name, setName] = useState('')
+
+	const sendChangeEmail = async (e) => {
+		e.preventDefault()
+		await fetchAxios({
+			url: '/auth/register/',
+			method: 'POST',
+			body: {
+				email,
+				password,
+				fistname: name,
+			},
+		})
+	}
+
+	useEffect(() => {
+		if (error) {
+			toastr.error(error)
+		} else if (data) {
+			setEmail('')
+			setPassword('')
+			setName('')
+			route.push('/')
+			toastr.success('Email has been successfully changed')
+		}
+	}, [error, data, route])
 
 	return (
 		<form className="flex flex-col gap-6 w-[100%] relative">
@@ -40,7 +71,6 @@ const RegisterForm = () => {
 				className="w-[100%] py-4 px-4 tex-base font-medium border-[1px] border-[#000] rounded-[0.5rem]"
 			/>
 			<button type="button" onClick={() => setPassHidden(!passHidden)}>
-				{' '}
 				<Image
 					src="/eye.svg"
 					width="32"
@@ -50,6 +80,7 @@ const RegisterForm = () => {
 				/>
 			</button>
 			<button
+				onClick={sendChangeEmail}
 				className={`${btnHoverOrange} px-8 py-4 whitespace-nowrap text-center text-[#fff] bg-orange text-ellipsis font-Comfortaa text-base font-bold w-[100%] rounded-[0.625rem]`}
 			>
 				Register
