@@ -13,8 +13,8 @@ export const SendFomrEmail = () => {
 	const sendChangeEmail = async (e) => {
 		e.preventDefault()
 		await fetchAxios({
-			url: '/users/profile/',
-			method: 'POST',
+			url: '/users/update/email',
+			method: 'PUT',
 			body: { email, password },
 		})
 	}

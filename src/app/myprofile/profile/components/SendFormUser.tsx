@@ -3,7 +3,10 @@ import { useFormik } from 'formik'
 import { btnHoverOrange } from '../../../page'
 import * as Yup from 'yup'
 import { IUser, formikVal } from 'types/user.types'
-import { UserService } from 'service/user.service.ts/user.service'
+import useAxiosPost from 'hooks/useAxios'
+import { useEffect } from 'react'
+import 'toastr/build/toastr.css'
+import toastr from 'toastr'
 
 const validationSchema = Yup.object().shape({
 	firstname: Yup.string()
@@ -47,23 +50,35 @@ export const ErrorMessageText = (text: string) => {
 }
 
 export const SendFormUser: React.FC<{ profile: IUser }> = ({ profile }) => {
+	const { data, loading, error, fetchAxios } = useAxiosPost()
+
 	const formik = useFormik<formikVal>({
 		initialValues: {
 			firstname: '' || profile.firstname,
 			lastname: '' || profile.lastname,
-			email: '' || profile.email,
 			phonenumber: '' || profile.phonenumber,
-			age: new Date() || profile.age,
+			age: '' || profile.age,
 			country: '' || profile.country,
 			city: '' || profile.city,
 			address: '' || profile.address,
 		},
 		// validationSchema: validationSchema,
 		onSubmit: async (values) => {
-			// const resp = await UserService.updateProfile(values)
-			console.log(values)
+			await fetchAxios({
+				url: '/users/update/profile',
+				method: 'PUT',
+				body: values,
+			})
 		},
 	})
+
+	useEffect(() => {
+		if (error) {
+			toastr.error(error)
+		} else if (data) {
+			toastr.success('Your contact information has been successfully changed')
+		}
+	}, [error, data])
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target
@@ -142,17 +157,12 @@ export const SendFormUser: React.FC<{ profile: IUser }> = ({ profile }) => {
 								placeholder="Email"
 								id="email"
 								name="email"
-								className={styleInputProfile(
+								className={`${styleInputProfile(
 									formik.errors.email,
 									formik.touched.email
-								)}
-								onChange={handleInputChange}
-								onBlur={formik.handleBlur}
-								value={formik.values.email}
+								)} bg-[#cfd6d8]`}
+								value={profile.email}
 							/>
-							{formik.errors.email &&
-								formik.touched.email &&
-								ErrorMessageText(formik.errors.email)}
 						</div>
 					</label>
 				</li>
@@ -189,13 +199,16 @@ export const SendFormUser: React.FC<{ profile: IUser }> = ({ profile }) => {
 						</p>
 						<div className="flex flex-col w-[100%] relative">
 							<input
+								value={formik.values.age}
 								required
 								type="date"
-								placeholder="Name"
+								placeholder="age"
 								id="age"
 								name="age"
 								className="bg-blue1 px-[1rem] py-[0.75rem] rounded-[0.625rem] w-[100%]"
-								onChange={handleInputChange}
+								onChange={(e) =>
+									formik.setFieldValue('age', String(e.target.value))
+								}
 								onBlur={formik.handleBlur}
 							/>
 							{formik.errors.age &&

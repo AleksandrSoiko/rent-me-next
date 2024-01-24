@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { btnHoverOrange } from '../../page'
 import { signIn, SignInResponse } from 'next-auth/react' // Assuming SignInResponse is the correct type
 import { useRouter } from 'next/navigation'
+import 'toastr/build/toastr.css'
+import toastr from 'toastr'
 
 // Form component for user authorization
 const AuthorizationForm: React.FC = () => {
@@ -26,7 +28,7 @@ const AuthorizationForm: React.FC = () => {
 
 		if (result) {
 			if ((result as SignInResponse).error) {
-				console.error('Authentication error:', (result as SignInResponse).error)
+				toastr.error('Email or password invalid')
 			} else {
 				route.push('/myprofile/profile')
 			}

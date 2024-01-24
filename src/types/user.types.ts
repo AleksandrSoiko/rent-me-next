@@ -10,16 +10,15 @@ export interface IUser {
 	lastname: string
 	phonenumber: string
 	foto: string
-	age: FormData
+	age: string
 }
-
 
 export interface formikVal {
 	firstname: string
 	lastname: string
-	email: string
+	email?: string
 	phonenumber: string
-	age: Date
+	age?: string
 	country: string
 	city: string
 	address: string
