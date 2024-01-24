@@ -12,7 +12,11 @@ export const SendFomrEmail = () => {
 
 	const sendChangeEmail = async (e) => {
 		e.preventDefault()
-		await fetchAxios('/users/profile/', { email, password })
+		await fetchAxios({
+			url: '/users/profile/',
+			method: 'POST',
+			body: { email, password },
+		})
 	}
 
 	useEffect(() => {
@@ -21,7 +25,7 @@ export const SendFomrEmail = () => {
 		} else if (data) {
 			setEmail('')
 			setPassword('')
-			toastr.success('Email has been successfully changed')
+			toastr.success('You successfully register')
 		}
 	}, [error, data])
 

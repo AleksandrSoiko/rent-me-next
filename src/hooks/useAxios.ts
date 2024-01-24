@@ -3,8 +3,14 @@ import { API_URL } from 'config/api.config'
 import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 
+type TypeInput = {
+	url: string
+	method: 'GET' | 'POST' | 'PUT' | 'DELETE'
+	body: any
+}
+
 const axiosApiClient = axios.create({
-	baseURL: API_URL,
+	baseURL: 'http://localhost:4000/api',
 	timeout: 1000,
 	headers: { 'Content-Type': 'application/json' },
 })
@@ -25,10 +31,16 @@ export default function useAxiosPost() {
 		return config
 	})
 
-	const fetchAxios = async (api: string, body) => {
+	const fetchAxios = async ({ url, method, body }: TypeInput) => {
+		console.log(url, method, body)
+
 		setLoading(true)
 		try {
-			const response = await axiosApiClient.put(api, body)
+			const response = await axiosApiClient.request({
+				url,
+				method,
+				data: body,
+			})
 			setLoading(false)
 			setError(null)
 			setData(response.data)
