@@ -4,7 +4,7 @@ import { authOptions } from 'lib/auth'
 import { getServerSession } from 'next-auth'
 
 const axiosApi = axios.create({
-	baseURL: 'http://localhost:4000/api',
+	baseURL: API_URL,
 	timeout: 1000,
 	headers: { 'Content-Type': 'application/json' },
 })
