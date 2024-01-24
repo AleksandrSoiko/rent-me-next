@@ -1,24 +1,54 @@
+'use client'
 import Link from 'next/link'
 import { btnHoverOrangeReverse } from '../../../page'
 import Image from 'next/image'
 import { IUser } from 'types/user.types'
+import useAxiosPost from 'hooks/useAxios'
+import 'toastr/build/toastr.css'
+import toastr from 'toastr'
+import axios from 'axios'
 
 export const FirstBlockUser: React.FC<{ profile: IUser }> = ({ profile }) => {
+	const { data, loading, error, fetchAxios } = useAxiosPost()
+
+	const handleFileChange = async (
+		event: React.ChangeEvent<HTMLInputElement>
+	) => {
+		const file = event.target.files?.[0] || null
+
+		if (file) {
+			const formData = new FormData()
+			formData.append('photo', file)
+			// axios.post('http://localhost:4000/api/files/', formData).then(res=> console.log(res))
+			try {
+				await fetchAxios({
+					url: '/files',
+					method: 'POST',
+					body: formData,
+				})
+			} catch (error) {
+				console.error('Error uploading photo', error)
+			}
+		}
+	}
+
 	return (
 		<div className="p-[1.5rem] w-[17.4rem] max-lg:mx-[auto]">
 			<div className="flex flex-col gap-[1rem] items-center">
 				<Image
-					src={profile.foto}
+					src={profile.foto || '/nofoto.png'}
 					width="170"
 					height="170"
 					alt="avatar"
 					className="rounded-[100%]"
 				/>
-				<button
+				<label
+					htmlFor="addphoto"
 					className={`${btnHoverOrangeReverse} px-2 py-[0.625rem] text-[#000] whitespace-nowrap text-center bg-white border-[1px] border-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[100%] rounded-[0.625rem]`}
 				>
-					+ Add photo
-				</button>
+					Add foto+
+					<input id="addphoto" type="file" onChange={handleFileChange} />
+				</label>
 				<button className="text-xs font-medium height-[1.125rem] font-Inter hover:text-orange">
 					Delete photo
 				</button>

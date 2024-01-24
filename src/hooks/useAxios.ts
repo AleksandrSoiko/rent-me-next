@@ -38,6 +38,12 @@ export default function useAxiosPost() {
 				url,
 				method,
 				data: body,
+				headers: {
+					'Content-Type':
+						body instanceof FormData
+							? 'multipart/form-data'
+							: 'application/json',
+				},
 			})
 			setLoading(false)
 			setError(null)
