@@ -3,9 +3,7 @@ import HowItWorks from './components/howItWork'
 import User from './components/User'
 import { btnHoverOrange, btnHoverOrangeReverse } from '../../../page'
 
-const AccountCustomer = ({ params }) => {
-	const slug = params.slug
-
+const AccountCustomer = () => {
 	return (
 		<section className="px-4 mx-[auto] lg:w-[73.5rem]  flex flex-col items-center">
 			<User />

@@ -1,9 +1,9 @@
 import axiosApi, { axiosClassic } from 'api/interceptor'
 
 export const UserService = {
-	async getProfile(id: string) {
+	async getMyProfile() {
 		try {
-			const response = await axiosApi.get(`/users/myprofile/?id=${id}`)
+			const response = await axiosApi.get(`/users/myprofile/`)
 			const profile = response.data
 			return profile
 		} catch (error) {
@@ -17,7 +17,7 @@ export const UserService = {
 		}
 	},
 
-	async getProfileById(id: string) {
+	async getMyProfileById(id: string) {
 		try {
 			const response = await axiosClassic.get(`/users/profile/?id=${id}`)
 			const profile = response.data
@@ -33,23 +33,9 @@ export const UserService = {
 		}
 	},
 
-	async getProfileByIdReservation(id: string) {
+	async getMyProfileByIdReservation() {
 		try {
-			const response = await axiosApi.get(
-				`/users/profile/reservation/?id=${id}`
-			)
-			const profile = response.data
-			return profile
-		} catch (error) {
-			console.error('Error fetching reservation profile:', error)
-		}
-	},
-
-	async updateEmailPass(body: string) {
-		try {
-			const response = await axiosApi.put(`/users/profile/`, {
-				email: 'test22@gmail.com',
-			})
+			const response = await axiosApi.get(`/users/profile/reservation/`)
 			const profile = response.data
 			return profile
 		} catch (error) {

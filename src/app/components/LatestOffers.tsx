@@ -1,20 +1,54 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { btnHoverOrange, btnHoverOrangeReverse } from '../page'
 import { Apartament } from 'types/apartament.types'
+import useAxiosPost from 'hooks/useAxios'
+import { useEffect } from 'react'
+import 'toastr/build/toastr.css'
+import toastr from 'toastr'
+import { IUser } from 'types/user.types'
 
 interface ApartamentArray {
 	apartament: Apartament[]
 }
+interface LatestOffersProps extends ApartamentArray {
+	profile?: IUser
+}
 
-const LatestOffers: React.FC<ApartamentArray> = ({ apartament }) => {
+const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
+	const { data, loading, error, fetchAxios } = useAxiosPost()
+
+	const togleAddFavotireApartament = async (idApartament: string) => {
+		await fetchAxios({
+			url: `/users/profile/reservation?idApartament=${idApartament}`,
+			method: 'PUT',
+			body: {},
+		})
+	}
+
+	useEffect(() => {
+		if (error) {
+			toastr.error(error)
+		} else if (data) {
+			toastr.success(data)
+		}
+	}, [error, data])
+
 	return (
 		apartament &&
 		apartament.length > 0 &&
 		apartament.map((query) => (
 			<li key={query._id} className="mt-8 md:mt-10">
-				<Link href={`/apartament/${query._id}`} className="relative flex ">
-					<Image src={query.pictures[0]} width="328" height="336" alt="photo" />
+				<div className="relative">
+					<Link href={`/apartament/${query._id}`} className="inline-block">
+						<Image
+							src={query.pictures[0]}
+							width="328"
+							height="336"
+							alt="photo"
+						/>
+					</Link>
 					<div className="absolute bottom-0 bg-grayBg flex w-[20.5rem] md:w-[21rem] py-2 px-[1.12rem]">
 						<p className="font-Comfortaa text-xl md:font-semibold font-normal leading-[1.5rem] w-[16.625rem]">
 							<span>£</span>
@@ -27,10 +61,39 @@ const LatestOffers: React.FC<ApartamentArray> = ({ apartament }) => {
 								height="24"
 								alt="plan"
 							/>
-							<Image src="/header/like.svg" width="24" height="24" alt="like" />
+							<button onClick={() => togleAddFavotireApartament(query._id)}>
+								{profile?.favorite.length === 0 ? (
+									<Image
+										src="/header/like.svg"
+										width="24"
+										height="24"
+										alt="like"
+									/>
+								) : (
+									profile?.favorite.map((favoriteItem: Apartament) =>
+										favoriteItem._id === query._id ? (
+											<Image
+												key={favoriteItem._id}
+												src="/header/likeUse.svg"
+												width="24"
+												height="24"
+												alt="like"
+											/>
+										) : (
+											<Image
+												key={favoriteItem._id}
+												src="/header/star.svg"
+												width="24"
+												height="24"
+												alt="like"
+											/>
+										)
+									)
+								)}
+							</button>
 						</div>
 					</div>
-				</Link>
+				</div>
 				<div className="pt-4 pb-6 px-4 shadow-[0px_1px_3px_0px_rgba(215,229,255,0.3),0px_3px_6px_0_rgba(215,229,255,0.3)] w-[20.5rem] md:w-[21rem]">
 					<div>
 						<p className="font-Manrope text-lg leading-[1.5rem] font-light flex flex-col mb-4 text-[#000]">
