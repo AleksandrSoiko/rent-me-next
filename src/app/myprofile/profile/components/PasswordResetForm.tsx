@@ -3,6 +3,10 @@ import { btnHoverOrange } from '../../../page'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { ErrorMessageText } from './SendFormUser'
+import useAxiosPost from 'hooks/useAxios'
+import 'toastr/build/toastr.css'
+import toastr from 'toastr'
+import { useEffect } from 'react'
 
 const validationSchema = Yup.object().shape({
 	currPassword: Yup.string()
@@ -35,6 +39,8 @@ export const styleInputProfile = (
 }
 
 export const PasswordResetForm: React.FC = () => {
+	const { data, loading, error, fetchAxios } = useAxiosPost()
+
 	const formik = useFormik<FormValues>({
 		initialValues: {
 			currPassword: '',
@@ -42,12 +48,28 @@ export const PasswordResetForm: React.FC = () => {
 			confNewPass: '',
 		},
 		validationSchema: validationSchema,
-		onSubmit: (values) => {
+		onSubmit: async (values) => {
 			if (formik.values.newPass === formik.values.confNewPass) {
-				console.log(values)
+				await fetchAxios({
+					url: '/users/update/password',
+					method: 'PUT',
+					body: { password: values.currPassword, newPassword: values.newPass },
+				})
 			}
 		},
 	})
+
+	useEffect(() => {
+		if (error) {
+			toastr.error(error)
+		} else if (data) {
+			formik.setFieldValue('currPassword', '')
+			formik.setFieldValue('newPass', '')
+			formik.setFieldValue('confNewPass', '')
+			toastr.success('You successfully change password')
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [data, error])
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target

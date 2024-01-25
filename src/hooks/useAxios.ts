@@ -10,7 +10,7 @@ type TypeInput = {
 }
 
 const axiosApiClient = axios.create({
-	baseURL: 'http://localhost:4000/api',
+	baseURL: API_URL,
 	timeout: 1000,
 	headers: { 'Content-Type': 'application/json' },
 })
@@ -32,14 +32,18 @@ export default function useAxiosPost() {
 	})
 
 	const fetchAxios = async ({ url, method, body }: TypeInput) => {
-		console.log(url, method, body)
-
 		setLoading(true)
 		try {
 			const response = await axiosApiClient.request({
 				url,
 				method,
 				data: body,
+				headers: {
+					'Content-Type':
+						body instanceof FormData
+							? 'multipart/form-data'
+							: 'application/json',
+				},
 			})
 			setLoading(false)
 			setError(null)
@@ -47,7 +51,6 @@ export default function useAxiosPost() {
 		} catch (error) {
 			setLoading(false)
 			setError(error.response.data.message)
-			console.log(error)
 		}
 	}
 

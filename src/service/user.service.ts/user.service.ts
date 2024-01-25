@@ -50,8 +50,6 @@ export const UserService = {
 			const response = await axiosApi.put(`/users/profile/`, {
 				email: 'test22@gmail.com',
 			})
-			console.log(response)
-
 			const profile = response.data
 			return profile
 		} catch (error) {
