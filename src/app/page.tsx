@@ -8,6 +8,10 @@ import MobileInstaling from './components/MobileInstaling'
 import Head from './head'
 import Image from 'next/image'
 import { ApartamentService } from 'service/apartament/apartament.service'
+import { authOptions } from 'lib/auth'
+import { getServerSession } from 'next-auth'
+import { UserService } from 'service/user.service.ts/user.service'
+import { IUser } from 'types/user.types'
 
 export const btnHoverOrange = [
 	'hover:bg-[#fff] hover:text-[#000] border-[1px] border-[#FFB22C]',
@@ -15,7 +19,13 @@ export const btnHoverOrange = [
 export const btnHoverOrangeReverse = ['hover:bg-[#FFB22C] hover:text-[#fff]']
 
 export default async function Home() {
+	const session = await getServerSession(authOptions)
 	const apartament = await ApartamentService.getAllApartament()
+	let profile
+
+	if (session) {
+		profile = await UserService.getMyProfile()
+	}
 
 	return (
 		<div className="flex flex-col items-center">
@@ -34,7 +44,7 @@ export default async function Home() {
 					Latest offers
 				</p>
 				<ul className=" max-md:flex-col md:flex-wrap  md:gap-8 lg:gap-5 md:justify-center lg:w-[71.8rem]">
-					<LatestOffers apartament={apartament} />
+					<LatestOffers apartament={apartament} profile={profile} />
 				</ul>
 				<div className="flex gap-4 justify-center mt-8 md:mt-10">
 					<p className="font-Manrope font-medium text-xl leading-[1.5rem]">

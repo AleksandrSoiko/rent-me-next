@@ -1,14 +1,9 @@
 import { UserService } from 'service/user.service.ts/user.service'
 import MyProfile from '../page'
 import ApratamentReserv from './components/apartament'
-import { getServerSession } from 'next-auth'
-import { authOptions } from 'lib/auth'
 
 const MyReservation = async () => {
-	const session = await getServerSession(authOptions)
-	const reservation = await UserService.getProfileByIdReservation(
-		String(session?.user._id)
-	)
+	const reservation = await UserService.getMyProfileByIdReservation()
 
 	return (
 		<div className="flex   max-w-[1180px] mx-[auto]">

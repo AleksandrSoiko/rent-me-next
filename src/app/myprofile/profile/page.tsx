@@ -1,4 +1,3 @@
-import { getServerSession } from 'next-auth'
 import { btnHoverOrange } from '../../page'
 import MyProfile from '../page'
 import DeleteAccount from './components/DeleteAccount'
@@ -9,11 +8,9 @@ import PaymentMethods from './components/PaymentMethods'
 import { SendFomrEmail } from './components/SendFomrEmail'
 import { SendFormUser } from './components/SendFormUser'
 import { UserService } from 'service/user.service.ts/user.service'
-import { authOptions } from 'lib/auth'
 
 const MyReservation: React.FC = async () => {
-	const session = await getServerSession(authOptions)
-	let profile = await UserService.getProfileById(String(session?.user._id))
+	let profile = await UserService.getMyProfile()
 
 	return (
 		<div className="flex flex-col lg:flex-row gap-[1.5rem]  max-w-[1180px] mx-[auto]">
