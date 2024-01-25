@@ -43,7 +43,7 @@ export default async function Home() {
 				<p className="text-center font-Comfortaa text-2xl font-normal leading-[1.8rem] md:text-[3.125rem] md:leading-[3.75rem]">
 					Latest offers
 				</p>
-				<ul className=" max-md:flex-col md:flex-wrap  md:gap-8 lg:gap-5 md:justify-center lg:w-[71.8rem]">
+				<ul className=" max-md:flex-col md:flex-wrap  md:gap-8 lg:gap-5 md-max:justify-center lg:w-[71.8rem] flex gap-1">
 					<LatestOffers apartament={apartament} profile={profile} />
 				</ul>
 				<div className="flex gap-4 justify-center mt-8 md:mt-10">

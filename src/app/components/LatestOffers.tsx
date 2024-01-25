@@ -39,8 +39,8 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
 		apartament &&
 		apartament.length > 0 &&
 		apartament.map((query) => (
-			<li key={query._id} className="mt-8 md:mt-10">
-				<div className="relative">
+			<li key={query._id} className="mt-8 md:mt-10 inline-block">
+				<div className="relative inline-block">
 					<Link href={`/apartament/${query._id}`} className="inline-block">
 						<Image
 							src={query.pictures[0]}
@@ -54,43 +54,18 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
 							<span>£</span>
 							{query.price} pcm
 						</p>
-						<div className="flex gap-[1.12rem]">
+						<div className="flex gap-[0.5rem]">
 							<Image
 								src="/LatestOffers/carbon_floorplan.svg"
 								width="24"
 								height="24"
 								alt="plan"
 							/>
-							<button onClick={() => togleAddFavotireApartament(query._id)}>
-								{profile?.favorite.length === 0 ? (
-									<Image
-										src="/header/like.svg"
-										width="24"
-										height="24"
-										alt="like"
-									/>
-								) : (
-									profile?.favorite.map((favoriteItem: Apartament) =>
-										favoriteItem._id === query._id ? (
-											<Image
-												key={favoriteItem._id}
-												src="/header/likeUse.svg"
-												width="24"
-												height="24"
-												alt="like"
-											/>
-										) : (
-											<Image
-												key={favoriteItem._id}
-												src="/header/star.svg"
-												width="24"
-												height="24"
-												alt="like"
-											/>
-										)
-									)
-								)}
-							</button>
+							{renderFavoriteButton(
+								query._id,
+								profile,
+								togleAddFavotireApartament
+							)}
 						</div>
 					</div>
 				</div>
@@ -158,3 +133,32 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
 }
 
 export default LatestOffers
+
+const renderFavoriteButton = (
+	queryId: string,
+	profile,
+	togleAddFavotireApartament
+) => {
+	if (!profile) {
+		return (
+			<button onClick={() => toastr.error('Log in to add to favorites')}>
+				<Image src="/header/like.svg" width="34" height="34" alt="like" />
+			</button>
+		)
+	}
+
+	const isFavorite = profile.favorite.some(
+		(favoriteItem) => favoriteItem._id === queryId
+	)
+
+	return (
+		<button onClick={() => togleAddFavotireApartament(queryId)}>
+			<Image
+				src={isFavorite ? '/header/likeUse.svg' : '/header/like.svg'}
+				width="34"
+				height="34"
+				alt="like"
+			/>
+		</button>
+	)
+}

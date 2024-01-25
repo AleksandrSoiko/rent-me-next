@@ -28,12 +28,12 @@ async function MyProfile({ activeLabel }: { activeLabel: string }) {
 								className="fill-[red]"
 							/>
 						</span>
-						<span>My reservation</span>
+						<span>Favorites</span>
 					</Link>
 				</li>
 				<li>
 					<Link
-						href="/myprofile/favorite"
+						href="/myprofile/reservations"
 						className={`flex gap-[1rem] py-[1rem] px-[0.62rem] hover:bg-orange hover:text-[#fff] rounded-[0.5rem] transition ${
 							activeLabel === 'favorite' && 'bg-orange text-[#fff]'
 						}`}
@@ -47,7 +47,7 @@ async function MyProfile({ activeLabel }: { activeLabel: string }) {
 								className="fill-[red]"
 							/>
 						</span>
-						<span>Favorite</span>
+						<span>My reservation</span>
 					</Link>
 				</li>
 				<li>
