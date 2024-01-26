@@ -14,7 +14,7 @@ async function MyProfile({ activeLabel }: { activeLabel: string }) {
 			<ul className="flex flex-col gap-[0.88rem]">
 				<li>
 					<Link
-						href="/myprofile/Reservation"
+						href="/myprofile/favorites"
 						className={`flex gap-[1rem] py-[1rem] px-[0.62rem] hover:bg-orange hover:text-[#fff] rounded-[0.5rem] transition ${
 							activeLabel === 'reserv' && 'bg-orange text-[#fff]'
 						}`}
