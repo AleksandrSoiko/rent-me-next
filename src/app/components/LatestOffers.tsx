@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { btnHoverOrange, btnHoverOrangeReverse } from '../page'
 import { Apartament } from 'types/apartament.types'
 import useAxiosPost from 'hooks/useAxios'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import 'toastr/build/toastr.css'
 import toastr from 'toastr'
 import { IUser } from 'types/user.types'
@@ -15,9 +15,16 @@ interface ApartamentArray {
 interface LatestOffersProps extends ApartamentArray {
 	profile?: IUser
 }
+interface responseData {
+	idApartament: string
+	message: string
+}
 
 const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
 	const { data, loading, error, fetchAxios } = useAxiosPost()
+	const [inFavorite, setFavorite] = useState<string[]>(
+		profile?.favorite.map(({ _id }) => _id) || []
+	)
 
 	const togleAddFavotireApartament = async (idApartament: string) => {
 		await fetchAxios({
@@ -30,8 +37,18 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
 	useEffect(() => {
 		if (error) {
 			toastr.error(error)
-		} else if (data) {
-			toastr.success(data)
+		} else if (data && typeof data === 'object') {
+			const responseData = data as responseData
+			setFavorite((prevFavorites) => {
+				if (prevFavorites.includes(responseData.idApartament)) {
+					return prevFavorites.filter(
+						(favId) => favId !== responseData.idApartament
+					)
+				} else {
+					return [...prevFavorites, responseData.idApartament]
+				}
+			})
+			toastr.success(responseData.message)
 		}
 	}, [error, data])
 
@@ -64,7 +81,8 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
 							{renderFavoriteButton(
 								query._id,
 								profile,
-								togleAddFavotireApartament
+								togleAddFavotireApartament,
+								inFavorite
 							)}
 						</div>
 					</div>
@@ -136,8 +154,9 @@ export default LatestOffers
 
 const renderFavoriteButton = (
 	queryId: string,
-	profile,
-	togleAddFavotireApartament
+	profile: IUser | undefined,
+	togleAddFavotireApartament: (idApartament: string) => void,
+	inFavorite: string[]
 ) => {
 	if (!profile) {
 		return (
@@ -147,9 +166,7 @@ const renderFavoriteButton = (
 		)
 	}
 
-	const isFavorite = profile.favorite.some(
-		(favoriteItem) => favoriteItem._id === queryId
-	)
+	const isFavorite = inFavorite.includes(queryId)
 
 	return (
 		<button onClick={() => togleAddFavotireApartament(queryId)}>

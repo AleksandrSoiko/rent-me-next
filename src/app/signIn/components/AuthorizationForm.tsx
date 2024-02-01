@@ -27,7 +27,15 @@ const AuthorizationForm: React.FC = () => {
 		})
 
 		if (result) {
-			if ((result as SignInResponse).error) {
+			if (
+				(result as SignInResponse).error ===
+				'Request failed with status code 500'
+			) {
+				toastr.error('Email not verified ')
+			} else if (
+				(result as SignInResponse).error ===
+				'Request failed with status code 401'
+			) {
 				toastr.error('Email or password invalid')
 			} else {
 				route.push('/myprofile/profile')
@@ -42,6 +50,7 @@ const AuthorizationForm: React.FC = () => {
 			onSubmit={handleSignIn}
 		>
 			<input
+				required
 				onChange={(e) => setEmail(e.target.value)}
 				value={email}
 				type="email"
@@ -49,6 +58,7 @@ const AuthorizationForm: React.FC = () => {
 				className="w-[100%] py-4 px-4 tex-base font-medium border-[1px] border-[#000] rounded-[0.5rem]"
 			/>
 			<input
+				required
 				onChange={(e) => setPassword(e.target.value)}
 				value={password}
 				type={passHidden ? 'password' : 'text'}
@@ -56,7 +66,6 @@ const AuthorizationForm: React.FC = () => {
 				className="w-[100%] py-4 px-4 tex-base font-medium border-[1px] border-[#000] rounded-[0.5rem]"
 			/>
 			<button type="button" onClick={() => setPassHidden(!passHidden)}>
-				{' '}
 				<Image
 					src="/eye.svg"
 					width="32"
@@ -78,7 +87,7 @@ const AuthorizationForm: React.FC = () => {
 				Sign In
 			</button>
 			<p className="font-Manrope text-base text-center">
-				No account?{' '}
+				No account?
 				<Link
 					href="Register"
 					className="font-medium underline hover:text-orange"

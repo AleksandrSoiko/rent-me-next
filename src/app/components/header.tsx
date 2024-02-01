@@ -48,7 +48,7 @@ const Header = () => {
 			<ul className="flex gap-4">
 				<li>
 					<Link
-						href={data ? '/myprofile/favorite' : '/signIn'}
+						href={data ? '/myprofile/favorites' : '/signIn'}
 						onClick={() =>
 							!data &&
 							toastr.error(
