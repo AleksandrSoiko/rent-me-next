@@ -39,7 +39,6 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
 			toastr.error(error)
 		} else if (data && typeof data === 'object') {
 			const responseData = data as responseData
-
 			setFavorite((prevFavorites) => {
 				if (prevFavorites.includes(responseData.idApartament)) {
 					return prevFavorites.filter(
@@ -49,7 +48,6 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
 					return [...prevFavorites, responseData.idApartament]
 				}
 			})
-
 			toastr.success(responseData.message)
 		}
 	}, [error, data])
