@@ -1,15 +1,35 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { btnHoverOrange } from '../../../page'
+import useAxiosPost from 'hooks/useAxios'
+import 'toastr/build/toastr.css'
+import toastr from 'toastr'
 
 const SupportForm = () => {
+	const { data, loading, error, fetchAxios } = useAxiosPost()
 	const [questionText, setQuestionText] = useState('')
 	const [userEmail, setUserEmail] = useState('')
 
-	const sendSupportQuestion = (e) => {
-		e.preventDefault()
-		console.log({ questionText, userEmail })
+	const sendSupportQuestion = async () => {
+		if (userEmail && questionText) {
+			await fetchAxios({
+				url: '/support/register',
+				method: 'POST',
+				body: { text: questionText, email: userEmail },
+			})
+		}
 	}
+
+	useEffect(() => {
+		if (data) {
+			toastr.success('Your support letter has been sent successfully')
+			setQuestionText('')
+			setUserEmail('')
+		}
+		if (error) {
+			toastr.success('An error occurred, please try again later')
+		}
+	}, [data, error])
 
 	return (
 		<div>
@@ -33,9 +53,8 @@ const SupportForm = () => {
 							Write down your question
 						</p>
 						<textarea
+							required
 							value={questionText}
-							name=""
-							id=""
 							cols={30}
 							rows={6}
 							className="bg-blue1 px-[1rem] py-[0.75rem] rounded-[0.625rem] w-[100%]"
@@ -48,6 +67,7 @@ const SupportForm = () => {
 							Your email
 						</p>
 						<input
+							required
 							value={userEmail}
 							type="email"
 							placeholder="Email"
@@ -59,7 +79,6 @@ const SupportForm = () => {
 				</div>
 				<div className="flex justify-end">
 					<button
-						type="submit"
 						className={`${btnHoverOrange} px-2 py-[0.625rem] text-[#fff] whitespace-nowrap text-center bg-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[8.75rem] rounded-[0.625rem]`}
 					>
 						Send

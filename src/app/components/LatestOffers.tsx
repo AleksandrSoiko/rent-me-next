@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import 'toastr/build/toastr.css'
 import toastr from 'toastr'
 import { IUser } from 'types/user.types'
+import { getFromStorage, saveToStorage } from 'helper/auth.helper'
 
 interface ApartamentArray {
 	apartament: Apartament[]
@@ -19,7 +20,7 @@ interface responseData {
 	idApartament: string
 	message: string
 }
-
+export const dynamic = 'force-dynamic'
 const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
 	const { data, loading, error, fetchAxios } = useAxiosPost()
 	const [inFavorite, setFavorite] = useState<string[]>(

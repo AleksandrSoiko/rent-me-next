@@ -11,7 +11,6 @@ import { ApartamentService } from 'service/apartament/apartament.service'
 import { authOptions } from 'lib/auth'
 import { getServerSession } from 'next-auth'
 import { UserService } from 'service/user.service.ts/user.service'
-import { IUser } from 'types/user.types'
 
 export const btnHoverOrange = [
 	'hover:bg-[#fff] hover:text-[#000] border-[1px] border-[#FFB22C]',
