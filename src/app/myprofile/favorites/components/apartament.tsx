@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { btnHoverOrange, btnHoverOrangeReverse } from '../../../page'
 import { Apartament } from 'types/apartament.types'
 
+export const dynamic = 'force-dynamic'
 const ApratamentReserv: React.FC<{ aparatament: Apartament }> = ({
 	aparatament,
 }) => {

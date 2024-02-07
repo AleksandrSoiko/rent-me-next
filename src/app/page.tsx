@@ -13,9 +13,11 @@ import { getServerSession } from 'next-auth'
 import { UserService } from 'service/user.service.ts/user.service'
 
 export const btnHoverOrange = [
-	'hover:bg-[#fff] hover:text-[#000] border-[1px] border-[#FFB22C]',
+	' hover:text-[#000] border-[1px] border-[#FFB22C] hover:border-[#000]',
 ]
-export const btnHoverOrangeReverse = ['hover:bg-[#FFB22C] hover:text-[#fff]']
+export const btnHoverOrangeReverse = [
+	'hover:bg-[#FFB22C] hover:text-[#fff] hover:border-[#000]',
+]
 
 export default async function Home() {
 	const session = await getServerSession(authOptions)

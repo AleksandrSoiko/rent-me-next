@@ -30,6 +30,6 @@
 		"src/app/signIn/page.tsx",
 		"src/lib/auth.ts",
 		"src/app/middleware.js"
-, "src/app/components/LatestOffers.tsx", "src/app/myprofile/profile/components/SendFormUser.tsx"	],
+, "src/app/components/LatestOffers.tsx", "src/app/myprofile/profile/components/SendFormUser.tsx", "src/app/apartament/[slug]/components/viewVR.tsx"	],
 	"exclude": ["node_modules"]
 }

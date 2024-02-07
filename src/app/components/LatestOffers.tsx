@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react'
 import 'toastr/build/toastr.css'
 import toastr from 'toastr'
 import { IUser } from 'types/user.types'
-import { getFromStorage, saveToStorage } from 'helper/auth.helper'
 
 interface ApartamentArray {
 	apartament: Apartament[]

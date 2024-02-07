@@ -3,23 +3,16 @@ import Image from 'next/image'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import FullScreenImage from './openImgModal'
 import { Apartament } from 'types/apartament.types'
-
-const image: string[] = [
-	'/LatestOffers/sliderTest/qwe.webp',
-	'/LatestOffers/sliderTest/qwer.jpg',
-	'/LatestOffers/sliderTest/qwert.jpg',
-	'/LatestOffers/sliderTest/qwerty.jpg',
-	'/LatestOffers/sliderTest/qwertyu.jpg',
-]
+import { useRef, useState } from 'react'
+import VievVR from './viewVR'
+import { Canvas, useThree } from '@react-three/fiber'
+import Scene from './scena'
 
 const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 	const settings = {
-		// className: "center",
 		centerMode: true,
 		centerPadding: '0px',
-		// adaptiveHeight: true,
 		dots: true,
 		arrows: false,
 		infinite: true,
@@ -28,16 +21,23 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 		slidesToScroll: 1,
 	}
 
+	const [openVR, setOpenVr] = useState(false)
+
+	const [isMouseDown, setIsMouseDown] = useState(false)
+	const prevMouseX = useRef<any>(null)
+	const prevMouseY = useRef<any>(null)
+	const cameraRef = useRef<any>()
+
 	return (
 		<>
 			<div className="my-10 mx-[auto]">
-				<Slider {...settings} className="custom-slider">
+				{/* <Slider {...settings} className="custom-slider">
 					{apartament.pictures.map((image, index) => (
 						<div key={index}>
 							<FullScreenImage key={index} imageUrl={image} altText={'image'} />
 						</div>
 					))}
-				</Slider>
+				</Slider> */}
 			</div>
 			<div className="lg:flex lg:gap-[7.5rem]">
 				<div>
@@ -61,12 +61,14 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 									height="24"
 									alt="like-svg"
 								/>
-								<Image
-									src="/LatestOffers/carbon_floorplan.svg"
-									width="24"
-									height="24"
-									alt="like-svg"
-								/>
+								<button onClick={() => setOpenVr(!openVR)}>
+									<Image
+										src="/LatestOffers/carbon_floorplan.svg"
+										width="24"
+										height="24"
+										alt="like-svg"
+									/>
+								</button>
 							</div>
 						</div>
 						<div className="text-[#000] mt-6 font-Manrope text-xl md:text-2xl leading-[1.5rem] md:leading-[1.8rem] flex flex-col md-max:gap-2 font-normal md:flex-row justify-between">
@@ -92,12 +94,14 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 									height="40"
 									alt="like-svg"
 								/>
-								<Image
-									src="/LatestOffers/carbon_floorplan.svg"
-									width="40"
-									height="40"
-									alt="floorplan"
-								/>
+								<button onClick={() => setOpenVr(!openVR)}>
+									<Image
+										src="/LatestOffers/carbon_floorplan.svg"
+										width="40"
+										height="40"
+										alt="floorplan"
+									/>
+								</button>
 							</div>
 						</div>
 						<div className="lg:flex lg:gap-[7.5rem] text-[#000] ">
@@ -145,6 +149,14 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 					</div>
 				</div>
 			</div>
+
+			{
+				<div className="h-100">
+					<Canvas>
+						<Scene />
+					</Canvas>
+				</div>
+			}
 		</>
 	)
 }
