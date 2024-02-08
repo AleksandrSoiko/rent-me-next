@@ -151,8 +151,8 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 			</div>
 
 			{
-				<div className="h-100">
-					<Canvas>
+				<div id="canvas-container">
+					<Canvas >
 						<Scene />
 					</Canvas>
 				</div>

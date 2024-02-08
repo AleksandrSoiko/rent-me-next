@@ -5,7 +5,6 @@ const Scene = () => {
 	return (
 		<>
 			<CameraControls />
-			<ambientLight />
 			<Textur />
 		</>
 	)
