@@ -4,10 +4,11 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { Apartament } from 'types/apartament.types'
-import { useRef, useState } from 'react'
-import VievVR from './viewVR'
-import { Canvas, useThree } from '@react-three/fiber'
-import Scene from './scena'
+import FullScreenImage from './openImgModal'
+import 'toastr/build/toastr.css'
+import toastr from 'toastr'
+import useAxiosPost from 'hooks/useAxios'
+import OpenVRModal from './openVRModal'
 
 const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 	const settings = {
@@ -21,23 +22,16 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 		slidesToScroll: 1,
 	}
 
-	const [openVR, setOpenVr] = useState(false)
-
-	const [isMouseDown, setIsMouseDown] = useState(false)
-	const prevMouseX = useRef<any>(null)
-	const prevMouseY = useRef<any>(null)
-	const cameraRef = useRef<any>()
-
 	return (
 		<>
 			<div className="my-10 mx-[auto]">
-				{/* <Slider {...settings} className="custom-slider">
+				<Slider {...settings} className="custom-slider">
 					{apartament.pictures.map((image, index) => (
 						<div key={index}>
 							<FullScreenImage key={index} imageUrl={image} altText={'image'} />
 						</div>
 					))}
-				</Slider> */}
+				</Slider>
 			</div>
 			<div className="lg:flex lg:gap-[7.5rem]">
 				<div>
@@ -61,7 +55,7 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 									height="24"
 									alt="like-svg"
 								/>
-								<button onClick={() => setOpenVr(!openVR)}>
+								<button>
 									<Image
 										src="/LatestOffers/carbon_floorplan.svg"
 										width="24"
@@ -94,7 +88,7 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 									height="40"
 									alt="like-svg"
 								/>
-								<button onClick={() => setOpenVr(!openVR)}>
+								<button>
 									<Image
 										src="/LatestOffers/carbon_floorplan.svg"
 										width="40"
@@ -149,14 +143,7 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 					</div>
 				</div>
 			</div>
-
-			{
-				<div id="canvas-container">
-					<Canvas >
-						<Scene />
-					</Canvas>
-				</div>
-			}
+			<OpenVRModal />
 		</>
 	)
 }

@@ -1,123 +1,35 @@
-'use client'
+import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import Scene from './scena'
-import { useRef, useState } from 'react'
+import React from 'react'
+
+import { SphereGeometry, MeshBasicMaterial, TextureLoader } from 'three'
 
 const VievVR = () => {
-	const [isMouseDown, setIsMouseDown] = useState(false)
-	const prevMouseX = useRef<any>(null)
-	const prevMouseY = useRef<any>(null)
-	const cameraRef = useRef<any>()
-
-	const onMouseMove = (event) => {
-		if (isMouseDown) {
-			const sensitivity = 0.001
-			const movementX = event.clientX - prevMouseX.current
-			const movementY = event.clientY - prevMouseY.current
-
-			cameraRef.current.rotation.y -= movementX * sensitivity
-			cameraRef.current.rotation.x -= movementY * sensitivity
-
-			cameraRef.current.rotation.x = Math.max(
-				-Math.PI / 2,
-				Math.min(Math.PI / 2, cameraRef.current.rotation.x)
-			)
-
-			prevMouseX.current = event.clientX
-			prevMouseY.current = event.clientY
-		}
-	}
-
-	const onMouseDown = (event) => {
-		setIsMouseDown(true)
-		prevMouseX.current = event.clientX
-		prevMouseY.current = event.clientY
-	}
-
-	const onMouseUp = () => {
-		setIsMouseDown(false)
-	}
 	return (
 		<Canvas
-			onMouseMove={onMouseMove}
-			onMouseDown={onMouseDown}
-			onMouseUp={onMouseUp}
+			style={{ width: '100%', height: '100%' }}
+			camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }}
 		>
+			<OrbitControls
+				zoomSpeed={3}
+				enablePan={false}
+				enableZoom
+				maxDistance={300}
+				minDistance={100}
+				rotateSpeed={0.5}
+			/>
 			<Scene />
 		</Canvas>
 	)
 }
 
+const Scene = () => {
+	const texture = new TextureLoader().load('/vrr.jpg')
+	const geometry = new SphereGeometry(400, 400, 200)
+	geometry.scale(-1, 1, 1)
+	const material = new MeshBasicMaterial({ map: texture })
+
+	return <mesh geometry={geometry} material={material} />
+}
+
 export default VievVR
-// const scene = new THREE.Scene()
-// const camera = new THREE.PerspectiveCamera(
-// 	75,
-// 	window.innerWidth / window.innerHeight,
-// 	0.1,
-// 	1000
-// )
-
-// const renderer = new THREE.WebGLRenderer()
-// renderer.setSize(window.innerWidth, window.innerHeight)
-// document.body.appendChild(renderer.domElement)
-
-// const geometry = new THREE.SphereGeometry(500, 60, 40)
-// geometry.scale(-1, 1, 1) // Reverse the normals to make it inside-out
-
-// const texture = new THREE.TextureLoader().load('/vr360.jpg')
-// const material = new THREE.MeshBasicMaterial({ map: texture })
-
-// const sphere = new THREE.Mesh(geometry, material)
-// scene.add(sphere)
-
-// camera.position.set(200, 100, 100) // set camera position at center of the sphere
-
-// let isMouseDown = false
-// let prevMouseX, prevMouseY
-
-// const onMouseMove = (event) => {
-// 	if (isMouseDown) {
-// 		const sensitivity = 0.001
-// 		const movementX = event.clientX - prevMouseX
-// 		const movementY = event.clientY - prevMouseY
-
-// 		camera.rotation.y -= movementX * sensitivity
-// 		camera.rotation.x -= movementY * sensitivity
-
-// 		camera.rotation.x = Math.max(
-// 			-Math.PI / 2,
-// 			Math.min(Math.PI / 2, camera.rotation.x)
-// 		)
-
-// 		prevMouseX = event.clientX
-// 		prevMouseY = event.clientY
-// 	}
-// }
-
-// const onMouseDown = (event) => {
-// 	isMouseDown = true
-// 	prevMouseX = event.clientX
-// 	prevMouseY = event.clientY
-// }
-
-// const onMouseUp = () => {
-// 	isMouseDown = false
-// }
-
-// function animate() {
-// 	requestAnimationFrame(animate)
-// 	renderer.render(scene, camera)
-// }
-
-// function onWindowResize() {
-// 	camera.aspect = window.innerWidth / window.innerHeight
-// 	camera.updateProjectionMatrix()
-// 	renderer.setSize(window.innerWidth, window.innerHeight)
-// }
-
-// window.addEventListener('resize', onWindowResize, false)
-// window.addEventListener('mousemove', onMouseMove, false)
-// window.addEventListener('mousedown', onMouseDown, false)
-// window.addEventListener('mouseup', onMouseUp, false)
-
-// animate()
