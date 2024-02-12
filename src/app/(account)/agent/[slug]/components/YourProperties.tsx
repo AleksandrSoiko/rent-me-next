@@ -37,9 +37,9 @@ const YourProperties: React.FC<ApartamentProps> = ({ properties }) => {
 							modules={[Pagination, Navigation, Autoplay]}
 							loop={true}
 							spaceBetween={30}
-							pagination={pagination}
+							// pagination={pagination}
 							slidesPerView={1}
-							className="mySwiper"
+							// className="mySwiperAgent"
 						>
 							{propertie.pictures.map((image, index) => (
 								<div key={index}>
