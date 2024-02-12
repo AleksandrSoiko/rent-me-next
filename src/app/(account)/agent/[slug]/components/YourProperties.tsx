@@ -1,36 +1,26 @@
 'use client'
 import Image from 'next/image'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 import FullScreenImage from 'app/apartament/[slug]/components/openImgModal'
 import { btnHoverOrange, btnHoverOrangeReverse } from 'app/page'
 import { Apartament } from 'types/apartament.types'
 import Link from 'next/link'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 
-const image: string[] = [
-	'/LatestOffers/sliderTest/qwe.webp',
-	'/LatestOffers/sliderTest/qwer.jpg',
-	'/LatestOffers/sliderTest/qwert.jpg',
-	'/LatestOffers/sliderTest/qwerty.jpg',
-	'/LatestOffers/sliderTest/qwertyu.jpg',
-]
+import 'swiper/css'
+import 'swiper/css/pagination'
+import './Agentstyles.css'
 
 interface ApartamentProps {
 	properties: Apartament[]
 }
 
 const YourProperties: React.FC<ApartamentProps> = ({ properties }) => {
-	const settings = {
-		centerMode: true,
-		centerPadding: '0px',
-		adaptiveHeight: true,
-		dots: true,
-		arrows: false,
-		infinite: true,
-		speed: 500,
-		slidesToShow: 1,
-		slidesToScroll: 1,
+	const pagination = {
+		clickable: true,
+		renderBullet: function (_, className) {
+			return '<span class="' + className + '">' + '</span>'
+		},
 	}
 
 	return (
@@ -39,17 +29,30 @@ const YourProperties: React.FC<ApartamentProps> = ({ properties }) => {
 			<li key={propertie._id}>
 				<div className="lg:flex gap-5 my-8">
 					<div className="w-[580px] mb-[80px]">
-						<Slider {...settings} className="custom-slider">
+						<Swiper
+							autoplay={{
+								delay: 5000,
+								disableOnInteraction: false,
+							}}
+							modules={[Pagination, Navigation, Autoplay]}
+							loop={true}
+							spaceBetween={30}
+							pagination={pagination}
+							slidesPerView={1}
+							className="mySwiper"
+						>
 							{propertie.pictures.map((image, index) => (
 								<div key={index}>
-									<FullScreenImage
-										key={index}
-										imageUrl={image}
-										altText={'image'}
-									/>
+									<SwiperSlide
+										key={image}
+										virtualIndex={index}
+										className="w-[580px] h-[395px]"
+									>
+										<FullScreenImage imageUrl={image} altText={'image'} />
+									</SwiperSlide>
 								</div>
 							))}
-						</Slider>
+						</Swiper>
 					</div>
 					<div className="flex flex-col gap-8 md:gap-10">
 						<div className="font-Manrope text-xl md:text-2xl leading-[1.5rem] md:leading-[1.8rem] flex flex-col md-max:gap-2 font-normal md:flex-row justify-between">

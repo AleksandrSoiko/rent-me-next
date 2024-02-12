@@ -1,38 +1,43 @@
 'use client'
 import Image from 'next/image'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 import { Apartament } from 'types/apartament.types'
 import FullScreenImage from './openImgModal'
-import 'toastr/build/toastr.css'
-import toastr from 'toastr'
-import useAxiosPost from 'hooks/useAxios'
-import OpenVRModal from './openVRModal'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination, Navigation, Autoplay } from 'swiper/modules'
+
+import 'swiper/css'
+import 'swiper/css/pagination'
+import './styles.css'
 
 const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
-	const settings = {
-		centerMode: true,
-		centerPadding: '0px',
-		dots: true,
-		arrows: false,
-		infinite: true,
-		speed: 500,
-		slidesToShow: 3,
-		slidesToScroll: 1,
+	const pagination = {
+		clickable: true,
+		renderBullet: function (_, className) {
+			return '<span class="' + className + '">' + '</span>'
+		},
 	}
 
 	return (
 		<>
-			<div className="my-10 mx-[auto]">
-				<Slider {...settings} className="custom-slider">
-					{apartament.pictures.map((image, index) => (
-						<div key={index}>
-							<FullScreenImage key={index} imageUrl={image} altText={'image'} />
-						</div>
-					))}
-				</Slider>
-			</div>
+			<Swiper
+				autoplay={{
+					delay: 5000,
+					disableOnInteraction: false,
+				}}
+				modules={[Pagination, Navigation, Autoplay]}
+				// loop={true}
+				pagination={pagination}
+				slidesPerView={3}
+				centeredSlides={true}
+				className="mySwiper"
+			>
+				{apartament.pictures.map((image, index) => (
+					<SwiperSlide key={image} virtualIndex={index}>
+						<FullScreenImage key={index} imageUrl={image} altText={'image'} />
+					</SwiperSlide>
+				))}
+			</Swiper>
+
 			<div className="lg:flex lg:gap-[7.5rem]">
 				<div>
 					<div className="flex flex-col gap-8 md:gap-10">
@@ -143,7 +148,6 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 					</div>
 				</div>
 			</div>
-			<OpenVRModal />
 		</>
 	)
 }
