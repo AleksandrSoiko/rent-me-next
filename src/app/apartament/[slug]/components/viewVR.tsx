@@ -1,35 +1,74 @@
-import { OrbitControls } from '@react-three/drei'
-import { Canvas } from '@react-three/fiber'
-import React from 'react'
+import { Html, OrbitControls, Preload } from '@react-three/drei'
+import { Canvas, useLoader } from '@react-three/fiber'
+import React, { Suspense, useState } from 'react'
+import * as THREE from 'three'
 
-import { SphereGeometry, MeshBasicMaterial, TextureLoader } from 'three'
+const store = [
+	{
+		name: 'outside',
+		color: 'lightpink',
+		position: [10, 0, -15],
+		url: '/vrr.jpg',
+		link: 1,
+	},
+	{
+		name: 'inside',
+		color: 'lightblue',
+		position: [15, 0, 0],
+		url: '/br.jpg',
+		link: 0,
+	},
+]
 
 const VievVR = () => {
 	return (
-		<Canvas
-			style={{ width: '100%', height: '100%' }}
-			camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }}
-		>
+		<Canvas frameloop="demand" camera={{ position: [0, 0, 0.1] }}>
 			<OrbitControls
-				zoomSpeed={3}
 				enablePan={false}
-				enableZoom
-				maxDistance={300}
-				minDistance={100}
-				rotateSpeed={0.5}
+				enableDamping
+				dampingFactor={0.2}
+				autoRotate={false}
+				rotateSpeed={-0.3}
 			/>
-			<Scene />
+			<Suspense fallback={null}>
+				<Preload all />
+				<Portals />
+			</Suspense>
 		</Canvas>
 	)
 }
 
-const Scene = () => {
-	const texture = new TextureLoader().load('/vrr.jpg')
-	const geometry = new SphereGeometry(400, 400, 200)
-	geometry.scale(-1, 1, 1)
-	const material = new MeshBasicMaterial({ map: texture })
+function Portals() {
+	const [which, set] = useState(0)
+	const { link, ...props } = store[which]
+	const maps = useLoader(THREE.TextureLoader, store.map((entry) => entry.url)) // prettier-ignore
 
-	return <mesh geometry={geometry} material={material} />
+	return <Dome onClick={() => set(link)} {...props} texture={maps[which]} />
+}
+
+function Dome({ name, position, texture, onClick, color }) {
+	return (
+		<group>
+			<mesh>
+				<sphereGeometry args={[500, 60, 40]} />
+				<meshBasicMaterial map={texture} side={THREE.BackSide} />
+			</mesh>
+			<mesh position={position}>
+				<sphereGeometry args={[1.25, 32, 32]} />
+				<meshBasicMaterial color={color} />
+				<Html center>
+					<button
+						onClick={onClick}
+						style={{
+							padding: '15px',
+						}}
+					>
+						{name}
+					</button>
+				</Html>
+			</mesh>
+		</group>
+	)
 }
 
 export default VievVR

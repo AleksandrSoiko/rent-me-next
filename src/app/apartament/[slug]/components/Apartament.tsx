@@ -20,10 +20,10 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 	return (
 		<>
 			<Swiper
-				autoplay={{
-					delay: 5000,
-					disableOnInteraction: false,
-				}}
+				// autoplay={{
+				// 	delay: 5000,
+				// 	disableOnInteraction: false,
+				// }}
 				modules={[Pagination, Navigation, Autoplay]}
 				// loop={true}
 				pagination={pagination}

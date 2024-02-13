@@ -40,7 +40,7 @@
 
 .swiper-slide.swiper-slide-active {
     transform: scale(1.4);
-    margin: 100px 50px;
+    margin: 230px 50px;
     z-index: 1000;
 }
 
@@ -51,3 +51,6 @@
 .swiper-slide {
     transition: transform 0.3s ease;
 }
+
+
+

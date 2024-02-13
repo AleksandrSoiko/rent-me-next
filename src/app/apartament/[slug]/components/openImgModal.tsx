@@ -20,8 +20,8 @@ const FullScreenImage: React.FC<FullScreenImageProps> = ({
 		<div className="fixed">
 			<OpenVRModal />
 			<Image
-				width="480"
-				height="380"
+				width="877"
+				height="499"
 				src={imageUrl}
 				alt={altText}
 				onClick={openModal}
@@ -62,17 +62,23 @@ export default FullScreenImage
 
 const OpenVRModal = () => {
 	const [modalIsOpen, setModalIsOpen] = useState(false)
+	const [fullScreen, setfullScreen] = useState(false)
+
+	const closeModal = () => {
+		setModalIsOpen(false)
+		setModalIsOpen(false)
+	}
 	return (
 		<>
 			<button
-				className="bg-[#D7E5FF] p-1 absolute right-0 bottom-0 "
+				className="bg-[#d7e5ff8e] px-[5px] absolute right-2 bottom-2 rounded-[5px]"
 				onClick={() => setModalIsOpen(true)}
 			>
 				3D walk
 			</button>
 			<Modal
 				isOpen={modalIsOpen}
-				onRequestClose={() => setModalIsOpen(false)}
+				onRequestClose={closeModal}
 				contentLabel="Full Screen Image"
 				style={{
 					overlay: {
@@ -82,8 +88,8 @@ const OpenVRModal = () => {
 						zIndex: 100000,
 					},
 					content: {
-						width: '800px',
-						height: '600px',
+						width: fullScreen ? window.innerWidth - 100 : '800px',
+						height: fullScreen ? window.innerHeight - 100 : '600px',
 						position: 'absolute',
 						inset: 'auto',
 						transform: 'translate(0%, 0%)',
@@ -96,6 +102,12 @@ const OpenVRModal = () => {
 				}}
 			>
 				<VievVR />
+				<button
+					className="bg-[#fff] absolute top-2 right-2 px-1.5 rounded-[100%] text-[#000]"
+					onClick={() => setfullScreen(!fullScreen)}
+				>
+					{!fullScreen ? 'full' : 'small'}
+				</button>
 			</Modal>
 		</>
 	)

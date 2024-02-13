@@ -109,7 +109,7 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
 					>
 						<div className="flex items-center gap-3 text-[#000]">
 							<Image
-								src={query.agent[0].foto}
+								src={query.agent[0].foto || '/nofoto.png'}
 								width="36"
 								height="36"
 								alt="Avatar"

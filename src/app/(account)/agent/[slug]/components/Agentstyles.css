@@ -1,24 +1,14 @@
 .swiper {
     width: 100%;
     height: 100%;
-    /* padding-bottom: 0px; */
+    /* padding-bottom: 50px; */
 }
 
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-
-    /* Center slide text vertically */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .swiper-slide img {
     display: block;
     width: 100%;
-    height: 380px;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -37,8 +27,3 @@
     color: #fff;
     background: #5774CD;
 }
-
-/* .swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets.swiper-pagination-horizontal{
-    bottom: -30px;
-    z-index: 10000000;
-} */

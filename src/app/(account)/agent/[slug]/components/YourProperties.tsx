@@ -30,24 +30,20 @@ const YourProperties: React.FC<ApartamentProps> = ({ properties }) => {
 				<div className="lg:flex gap-5 my-8">
 					<div className="w-[580px] mb-[80px]">
 						<Swiper
-							autoplay={{
-								delay: 5000,
-								disableOnInteraction: false,
-							}}
+							// autoplay={{
+							// 	delay: 5000,
+							// 	disableOnInteraction: false,
+							// }}
 							modules={[Pagination, Navigation, Autoplay]}
 							loop={true}
 							spaceBetween={30}
-							// pagination={pagination}
+							pagination={pagination}
 							slidesPerView={1}
-							// className="mySwiperAgent"
+							className="mySwiperAgent"
 						>
 							{propertie.pictures.map((image, index) => (
 								<div key={index}>
-									<SwiperSlide
-										key={image}
-										virtualIndex={index}
-										className="w-[580px] h-[395px]"
-									>
+									<SwiperSlide key={image} virtualIndex={index}>
 										<FullScreenImage imageUrl={image} altText={'image'} />
 									</SwiperSlide>
 								</div>
@@ -93,7 +89,7 @@ const YourProperties: React.FC<ApartamentProps> = ({ properties }) => {
 				</div>
 				<div className="flex gap-4 max-md:justify-center">
 					<button
-						className={`${btnHoverOrange} w-[9.75rem] lg:w-[11.25rem] px-2 py-[0.625rem] text-[#fff] whitespace-nowrap text-center bg-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[8.75rem] rounded-[0.625rem]`}
+						className={`${btnHoverOrange} w-[9.75rem] lg:w-[11.25rem] px-2 py-[0.625rem] text-[#fff] whitespace-nowrap text-center bg-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[8.75rem] -[0.625rem]`}
 					>
 						Edit
 					</button>
