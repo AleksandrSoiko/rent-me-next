@@ -6,15 +6,29 @@ import VievVR from './viewVR'
 interface FullScreenImageProps {
 	imageUrl: string
 	altText: string
+	initialIndex?: number
 }
 
 const FullScreenImage: React.FC<FullScreenImageProps> = ({
 	imageUrl,
 	altText,
+	initialIndex = 0,
 }) => {
 	const [modalIsOpen, setModalIsOpen] = useState(false)
+	const [currentIndex, setCurrentIndex] = useState(initialIndex)
+
 	const openModal = () => setModalIsOpen(true)
 	const closeModal = () => setModalIsOpen(false)
+
+	const nextImage = () => {
+		setCurrentIndex((prevIndex) => (prevIndex + 1) % imageUrl.length)
+	}
+
+	const prevImage = () => {
+		setCurrentIndex((prevIndex) =>
+			prevIndex === 0 ? imageUrl.length - 1 : prevIndex - 1
+		)
+	}
 
 	return (
 		<div className="fixed">
@@ -52,6 +66,8 @@ const FullScreenImage: React.FC<FullScreenImageProps> = ({
 			>
 				<div>
 					<Image width="800" height="480" src={imageUrl} alt={altText} />
+					<button onClick={prevImage}>Previous</button>
+					<button onClick={nextImage}>Next</button>
 				</div>
 			</Modal>
 		</div>
@@ -103,10 +119,19 @@ const OpenVRModal = () => {
 			>
 				<VievVR />
 				<button
-					className="bg-[#fff] absolute top-2 right-2 px-1.5 rounded-[100%] text-[#000]"
+					className=" absolute top-2 right-2 px-1.5 rounded-[100%] text-[#000]"
 					onClick={() => setfullScreen(!fullScreen)}
 				>
-					{!fullScreen ? 'full' : 'small'}
+					<Image
+						src={
+							!fullScreen
+								? '/modalSvg/fullscreen.svg'
+								: '/modalSvg/fullscreen-exit.svg'
+						}
+						width="18"
+						height="18"
+						alt="360 view"
+					/>
 				</button>
 			</Modal>
 		</>

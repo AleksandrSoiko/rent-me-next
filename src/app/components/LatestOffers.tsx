@@ -20,19 +20,12 @@ interface responseData {
 	message: string
 }
 export const dynamic = 'force-dynamic'
+
 const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
 	const { data, loading, error, fetchAxios } = useAxiosPost()
 	const [inFavorite, setFavorite] = useState<string[]>(
 		profile?.favorite.map(({ _id }) => _id) || []
 	)
-
-	const togleAddFavotireApartament = async (idApartament: string) => {
-		await fetchAxios({
-			url: `/users/profile/reservation?idApartament=${idApartament}`,
-			method: 'PUT',
-			body: {},
-		})
-	}
 
 	useEffect(() => {
 		if (error) {
@@ -78,12 +71,7 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
 								height="24"
 								alt="plan"
 							/>
-							{renderFavoriteButton(
-								query._id,
-								profile,
-								togleAddFavotireApartament,
-								inFavorite
-							)}
+							{renderFavoriteButton(query._id, profile, inFavorite, fetchAxios)}
 						</div>
 					</div>
 				</div>
@@ -155,9 +143,17 @@ export default LatestOffers
 const renderFavoriteButton = (
 	queryId: string,
 	profile: IUser | undefined,
-	togleAddFavotireApartament: (idApartament: string) => void,
-	inFavorite: string[]
+	inFavorite: string[],
+	fetchAxios
 ) => {
+	const togleAddFavotireApartament = async (idApartament: string) => {
+		await fetchAxios({
+			url: `/users/profile/reservation?idApartament=${idApartament}`,
+			method: 'PUT',
+			body: {},
+		})
+	}
+
 	if (!profile) {
 		return (
 			<button onClick={() => toastr.error('Log in to add to favorites')}>

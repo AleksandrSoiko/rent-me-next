@@ -17,22 +17,6 @@ export const AuthService = {
 		}
 	},
 
-	// async login(body) {
-	// 	try {
-	// 		const response = await axiosApi.post('/auth/login', body)
-	// 		const profile = response.data
-	// 		return profile
-	// 	} catch (error) {
-	// 		console.error('Error fetching user profile:', error)
-	// 		return {
-	// 			redirect: {
-	// 				destination: '/myprofile/profile',
-	// 				permanent: false,
-	// 			},
-	// 		}
-	// 	}
-	// },
-
 	async loginAcess() {
 		try {
 			const response = await axiosApi.get('/auth/login/acess')

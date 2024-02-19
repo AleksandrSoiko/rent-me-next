@@ -18,8 +18,8 @@ export const ApartamentService = {
 	},
 	async getApartamentById(id: string) {
 		try {
-			const response = await axiosClassic.get(`/apartament/?id=${id}`)
-			const profile = response.data[0]
+			const response = await axiosClassic.get(`/apartament/slug/?id=${id}`)
+			const profile = response.data
 			return profile
 		} catch (error) {
 			console.error('Error fetching apartament:', error)

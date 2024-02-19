@@ -5,17 +5,56 @@ import FullScreenImage from './openImgModal'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Navigation, Autoplay } from 'swiper/modules'
 
+import 'toastr/build/toastr.css'
+import toastr from 'toastr'
+
 import 'swiper/css'
 import 'swiper/css/pagination'
 import './styles.css'
+import { IUser } from 'types/user.types'
+import { useEffect, useState } from 'react'
+import useAxiosPost from 'hooks/useAxios'
+import { togleBtnFavorite } from './toglleBtnFavorite'
 
-const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
-	const pagination = {
-		clickable: true,
-		renderBullet: function (_, className) {
-			return '<span class="' + className + '">' + '</span>'
-		},
-	}
+const paginationForSwiper = {
+	clickable: true,
+	renderBullet: function (_, className) {
+		return '<span class="' + className + '">' + '</span>'
+	},
+}
+
+interface responseData {
+	idApartament: string
+	message: string
+}
+
+export const dynamic = 'force-dynamic'
+const Apartament: React.FC<{ apartament: Apartament; profile: IUser }> = ({
+	apartament,
+	profile,
+}) => {
+	const { data, loading, error, fetchAxios } = useAxiosPost()
+	const [inFavorite, setFavorite] = useState<string[]>(
+		profile?.favorite.map(({ _id }) => _id) || []
+	)
+
+	useEffect(() => {
+		if (error) {
+			toastr.error(error)
+		} else if (data && typeof data === 'object') {
+			const responseData = data as responseData
+			setFavorite((prevFavorites) => {
+				if (prevFavorites.includes(responseData.idApartament)) {
+					return prevFavorites.filter(
+						(favId) => favId !== responseData.idApartament
+					)
+				} else {
+					return [...prevFavorites, responseData.idApartament]
+				}
+			})
+			toastr.success(responseData.message)
+		}
+	}, [error, data])
 
 	return (
 		<>
@@ -25,19 +64,17 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 				// 	disableOnInteraction: false,
 				// }}
 				modules={[Pagination, Navigation, Autoplay]}
-				// loop={true}
-				pagination={pagination}
+				pagination={paginationForSwiper}
 				slidesPerView={3}
 				centeredSlides={true}
 				className="mySwiper"
 			>
-				{apartament.pictures.map((image, index) => (
-					<SwiperSlide key={image} virtualIndex={index}>
+				{apartament?.pictures.map((image, index) => (
+					<SwiperSlide key={index} virtualIndex={index}>
 						<FullScreenImage key={index} imageUrl={image} altText={'image'} />
 					</SwiperSlide>
 				))}
 			</Swiper>
-
 			<div className="lg:flex lg:gap-[7.5rem]">
 				<div>
 					<div className="flex flex-col gap-8 md:gap-10">
@@ -87,12 +124,18 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 								</p>
 							</div>
 							<div className="flex gap-[1.12rem] max-md:hidden text-[#000] ">
-								<Image
+								{/* <Image
 									src="/header/like.svg"
 									width="40"
 									height="40"
 									alt="like-svg"
-								/>
+								/> */}
+								{togleBtnFavorite(
+									apartament._id,
+									profile,
+									inFavorite,
+									fetchAxios
+								)}
 								<button>
 									<Image
 										src="/LatestOffers/carbon_floorplan.svg"

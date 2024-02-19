@@ -8,9 +8,7 @@ import MobileInstaling from './components/MobileInstaling'
 import Head from './head'
 import Image from 'next/image'
 import { ApartamentService } from 'service/apartament/apartament.service'
-import { authOptions } from 'lib/auth'
-import { getServerSession } from 'next-auth'
-import { UserService } from 'service/user.service.ts/user.service'
+import checkAndResvonseAuthProfileforServer from 'helper/auth.loginTrue'
 
 export const btnHoverOrange = [
 	' hover:text-[#000] border-[1px] border-[#FFB22C] hover:border-[#000]',
@@ -20,13 +18,9 @@ export const btnHoverOrangeReverse = [
 ]
 
 export default async function Home() {
-	const session = await getServerSession(authOptions)
 	const apartament = await ApartamentService.getAllApartament()
-	let profile
 
-	if (session) {
-		profile = await UserService.getMyProfile()
-	}
+	const profile = await checkAndResvonseAuthProfileforServer()
 
 	return (
 		<div className="flex flex-col items-center">
