@@ -11,6 +11,7 @@ const axiosApi = axios.create({
 
 axiosApi.interceptors.request.use(async (config) => {
 	const session = await getServerSession(authOptions)
+
 	if (session) {
 		const accessToken = session.user?.accessToken
 		if (accessToken) {
