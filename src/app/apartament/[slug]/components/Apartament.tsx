@@ -1,7 +1,9 @@
 'use client'
-import './styles.css'
-import 'swiper/css'
+
 import 'swiper/css/pagination'
+import 'swiper/css'
+import './styles.css'
+
 import Image from 'next/image'
 import { Apartament } from 'types/apartament.types'
 import FullScreenImage from './openImgModal'
