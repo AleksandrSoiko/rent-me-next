@@ -1,44 +1,80 @@
 'use client'
 import Image from 'next/image'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import FullScreenImage from './openImgModal'
 import { Apartament } from 'types/apartament.types'
+import FullScreenImage from './openImgModal'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination, Navigation, Autoplay } from 'swiper/modules'
 
-const image: string[] = [
-	'/LatestOffers/sliderTest/qwe.webp',
-	'/LatestOffers/sliderTest/qwer.jpg',
-	'/LatestOffers/sliderTest/qwert.jpg',
-	'/LatestOffers/sliderTest/qwerty.jpg',
-	'/LatestOffers/sliderTest/qwertyu.jpg',
-]
+import 'toastr/build/toastr.css'
+import toastr from 'toastr'
 
-const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
-	const settings = {
-		// className: "center",
-		centerMode: true,
-		centerPadding: '0px',
-		// adaptiveHeight: true,
-		dots: true,
-		arrows: false,
-		infinite: true,
-		speed: 500,
-		slidesToShow: 3,
-		slidesToScroll: 1,
-	}
+import 'swiper/css'
+import 'swiper/css/pagination'
+import './styles.css'
+import { IUser } from 'types/user.types'
+import { useEffect, useState } from 'react'
+import useAxiosPost from 'hooks/useAxios'
+import { togleBtnFavorite } from './toglleBtnFavorite'
+
+const paginationForSwiper = {
+	clickable: true,
+	renderBullet: function (_, className) {
+		return '<span class="' + className + '">' + '</span>'
+	},
+}
+
+interface responseData {
+	idApartament: string
+	message: string
+}
+
+export const dynamic = 'force-dynamic'
+const Apartament: React.FC<{ apartament: Apartament; profile: IUser }> = ({
+	apartament,
+	profile,
+}) => {
+	const { data, loading, error, fetchAxios } = useAxiosPost()
+	const [inFavorite, setFavorite] = useState<string[]>(
+		profile?.favorite.map(({ _id }) => _id) || []
+	)
+
+	useEffect(() => {
+		if (error) {
+			toastr.error(error)
+		} else if (data && typeof data === 'object') {
+			const responseData = data as responseData
+			setFavorite((prevFavorites) => {
+				if (prevFavorites.includes(responseData.idApartament)) {
+					return prevFavorites.filter(
+						(favId) => favId !== responseData.idApartament
+					)
+				} else {
+					return [...prevFavorites, responseData.idApartament]
+				}
+			})
+			toastr.success(responseData.message)
+		}
+	}, [error, data])
 
 	return (
 		<>
-			<div className="my-10 mx-[auto]">
-				<Slider {...settings} className="custom-slider">
-					{apartament.pictures.map((image, index) => (
-						<div key={index}>
-							<FullScreenImage key={index} imageUrl={image} altText={'image'} />
-						</div>
-					))}
-				</Slider>
-			</div>
+			<Swiper
+				// autoplay={{
+				// 	delay: 5000,
+				// 	disableOnInteraction: false,
+				// }}
+				modules={[Pagination, Navigation, Autoplay]}
+				pagination={paginationForSwiper}
+				slidesPerView={3}
+				centeredSlides={true}
+				className="mySwiper"
+			>
+				{apartament?.pictures.map((image, index) => (
+					<SwiperSlide key={index} virtualIndex={index}>
+						<FullScreenImage key={index} imageUrl={image} altText={'image'} />
+					</SwiperSlide>
+				))}
+			</Swiper>
 			<div className="lg:flex lg:gap-[7.5rem]">
 				<div>
 					<div className="flex flex-col gap-8 md:gap-10">
@@ -61,12 +97,14 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 									height="24"
 									alt="like-svg"
 								/>
-								<Image
-									src="/LatestOffers/carbon_floorplan.svg"
-									width="24"
-									height="24"
-									alt="like-svg"
-								/>
+								<button>
+									<Image
+										src="/LatestOffers/carbon_floorplan.svg"
+										width="24"
+										height="24"
+										alt="like-svg"
+									/>
+								</button>
 							</div>
 						</div>
 						<div className="text-[#000] mt-6 font-Manrope text-xl md:text-2xl leading-[1.5rem] md:leading-[1.8rem] flex flex-col md-max:gap-2 font-normal md:flex-row justify-between">
@@ -86,18 +124,26 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 								</p>
 							</div>
 							<div className="flex gap-[1.12rem] max-md:hidden text-[#000] ">
-								<Image
+								{/* <Image
 									src="/header/like.svg"
 									width="40"
 									height="40"
 									alt="like-svg"
-								/>
-								<Image
-									src="/LatestOffers/carbon_floorplan.svg"
-									width="40"
-									height="40"
-									alt="floorplan"
-								/>
+								/> */}
+								{togleBtnFavorite(
+									apartament._id,
+									profile,
+									inFavorite,
+									fetchAxios
+								)}
+								<button>
+									<Image
+										src="/LatestOffers/carbon_floorplan.svg"
+										width="40"
+										height="40"
+										alt="floorplan"
+									/>
+								</button>
 							</div>
 						</div>
 						<div className="lg:flex lg:gap-[7.5rem] text-[#000] ">

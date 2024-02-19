@@ -7,7 +7,7 @@ const User: React.FC<{ profileData: IUser }> = ({ profileData }): any => {
 		<div className="mt-6 relative mb-12 lg:mt-20 lg:mb-10 lg:flex justify-between">
 			<div className="flex gap-4">
 				<Image
-					src={profileData.foto}
+					src={profileData.foto || '/nofoto.png'}
 					width="280"
 					height="280"
 					alt="avatar"

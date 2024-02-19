@@ -3,14 +3,14 @@ export interface IUser {
 	email: string
 	isAdmin: true
 	favorite: []
-	address: string
-	city: string
-	country: string
+	address?: string
+	city?: string
+	country?: string
 	firstname: string
-	lastname: string
-	phonenumber: string
-	foto: string
-	age: string
+	lastname?: string
+	phonenumber?: string
+	foto?: string
+	age?: string
 }
 
 export interface formikVal {

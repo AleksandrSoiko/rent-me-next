@@ -1,7 +1,9 @@
 import { UserService } from 'service/user.service.ts/user.service'
 import MyProfile from '../page'
 import ApratamentReserv from './components/apartament'
+import { Apartament } from 'types/apartament.types'
 
+export const dynamic = 'force-dynamic'
 const MyFavorites = async () => {
 	const reservation = await UserService.getMyProfileByIdReservation()
 
@@ -13,7 +15,12 @@ const MyFavorites = async () => {
 					Favorites
 				</p>
 				<ul className="flex flex-col gap-[1.5rem] m-[1.5rem] ">
-					<ApratamentReserv userReservation={reservation} />
+					{reservation &&
+						reservation.map((aparatament: Apartament) => (
+							<li key={aparatament._id}>
+								<ApratamentReserv aparatament={aparatament} />
+							</li>
+						))}
 				</ul>
 			</div>
 		</div>

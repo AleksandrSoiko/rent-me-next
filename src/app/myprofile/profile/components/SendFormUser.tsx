@@ -54,15 +54,15 @@ export const SendFormUser: React.FC<{ profile: IUser }> = ({ profile }) => {
 
 	const formik = useFormik<formikVal>({
 		initialValues: {
-			firstname: '' || profile.firstname,
-			lastname: '' || profile.lastname,
-			phonenumber: '' || profile.phonenumber,
-			age: '' || profile.age,
-			country: '' || profile.country,
-			city: '' || profile.city,
-			address: '' || profile.address,
+			firstname: profile.firstname,
+			lastname: profile.lastname || '',
+			phonenumber: profile.phonenumber || '',
+			age: profile.age,
+			country: profile.country || '',
+			city: profile.city || '',
+			address: profile.address || '',
 		},
-		// validationSchema: validationSchema,
+		validationSchema: validationSchema,
 		onSubmit: async (values) => {
 			await fetchAxios({
 				url: '/users/update/profile',
