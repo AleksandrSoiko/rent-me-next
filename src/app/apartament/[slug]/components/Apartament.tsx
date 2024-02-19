@@ -1,4 +1,9 @@
 'use client'
+
+import 'swiper/css/pagination'
+import 'swiper/css'
+import './styles.css'
+
 import Image from 'next/image'
 import { Apartament } from 'types/apartament.types'
 import FullScreenImage from './openImgModal'
@@ -8,9 +13,6 @@ import { Pagination, Navigation, Autoplay } from 'swiper/modules'
 import 'toastr/build/toastr.css'
 import toastr from 'toastr'
 
-import 'swiper/css'
-import 'swiper/css/pagination'
-import './styles.css'
 import { IUser } from 'types/user.types'
 import { useEffect, useState } from 'react'
 import useAxiosPost from 'hooks/useAxios'
