@@ -31,7 +31,7 @@ const FullScreenImage: React.FC<FullScreenImageProps> = ({
 	}
 
 	return (
-		<div className="fixed">
+		<div>
 			<OpenVRModal />
 			<Image
 				width="877"
@@ -65,9 +65,15 @@ const FullScreenImage: React.FC<FullScreenImageProps> = ({
 				}}
 			>
 				<div>
-					<Image width="800" height="480" src={imageUrl} alt={altText} />
-					<button onClick={prevImage}>Previous</button>
-					<button onClick={nextImage}>Next</button>
+					<Image
+						width={800}
+						height="480"
+						src={imageUrl}
+						alt={altText}
+						sizes="(max-width: 100%)"
+					/>
+					{/* <button onClick={prevImage}>Previous</button>
+					<button onClick={nextImage}>Next</button> */}
 				</div>
 			</Modal>
 		</div>
