@@ -1,8 +1,8 @@
 'use client'
 
-import 'swiper/css/pagination'
 import 'swiper/css'
-import './styles.css'
+import 'swiper/css/pagination'
+import './swiper-styles.css'
 
 import Image from 'next/image'
 import { Apartament } from 'types/apartament.types'
@@ -18,13 +18,6 @@ import { useEffect, useState } from 'react'
 import useAxiosPost from 'hooks/useAxios'
 import { togleBtnFavorite } from './toglleBtnFavorite'
 
-const paginationForSwiper = {
-	clickable: true,
-	renderBullet: function (_, className) {
-		return '<span class="' + className + '">' + '</span>'
-	},
-}
-
 interface responseData {
 	idApartament: string
 	message: string
@@ -39,6 +32,13 @@ const Apartament: React.FC<{ apartament: Apartament; profile: IUser }> = ({
 	const [inFavorite, setFavorite] = useState<string[]>(
 		profile?.favorite.map(({ _id }) => _id) || []
 	)
+
+	const paginationForSwiper = {
+		clickable: true,
+		renderBullet: function (_, className) {
+			return `<span class="${className} ownstyle"></span>`
+		},
+	}
 
 	useEffect(() => {
 		if (error) {
@@ -70,6 +70,7 @@ const Apartament: React.FC<{ apartament: Apartament; profile: IUser }> = ({
 				slidesPerView={3}
 				centeredSlides={true}
 				className="mySwiper"
+				navigation
 			>
 				{apartament?.pictures.map((image, index) => (
 					<SwiperSlide key={index} virtualIndex={index}>
