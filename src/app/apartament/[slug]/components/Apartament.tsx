@@ -61,10 +61,11 @@ const Apartament: React.FC<{ apartament: Apartament; profile: IUser }> = ({
 	return (
 		<>
 			<Swiper
-				// autoplay={{
-				// 	delay: 5000,
-				// 	disableOnInteraction: false,
-				// }}
+				autoplay={{
+					delay: 5000,
+					disableOnInteraction: false,
+				}}
+				loop
 				modules={[Pagination, Navigation, Autoplay]}
 				pagination={paginationForSwiper}
 				slidesPerView={3}
