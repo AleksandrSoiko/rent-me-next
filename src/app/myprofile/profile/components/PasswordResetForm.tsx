@@ -49,27 +49,29 @@ export const PasswordResetForm: React.FC = () => {
 		},
 		validationSchema: validationSchema,
 		onSubmit: async (values) => {
-			if (formik.values.newPass === formik.values.confNewPass) {
-				await fetchAxios({
-					url: '/users/update/password',
-					method: 'PUT',
-					body: { password: values.currPassword, newPassword: values.newPass },
-				})
+			const { currPassword, newPass, confNewPass } = values
+
+			if (newPass !== confNewPass) {
+				toastr.error('Passwords do not match')
+				return
 			}
+
+			await fetchAxios({
+				url: '/users/update/password',
+				method: 'PUT',
+				body: { password: currPassword, newPassword: newPass },
+			})
 		},
 	})
+	console.log(data)
 
 	useEffect(() => {
-		if (error) {
-			toastr.error(error)
-		} else if (data) {
-			formik.setFieldValue('currPassword', '')
-			formik.setFieldValue('newPass', '')
-			formik.setFieldValue('confNewPass', '')
+		if (data && !error) {
+			formik.resetForm()
 			toastr.success('You successfully change password')
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [data, error])
+	}, [data])
 
 	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target

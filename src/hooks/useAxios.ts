@@ -2,6 +2,8 @@ import axios from 'axios'
 import { API_URL } from 'config/api.config'
 import { useSession } from 'next-auth/react'
 import { useState } from 'react'
+import 'toastr/build/toastr.css'
+import toastr from 'toastr'
 
 type TypeInput = {
 	url: string
@@ -33,6 +35,8 @@ export default function useAxiosPost() {
 
 	const fetchAxios = async ({ url, method, body }: TypeInput) => {
 		setLoading(true)
+		setError(null)
+		setData(null)
 		try {
 			const response = await axiosApiClient.request({
 				url,
@@ -45,10 +49,12 @@ export default function useAxiosPost() {
 							: 'application/json',
 				},
 			})
+
 			setLoading(false)
 			setError(null)
 			setData(response.data)
 		} catch (error) {
+			toastr.error(error.response.data.message)
 			setLoading(false)
 			setError(error.response.data.message)
 		}

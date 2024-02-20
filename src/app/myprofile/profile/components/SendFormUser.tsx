@@ -62,7 +62,7 @@ export const SendFormUser: React.FC<{ profile: IUser }> = ({ profile }) => {
 			city: profile.city || '',
 			address: profile.address || '',
 		},
-		validationSchema: validationSchema,
+		// validationSchema: validationSchema,
 		onSubmit: async (values) => {
 			await fetchAxios({
 				url: '/users/update/profile',
