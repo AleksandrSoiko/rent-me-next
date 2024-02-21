@@ -3,29 +3,36 @@ import { API_URL } from 'config/api.config'
 import { authOptions } from 'lib/auth'
 import { getServerSession } from 'next-auth'
 
-const axiosApi = axios.create({
+const options = {
 	baseURL: API_URL,
-	timeout: 1000,
 	headers: { 'Content-Type': 'application/json' },
-})
+	withCredentials: true,
+}
 
+const axiosApi = axios.create(options)
 axiosApi.interceptors.request.use(async (config) => {
 	const session = await getServerSession(authOptions)
+	console.log(session)
 
 	if (session) {
 		const accessToken = session.user?.accessToken
-		if (accessToken) {
-			config.headers.Authorization = `Bearer ${accessToken}`
-		}
+		if (accessToken) config.headers.Authorization = `Bearer ${accessToken}`
 	}
+
 	return config
 })
 
 export default axiosApi
+export const axiosClassic = axios.create(options)
 
-export const axiosClassic = axios.create({
-	baseURL: API_URL,
-	headers: {
-		'Content-Type': 'application/json',
-	},
-})
+// axiosApi.interceptors.response.use(config => config, async error => {
+// 	const originalRequest = error.config
+
+// 	if (error?.response?.status ===401||errorCatch(error)==='jwt expired'||errorCatch(error)==='jwt must be provided'&&error.config&&!error.config._isRetry) {
+// 		originalRequest._isRetry = true
+// 		try {
+
+// 		}
+// 		throw error
+// 	}
+// } )
