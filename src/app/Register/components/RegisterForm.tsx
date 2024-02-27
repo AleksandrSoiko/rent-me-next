@@ -6,13 +6,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { btnHoverOrange } from '../../page'
-import useAxiosPost from 'hooks/useAxios'
+import useProfile from 'hooks/useAxios'
 import { useRouter } from 'next/navigation'
 
 // А form component for register
 const RegisterForm = () => {
 	const route = useRouter()
-	const { data, loading, error, fetchAxios } = useAxiosPost()
+	const { data, loading, error, fetchAxios } = useProfile()
 	// State hidden for password
 	const [passHidden, setPassHidden] = useState<boolean>(true)
 	// State, input-email for submit

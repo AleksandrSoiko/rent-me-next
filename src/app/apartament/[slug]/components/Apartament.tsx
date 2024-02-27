@@ -15,8 +15,9 @@ import toastr from 'toastr'
 
 import { IUser } from 'types/user.types'
 import { useEffect, useState } from 'react'
-import useAxiosPost from 'hooks/useAxios'
+
 import { togleBtnFavorite } from './toglleBtnFavorite'
+import { useProfile } from 'hooks/useAxios'
 
 interface responseData {
 	idApartament: string
@@ -28,7 +29,7 @@ const Apartament: React.FC<{ apartament: Apartament; profile: IUser }> = ({
 	apartament,
 	profile,
 }) => {
-	const { data, loading, error, fetchAxios } = useAxiosPost()
+	const { data, isLoading, isSuccess } = useProfile()
 	const [inFavorite, setFavorite] = useState<string[]>(
 		profile?.favorite.map(({ _id }) => _id) || []
 	)
@@ -39,24 +40,6 @@ const Apartament: React.FC<{ apartament: Apartament; profile: IUser }> = ({
 			return `<span class="${className} ownstyle"></span>`
 		},
 	}
-
-	useEffect(() => {
-		if (error) {
-			toastr.error(error)
-		} else if (data && typeof data === 'object') {
-			const responseData = data as responseData
-			setFavorite((prevFavorites) => {
-				if (prevFavorites.includes(responseData.idApartament)) {
-					return prevFavorites.filter(
-						(favId) => favId !== responseData.idApartament
-					)
-				} else {
-					return [...prevFavorites, responseData.idApartament]
-				}
-			})
-			toastr.success(responseData.message)
-		}
-	}, [error, data])
 
 	return (
 		<>
@@ -134,12 +117,7 @@ const Apartament: React.FC<{ apartament: Apartament; profile: IUser }> = ({
 									height="40"
 									alt="like-svg"
 								/> */}
-								{togleBtnFavorite(
-									apartament._id,
-									profile,
-									inFavorite,
-									fetchAxios
-								)}
+								{/* {togleBtnFavorite(apartament._id, profile, inFavorite, data)} */}
 								<button>
 									<Image
 										src="/LatestOffers/carbon_floorplan.svg"

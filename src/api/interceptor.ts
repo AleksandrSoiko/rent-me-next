@@ -1,9 +1,13 @@
-import axios from 'axios'
+import axios, { CreateAxiosDefaults } from 'axios'
 import { API_URL } from 'config/api.config'
-import { authOptions } from 'lib/auth'
-import { getServerSession } from 'next-auth'
+import { errorCatch } from './error'
+import AuthService from 'service/auth/auth.service'
+import {
+	getAccessToken,
+	removeFromStorage,
+} from 'service/auth/auth-token.service'
 
-const options = {
+const options: CreateAxiosDefaults = {
 	baseURL: API_URL,
 	headers: { 'Content-Type': 'application/json' },
 	withCredentials: true,
@@ -11,28 +15,36 @@ const options = {
 
 const axiosApi = axios.create(options)
 axiosApi.interceptors.request.use(async (config) => {
-	const session = await getServerSession(authOptions)
-	console.log(session)
+	const accessToken = getAccessToken()
 
-	if (session) {
-		const accessToken = session.user?.accessToken
-		if (accessToken) config.headers.Authorization = `Bearer ${accessToken}`
-	}
-
+	if (config?.headers && accessToken)
+		config.headers.Authorization = `Bearer ${accessToken}`
 	return config
 })
 
+axiosApi.interceptors.response.use(
+	(config) => config,
+	async (error) => {
+		const originalRequest = error.config
+		if (
+			(error.response.status === 401 ||
+				errorCatch(error) === 'jwt expired' ||
+				errorCatch(error) === 'jwt must be provided') &&
+			error.config &&
+			!error.config._isRetry
+		) {
+			originalRequest._isRetry = true
+			try {
+				await AuthService.getNewTokens()
+				return axiosApi.request(originalRequest)
+			} catch (e) {
+				if (errorCatch(e) === 'jwt expired') removeFromStorage()
+			}
+		}
+
+		throw error
+	}
+)
+
 export default axiosApi
 export const axiosClassic = axios.create(options)
-
-// axiosApi.interceptors.response.use(config => config, async error => {
-// 	const originalRequest = error.config
-
-// 	if (error?.response?.status ===401||errorCatch(error)==='jwt expired'||errorCatch(error)==='jwt must be provided'&&error.config&&!error.config._isRetry) {
-// 		originalRequest._isRetry = true
-// 		try {
-
-// 		}
-// 		throw error
-// 	}
-// } )

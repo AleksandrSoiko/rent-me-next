@@ -1,5 +1,5 @@
 'use client'
-import useAxiosPost from 'hooks/useAxios'
+import useProfile from 'hooks/useAxios'
 import { useEffect, useState } from 'react'
 import 'toastr/build/toastr.css'
 import toastr from 'toastr'
@@ -8,7 +8,7 @@ import toastr from 'toastr'
 const FormForgotPassword = () => {
 	// State, input-email for reset password
 	const [email, setEmail] = useState('')
-	const { data, loading, error, fetchAxios } = useAxiosPost()
+	const { data, loading, error, fetchAxios } = useProfile()
 
 	const handlForgotPass = async () => {
 		if (email) {

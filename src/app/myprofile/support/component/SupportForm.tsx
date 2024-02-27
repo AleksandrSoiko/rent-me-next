@@ -1,12 +1,12 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { btnHoverOrange } from '../../../page'
-import useAxiosPost from 'hooks/useAxios'
+import useProfile from 'hooks/useAxios'
 import 'toastr/build/toastr.css'
 import toastr from 'toastr'
 
 const SupportForm = () => {
-	const { data, loading, error, fetchAxios } = useAxiosPost()
+	const { data, loading, error, fetchAxios } = useProfile()
 	const [questionText, setQuestionText] = useState('')
 	const [userEmail, setUserEmail] = useState('')
 

@@ -1,14 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import LogOut from './component/logOut'
-import { notFound } from 'next/navigation'
-import { getServerSession } from 'next-auth'
-import { authOptions } from 'lib/auth'
 
 async function MyProfile({ activeLabel }: { activeLabel: string }) {
-	const session = await getServerSession(authOptions)
-	if (!session) notFound()
-
 	return (
 		<div className="hidden lg:block w-[14.75rem] p-[1.5rem] h-[100] bg-gradient-to-t from-rose to-transparent text-base font-semibold height-[1.2rem] font-Manrope">
 			<ul className="flex flex-col gap-[0.88rem]">

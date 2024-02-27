@@ -1,11 +1,13 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { btnHoverOrange } from '../../page'
-import { signIn, SignInResponse } from 'next-auth/react' // Assuming SignInResponse is the correct type
 import { useRouter } from 'next/navigation'
 import 'toastr/build/toastr.css'
 import toastr from 'toastr'
+import { useMutation } from 'react-query'
+import AuthService from 'service/auth/auth.service'
 
 // Form component for user authorization
 const AuthorizationForm: React.FC = () => {
@@ -15,40 +17,26 @@ const AuthorizationForm: React.FC = () => {
 	const [email, setEmail] = useState('')
 	// State, input-password for submit
 	const [password, setPassword] = useState('')
-	const route = useRouter()
 
-	const handleSignIn = async (e: React.FormEvent) => {
+	const { push } = useRouter()
+	const { mutate } = useMutation({
+		mutationKey: ['auth'],
+		mutationFn: () => AuthService.main('login', { email, password }),
+		onSuccess() {
+			toastr.success('Successfully login!')
+			setEmail('')
+			setPassword('')
+			push('/')
+		},
+	})
+
+	const onSubmit = (e) => {
 		e.preventDefault()
-		// Call the signIn function for authorization
-		const result = await signIn('credentials', {
-			redirect: false,
-			email: email,
-			password: password,
-		})
-
-		if (result) {
-			if (
-				(result as SignInResponse).error ===
-				'Request failed with status code 500'
-			) {
-				toastr.error('Email not verified ')
-			} else if (
-				(result as SignInResponse).error ===
-				'Request failed with status code 401'
-			) {
-				toastr.error('Email or password invalid')
-			} else {
-				route.push('/myprofile/profile')
-			}
-		}
+		mutate()
 	}
 
 	return (
-		<form
-			action=""
-			className="flex flex-col gap-6 w-[100%] relative"
-			onSubmit={handleSignIn}
-		>
+		<form className="flex flex-col gap-6 w-[100%] relative" onSubmit={onSubmit}>
 			<input
 				required
 				onChange={(e) => setEmail(e.target.value)}

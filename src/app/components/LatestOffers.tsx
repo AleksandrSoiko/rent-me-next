@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { btnHoverOrange, btnHoverOrangeReverse } from '../page'
 import { Apartament } from 'types/apartament.types'
-import useAxiosPost from 'hooks/useAxios'
+import useProfile from 'hooks/useAxios'
 import { useEffect, useState } from 'react'
 import 'toastr/build/toastr.css'
 import toastr from 'toastr'
@@ -22,7 +22,7 @@ interface responseData {
 export const dynamic = 'force-dynamic'
 
 const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
-	const { data, loading, error, fetchAxios } = useAxiosPost()
+	const { data, loading, error, fetchAxios } = useProfile()
 	const [inFavorite, setFavorite] = useState<string[]>(
 		profile?.favorite.map(({ _id }) => _id) || []
 	)

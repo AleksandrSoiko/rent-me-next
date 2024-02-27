@@ -7,8 +7,11 @@ import useAxiosPost from 'hooks/useAxios'
 import 'toastr/build/toastr.css'
 import toastr from 'toastr'
 import { useEffect } from 'react'
+import { UserService } from 'service/user.service.ts/user.service'
 
-export const FirstBlockUser: React.FC<{ profile: IUser }> = ({ profile }) => {
+export const FirstBlockUser: React.FC<{ profile: IUser }> = async ({
+	profile,
+}) => {
 	const {
 		data: data1,
 		loading: loading1,

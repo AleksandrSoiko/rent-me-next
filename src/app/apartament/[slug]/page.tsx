@@ -2,13 +2,11 @@ import Image from 'next/image'
 import Apartament from './components/Apartament'
 import Link from 'next/link'
 import { ApartamentService } from 'service/apartament/apartament.service'
-import checkAndResvonseAuthProfileforServer from 'helper/auth.loginTrue'
 
 export const dynamic = 'force-dynamic'
 const CardApartaments = async (context) => {
 	const { slug } = context.params
 	const apartament = await ApartamentService.getApartamentById(String(slug))
-	const profile = await checkAndResvonseAuthProfileforServer()
 
 	return (
 		<section className="mx-[auto] w-[328px] px-4 md:px-8 pt-12 md:py-16 pb-10 lg:pt-15 lg:pb-20 md:w-[704px] lg:w-[1260px]">
@@ -25,7 +23,7 @@ const CardApartaments = async (context) => {
 				/>
 				Back to the search results
 			</Link>
-			<Apartament apartament={apartament} profile={profile} />
+			{/* <Apartament /> */}
 			<div className="flex gap-4 max-md:justify-center mt-10">
 				<button className="px-2 py-[0.625rem] text-[#fff] whitespace-nowrap text-center bg-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[8.75rem] rounded-[0.625rem]">
 					Email

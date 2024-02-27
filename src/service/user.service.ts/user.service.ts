@@ -7,7 +7,7 @@ export const UserService = {
 			const profile = response.data
 			return profile
 		} catch (error) {
-			console.error('Error fetching user profile:', error)
+			// console.error(error)
 			return {
 				redirect: {
 					destination: '/',
@@ -23,7 +23,7 @@ export const UserService = {
 			const profile = response.data
 			return profile
 		} catch (error) {
-			console.error('Error fetching user profile:', error)
+			// console.error('Error fetching user profile:', error)
 			return {
 				redirect: {
 					destination: '/',
@@ -39,7 +39,7 @@ export const UserService = {
 			const profile = response.data
 			return profile
 		} catch (error) {
-			console.error('Error fetching reservation profile:', error)
+			// console.error('Error fetching reservation profile:', error)
 		}
 	},
 }
