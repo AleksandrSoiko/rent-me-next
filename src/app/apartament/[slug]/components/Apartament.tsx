@@ -13,11 +13,10 @@ import { Pagination, Navigation, Autoplay } from 'swiper/modules'
 import 'toastr/build/toastr.css'
 import toastr from 'toastr'
 
-import { IUser } from 'types/user.types'
 import { useEffect, useState } from 'react'
-
 import { togleBtnFavorite } from './toglleBtnFavorite'
-import { useProfile } from 'hooks/useAxios'
+import useProfileGet from 'hooks/useProfile'
+import useAxiosPost from 'hooks/useAxios'
 
 interface responseData {
 	idApartament: string
@@ -25,14 +24,16 @@ interface responseData {
 }
 
 export const dynamic = 'force-dynamic'
-const Apartament: React.FC<{ apartament: Apartament; profile: IUser }> = ({
-	apartament,
-	profile,
-}) => {
-	const { data, isLoading, isSuccess } = useProfile()
-	const [inFavorite, setFavorite] = useState<string[]>(
-		profile?.favorite.map(({ _id }) => _id) || []
-	)
+const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
+	const { load, errors, profile } = useProfileGet()
+	const { data, loading, error, fetchAxios } = useAxiosPost()
+	const [inFavorite, setFavorite] = useState<string[]>([])
+
+	useEffect(() => {
+		if (!errors && profile) {
+			setFavorite(profile?.favorite.map(({ _id }) => _id))
+		}
+	}, [errors, profile])
 
 	const paginationForSwiper = {
 		clickable: true,
@@ -40,6 +41,24 @@ const Apartament: React.FC<{ apartament: Apartament; profile: IUser }> = ({
 			return `<span class="${className} ownstyle"></span>`
 		},
 	}
+
+	useEffect(() => {
+		if (error) {
+			toastr.error(error)
+		} else if (data && typeof data === 'object') {
+			const responseData = data as responseData
+			setFavorite((prevFavorites) => {
+				if (prevFavorites.includes(responseData.idApartament)) {
+					return prevFavorites.filter(
+						(favId) => favId !== responseData.idApartament
+					)
+				} else {
+					return [...prevFavorites, responseData.idApartament]
+				}
+			})
+			toastr.success(responseData.message)
+		}
+	}, [error, data])
 
 	return (
 		<>
@@ -111,13 +130,12 @@ const Apartament: React.FC<{ apartament: Apartament; profile: IUser }> = ({
 								</p>
 							</div>
 							<div className="flex gap-[1.12rem] max-md:hidden text-[#000] ">
-								{/* <Image
-									src="/header/like.svg"
-									width="40"
-									height="40"
-									alt="like-svg"
-								/> */}
-								{/* {togleBtnFavorite(apartament._id, profile, inFavorite, data)} */}
+								{togleBtnFavorite(
+									apartament._id,
+									profile,
+									inFavorite,
+									fetchAxios
+								)}
 								<button>
 									<Image
 										src="/LatestOffers/carbon_floorplan.svg"

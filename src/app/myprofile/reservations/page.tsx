@@ -10,7 +10,7 @@ const MyReservation = () => {
 					My Favorite
 				</p>
 				<ul className="flex max-lg:justify-center max-lg:flex-wrap gap-[1.5rem] m-[1.5rem] max-w-[72.25rem] lg:w-[75%]">
-					{/* <LatestOffers /> */}
+					<LatestOffers />
 				</ul>
 			</div>
 		</div>

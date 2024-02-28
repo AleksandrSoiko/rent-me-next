@@ -23,7 +23,7 @@ const CardApartaments = async (context) => {
 				/>
 				Back to the search results
 			</Link>
-			{/* <Apartament /> */}
+			<Apartament apartament={apartament} />
 			<div className="flex gap-4 max-md:justify-center mt-10">
 				<button className="px-2 py-[0.625rem] text-[#fff] whitespace-nowrap text-center bg-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[8.75rem] rounded-[0.625rem]">
 					Email

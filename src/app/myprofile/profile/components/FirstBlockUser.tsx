@@ -2,16 +2,14 @@
 import Link from 'next/link'
 import { btnHoverOrangeReverse } from '../../../page'
 import Image from 'next/image'
-import { IUser } from 'types/user.types'
 import useAxiosPost from 'hooks/useAxios'
 import 'toastr/build/toastr.css'
 import toastr from 'toastr'
 import { useEffect } from 'react'
-import { UserService } from 'service/user.service.ts/user.service'
+import useProfileGet from 'hooks/useProfile'
 
-export const FirstBlockUser: React.FC<{ profile: IUser }> = async ({
-	profile,
-}) => {
+export const FirstBlockUser = () => {
+	const { load, errors, profile } = useProfileGet()
 	const {
 		data: data1,
 		loading: loading1,
@@ -75,13 +73,17 @@ export const FirstBlockUser: React.FC<{ profile: IUser }> = async ({
 	return (
 		<div className="p-[1.5rem] w-[17.4rem] max-lg:mx-[auto]">
 			<div className="flex flex-col gap-[1rem] items-center">
-				<Image
-					src={profile.foto || '/nofoto.png'}
-					width="170"
-					height="170"
-					alt="avatar"
-					className="rounded-[100%]"
-				/>
+				{!load ? (
+					<Image
+						src={profile?.foto || '/nofoto.png'}
+						width="170"
+						height="170"
+						alt="avatar"
+						className="rounded-[100%]"
+					/>
+				) : (
+					'spiner'
+				)}
 				<label
 					htmlFor="addphoto"
 					className={`${btnHoverOrangeReverse} px-2 py-[0.625rem] text-[#000] whitespace-nowrap text-center bg-white border-[1px] border-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[100%] rounded-[0.625rem]`}

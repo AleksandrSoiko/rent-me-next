@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import 'toastr/build/toastr.css'
 import toastr from 'toastr'
 import { IUser } from 'types/user.types'
+import useProfileGet from 'hooks/useProfile'
 
 interface ApartamentArray {
 	apartament: Apartament[]
@@ -21,11 +22,16 @@ interface responseData {
 }
 export const dynamic = 'force-dynamic'
 
-const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
+const LatestOffers: React.FC<LatestOffersProps> = ({ apartament }) => {
+	const { load, errors, profile } = useProfileGet()
 	const { data, loading, error, fetchAxios } = useProfile()
-	const [inFavorite, setFavorite] = useState<string[]>(
-		profile?.favorite.map(({ _id }) => _id) || []
-	)
+	const [inFavorite, setFavorite] = useState<string[]>([])
+
+	useEffect(() => {
+		if (!errors && profile) {
+			setFavorite(profile?.favorite.map(({ _id }) => _id))
+		}
+	}, [errors, profile])
 
 	useEffect(() => {
 		if (error) {
@@ -46,6 +52,7 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
 	}, [error, data])
 
 	return (
+		!load &&
 		apartament &&
 		apartament.length > 0 &&
 		apartament.map((query) => (
@@ -142,7 +149,7 @@ export default LatestOffers
 
 const renderFavoriteButton = (
 	queryId: string,
-	profile: IUser | undefined,
+	profile: IUser | null,
 	inFavorite: string[],
 	fetchAxios
 ) => {

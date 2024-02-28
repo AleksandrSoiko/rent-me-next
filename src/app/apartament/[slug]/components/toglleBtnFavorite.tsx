@@ -5,7 +5,7 @@ import { IUser } from 'types/user.types'
 
 export const togleBtnFavorite = (
 	queryId: string,
-	profile: IUser | undefined,
+	profile: IUser | null,
 	inFavorite: string[],
 	fetchAxios
 ) => {

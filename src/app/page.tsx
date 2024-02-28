@@ -7,6 +7,7 @@ import EasyToSell from './components/EasyToSell'
 import MobileInstaling from './components/MobileInstaling'
 import Head from './head'
 import Image from 'next/image'
+import { ApartamentService } from 'service/apartament/apartament.service'
 
 export const btnHoverOrange = [
 	' hover:text-[#000] border-[1px] border-[#FFB22C] hover:border-[#000]',
@@ -16,6 +17,7 @@ export const btnHoverOrangeReverse = [
 ]
 
 export default async function Home() {
+	const apartament = await ApartamentService.getAllApartament()
 	return (
 		<div className="flex flex-col items-center">
 			<Head />
@@ -33,7 +35,7 @@ export default async function Home() {
 					Latest offers
 				</p>
 				<ul className=" max-md:flex-col md:flex-wrap  md:gap-8 lg:gap-5 md-max:justify-center lg:w-[71.8rem] flex gap-1">
-					{/* <LatestOffers apartament={apartament} profile={profile} /> */}
+					<LatestOffers apartament={apartament} />
 				</ul>
 				<div className="flex gap-4 justify-center mt-8 md:mt-10">
 					<p className="font-Manrope font-medium text-xl leading-[1.5rem]">

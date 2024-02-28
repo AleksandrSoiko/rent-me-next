@@ -6,11 +6,9 @@ export async function middleware(req: NextRequest, res: NextResponse) {
 	const refreshToken = cookies.get(EnumToken.REFRESH_TOKEN)?.value
 
 	const isAuthPage = url.includes('/signIn')
-
 	if (isAuthPage && refreshToken) {
 		return NextResponse.redirect(new URL('/myprofile/profile', url))
 	}
-
 	if (isAuthPage) {
 		return NextResponse.next()
 	}
