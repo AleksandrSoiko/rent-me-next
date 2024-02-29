@@ -3,11 +3,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { btnHoverOrange, btnHoverOrangeReverse } from '../page'
 import { Apartament } from 'types/apartament.types'
-import useAxiosPost from 'hooks/useAxios'
+import useProfile from 'hooks/useAxios'
 import { useEffect, useState } from 'react'
 import 'toastr/build/toastr.css'
 import toastr from 'toastr'
 import { IUser } from 'types/user.types'
+import useProfileGet from 'hooks/useProfile'
 
 interface ApartamentArray {
 	apartament: Apartament[]
@@ -21,11 +22,16 @@ interface responseData {
 }
 export const dynamic = 'force-dynamic'
 
-const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
-	const { data, loading, error, fetchAxios } = useAxiosPost()
-	const [inFavorite, setFavorite] = useState<string[]>(
-		profile?.favorite.map(({ _id }) => _id) || []
-	)
+const LatestOffers: React.FC<LatestOffersProps> = ({ apartament }) => {
+	const { load, errors, profile } = useProfileGet()
+	const { data, loading, error, fetchAxios } = useProfile()
+	const [inFavorite, setFavorite] = useState<string[]>([])
+
+	useEffect(() => {
+		if (!errors && profile) {
+			setFavorite(profile?.favorite.map(({ _id }) => _id))
+		}
+	}, [errors, profile])
 
 	useEffect(() => {
 		if (error) {
@@ -46,6 +52,7 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
 	}, [error, data])
 
 	return (
+		!load &&
 		apartament &&
 		apartament.length > 0 &&
 		apartament.map((query) => (
@@ -82,7 +89,7 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament, profile }) => {
 							Whitehill Place, Glasgow, G31
 						</p>
 						<p className="text-base font-light leading-[1.2rem] mb-4 text-[#000]">
-							{query.description.slice(0, 200)}... 
+							{query.description.slice(0, 200)}...
 							<Link href={`/apartament/${query._id}`} className="underline">
 								more
 							</Link>
@@ -142,7 +149,7 @@ export default LatestOffers
 
 const renderFavoriteButton = (
 	queryId: string,
-	profile: IUser | undefined,
+	profile: IUser | null,
 	inFavorite: string[],
 	fetchAxios
 ) => {

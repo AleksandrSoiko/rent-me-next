@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { API_URL } from 'config/api.config'
-import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 import 'toastr/build/toastr.css'
 import toastr from 'toastr'
+import axiosApi from 'api/interceptor'
 
 type TypeInput = {
 	url: string
@@ -21,24 +21,13 @@ export default function useAxiosPost() {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(null)
 	const [data, setData] = useState<string | null>(null)
-	const session = useSession()
-
-	axiosApiClient.interceptors.request.use(async (config) => {
-		if (session) {
-			const accessToken = session.data?.user.accessToken
-			if (accessToken) {
-				config.headers.Authorization = `Bearer ${accessToken}`
-			}
-		}
-		return config
-	})
 
 	const fetchAxios = async ({ url, method, body }: TypeInput) => {
 		setLoading(true)
 		setError(null)
 		setData(null)
 		try {
-			const response = await axiosApiClient.request({
+			const response = await axiosApi.request({
 				url,
 				method,
 				data: body,

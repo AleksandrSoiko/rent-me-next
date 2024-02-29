@@ -1,11 +1,11 @@
-import Image from 'next/image'
 import 'toastr/build/toastr.css'
 import toastr from 'toastr'
+import Image from 'next/image'
 import { IUser } from 'types/user.types'
 
 export const togleBtnFavorite = (
 	queryId: string,
-	profile: IUser | undefined,
+	profile: IUser | null,
 	inFavorite: string[],
 	fetchAxios
 ) => {

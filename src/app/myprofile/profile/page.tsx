@@ -7,23 +7,20 @@ import { PasswordResetForm } from './components/PasswordResetForm'
 import PaymentMethods from './components/PaymentMethods'
 import { SendFomrEmail } from './components/SendFomrEmail'
 import { SendFormUser } from './components/SendFormUser'
-import { UserService } from 'service/user.service.ts/user.service'
 
 const MyReservation: React.FC = async () => {
-	let profile = await UserService.getMyProfile()
-
 	return (
 		<div className="flex flex-col lg:flex-row gap-[1.5rem]  max-w-[1180px] mx-[auto]">
 			<MyProfile activeLabel={'profile'} />
 			<div className="border-[1px] border-blue1">
-				<FirstBlockUser profile={profile} />
+				<FirstBlockUser />
 			</div>
 			<div className="lg:w-[52%] gap-[1.5rem] flex flex-col">
 				<div className="border-[1px] border-blue1  p-[1.5rem] ">
 					<p className="font-semibold text-base height-[1.2rem] font-Manrope">
 						Contact information
 					</p>
-					<SendFormUser profile={profile} />
+					<SendFormUser />
 				</div>
 				<div>
 					<div className="border-[1px] border-blue1  p-[1.5rem]">

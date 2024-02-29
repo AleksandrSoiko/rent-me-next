@@ -63,7 +63,6 @@ export const PasswordResetForm: React.FC = () => {
 			})
 		},
 	})
-	console.log(data)
 
 	useEffect(() => {
 		if (data && !error) {
