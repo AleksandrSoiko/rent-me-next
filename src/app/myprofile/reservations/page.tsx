@@ -1,7 +1,6 @@
-import LatestOffers from 'app/components/LatestOffers'
 import MyProfile from '../page'
 
-const MyReservation = () => {
+const MyReservation = async () => {
 	return (
 		<div className="flex  max-w-[1180px] mx-[auto]">
 			<MyProfile activeLabel={'favorite'} />
@@ -10,7 +9,7 @@ const MyReservation = () => {
 					My Favorite
 				</p>
 				<ul className="flex max-lg:justify-center max-lg:flex-wrap gap-[1.5rem] m-[1.5rem] max-w-[72.25rem] lg:w-[75%]">
-					<LatestOffers />
+					{/* <LatestOffers apartament={apartament} /> */}
 				</ul>
 			</div>
 		</div>

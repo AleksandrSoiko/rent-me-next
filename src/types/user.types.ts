@@ -1,8 +1,10 @@
+import { Apartament } from './apartament.types'
+
 export interface IUser {
 	id: string
 	email: string
 	isAdmin: true
-	favorite: []
+	favorite: [Apartament] | []
 	address?: string
 	city?: string
 	country?: string
