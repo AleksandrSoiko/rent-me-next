@@ -1,8 +1,12 @@
 'use client'
+import Cookies from 'js-cookie'
 import Image from 'next/image'
 import Link from 'next/link'
+import 'toastr/build/toastr.css'
+import toastr from 'toastr'
 
 const Header = () => {
+	const isAuth = Cookies.get('accessToken')
 	return (
 		<header className="flex justify-between items-center lg:w-[1180px] mx-[auto] px-4">
 			<div className="md:hidden">
@@ -42,21 +46,12 @@ const Header = () => {
 			</nav>
 			<ul className="flex gap-4">
 				<li>
-					<Link
-						href={'/signIn'}
-						// onClick={() =>
-						// 	!data &&
-						// 	toastr.error(
-						// 		'Sign in to view your favorites',
-						// 		'You are not authorized'
-						// 	)
-						// }
-					>
+					<Link href={'/myprofile/favorites'}>
 						<Image src="/header/like.svg" width="28" height="28" alt="like" />
 					</Link>
 				</li>
 				<li>
-					<Link href={'/signIn'}>
+					<Link href={isAuth ? '/myprofile/profile' : '/signIn'}>
 						<Image src="/header/user.svg" width="28" height="28" alt="user" />
 					</Link>
 				</li>

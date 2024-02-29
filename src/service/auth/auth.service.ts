@@ -5,7 +5,6 @@ import { IAuthUser } from 'types/auth.types'
 export const AuthService = {
 	async main(type: 'login' | 'register', data: IAuthUser) {
 		const response = await axiosClassic.post(`/auth/${type}`, data)
-
 		if (response.data.accessToken) saveAccessToken(response.data.accessToken)
 		return response
 	},

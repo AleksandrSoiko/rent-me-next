@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { UserService } from 'service/user.service.ts/user.service'
 import { IUser } from 'types/user.types'
 import 'toastr/build/toastr.css'
-import toastr from 'toastr'
 
 export default function useProfileGet() {
 	const [load, setLoading] = useState<boolean>(false)
@@ -16,8 +15,6 @@ export default function useProfileGet() {
 	useEffect(() => {
 		if (isAuth) {
 			getPro()
-		} else {
-			push('/')
 		}
 	}, [isAuth, push])
 

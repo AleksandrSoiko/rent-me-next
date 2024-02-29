@@ -19,16 +19,21 @@ const AuthorizationForm: React.FC = () => {
 	const [password, setPassword] = useState('')
 
 	const { push } = useRouter()
-	const { mutate } = useMutation({
-		mutationKey: ['auth'],
-		mutationFn: () => AuthService.main('login', { email, password }),
-		onSuccess() {
-			toastr.success('Successfully login!')
-			setEmail('')
-			setPassword('')
-			push('/')
-		},
-	})
+	const { mutate, isLoading, error } = useMutation(
+		['auth'], // Ключ для цієї мутації
+		() => AuthService.main('login', { email, password }), // Функція, яка буде виконуватися при мутації
+		{
+			onSuccess: () => {
+				toastr.success('Successfully login!')
+				setEmail('')
+				setPassword('')
+				push('/')
+			},
+			onError: (err: any) => {
+				toastr.error('Login or password invalid')
+			},
+		}
+	)
 
 	const onSubmit = (e) => {
 		e.preventDefault()

@@ -89,7 +89,7 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament }) => {
 							Whitehill Place, Glasgow, G31
 						</p>
 						<p className="text-base font-light leading-[1.2rem] mb-4 text-[#000]">
-							{query.description.slice(0, 200)}... 
+							{query.description.slice(0, 200)}...
 							<Link href={`/apartament/${query._id}`} className="underline">
 								more
 							</Link>

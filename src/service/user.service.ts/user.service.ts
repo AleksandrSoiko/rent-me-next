@@ -42,4 +42,12 @@ export const UserService = {
 			console.error('Error fetching reservation profile:', error)
 		}
 	},
+
+	async logOut() {
+		try {
+			await axiosApi.post(`/auth/logout/`)
+		} catch (error) {
+			console.error('Error fetching reservation profile:', error)
+		}
+	},
 }
