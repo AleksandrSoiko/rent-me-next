@@ -2,8 +2,6 @@
 import Cookies from 'js-cookie'
 import Image from 'next/image'
 import Link from 'next/link'
-import 'toastr/build/toastr.css'
-import toastr from 'toastr'
 
 const Header = () => {
 	const isAuth = Cookies.get('accessToken')

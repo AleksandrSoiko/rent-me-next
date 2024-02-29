@@ -7,6 +7,7 @@ import 'toastr/build/toastr.css'
 import toastr from 'toastr'
 import { useEffect } from 'react'
 import useProfileGet from 'hooks/useProfile'
+import Skeleton from 'react-loading-skeleton'
 
 export const FirstBlockUser = () => {
 	const { load, errors, profile } = useProfileGet()
@@ -82,7 +83,7 @@ export const FirstBlockUser = () => {
 						className="rounded-[100%]"
 					/>
 				) : (
-					'spiner'
+					<Skeleton className="w-[170px] h-[170px] rounded-[100%]" />
 				)}
 				<label
 					htmlFor="addphoto"

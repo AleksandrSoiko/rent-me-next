@@ -9,6 +9,7 @@ import 'toastr/build/toastr.css'
 import toastr from 'toastr'
 import { IUser } from 'types/user.types'
 import useProfileGet from 'hooks/useProfile'
+import Cookies from 'js-cookie'
 
 interface ApartamentArray {
 	apartament: Apartament[]
@@ -26,12 +27,13 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament }) => {
 	const { load, errors, profile } = useProfileGet()
 	const { data, loading, error, fetchAxios } = useProfile()
 	const [inFavorite, setFavorite] = useState<string[]>([])
+	const isAuth = Cookies.get('accessToken')
 
 	useEffect(() => {
-		if (!errors && profile) {
+		if (!errors && profile && isAuth) {
 			setFavorite(profile?.favorite.map(({ _id }) => _id))
 		}
-	}, [errors, profile])
+	}, [errors, isAuth, profile])
 
 	useEffect(() => {
 		if (error) {
