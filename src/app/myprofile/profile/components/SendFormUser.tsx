@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import 'toastr/build/toastr.css'
 import toastr from 'toastr'
 import useProfileGet from 'hooks/useProfile'
+import Skeleton from 'react-loading-skeleton'
 
 const validationSchema = Yup.object().shape({
 	firstname: Yup.string()
@@ -75,7 +76,7 @@ export const SendFormUser = () => {
 	})
 
 	useEffect(() => {
-		if (profile) {
+		if (profile && !load) {
 			formik.setValues({
 				firstname: profile.firstname || '',
 				lastname: profile.lastname || '',
@@ -103,23 +104,21 @@ export const SendFormUser = () => {
 	}
 
 	return (
-		!load &&
-		profile && (
-			<form
-				onSubmit={formik.handleSubmit}
-				className="my-[1.5rem] flex flex-col gap-[1.5rem]"
-				id="contactInformation"
-			>
-				<ul className="flex flex-col gap-[1.5rem]">
-					<li>
-						<label
-							htmlFor="firstname"
-							className="flex gap-[1.5rem] items-center"
-						>
-							<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
-								First Name<span className="text-[red]">*</span>
-							</p>
-							<div className="flex flex-col w-[100%] relative">
+		<form
+			onSubmit={formik.handleSubmit}
+			className="my-[1.5rem] flex flex-col gap-[1.5rem]"
+			id="contactInformation"
+		>
+			<ul className="flex flex-col gap-[1.5rem]">
+				<li>
+					<label htmlFor="firstname" className="flex gap-[1.5rem] items-center">
+						<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
+							First Name<span className="text-[red]">*</span>
+						</p>
+						<div className="flex flex-col w-[100%] relative">
+							{load ? (
+								<Skeleton className="py-4" />
+							) : (
 								<input
 									required
 									type="text"
@@ -134,21 +133,22 @@ export const SendFormUser = () => {
 									onBlur={formik.handleBlur}
 									value={formik.values.firstname}
 								/>
-								{formik.errors.firstname &&
-									formik.touched.firstname &&
-									ErrorMessageText(formik.errors.firstname)}
-							</div>
-						</label>
-					</li>
-					<li>
-						<label
-							htmlFor="lastname"
-							className="flex gap-[1.5rem] items-center"
-						>
-							<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
-								Last Name<span className="text-[red]">*</span>
-							</p>
-							<div className="flex flex-col w-[100%] relative">
+							)}
+							{formik.errors.firstname &&
+								formik.touched.firstname &&
+								ErrorMessageText(formik.errors.firstname)}
+						</div>
+					</label>
+				</li>
+				<li>
+					<label htmlFor="lastname" className="flex gap-[1.5rem] items-center">
+						<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
+							Last Name<span className="text-[red]">*</span>
+						</p>
+						<div className="flex flex-col w-[100%] relative">
+							{load ? (
+								<Skeleton className="py-4" />
+							) : (
 								<input
 									required
 									type="text"
@@ -163,18 +163,22 @@ export const SendFormUser = () => {
 									onBlur={formik.handleBlur}
 									value={formik.values.lastname}
 								/>
-								{formik.errors.lastname &&
-									formik.touched.lastname &&
-									ErrorMessageText(formik.errors.lastname)}
-							</div>
-						</label>
-					</li>
-					<li>
-						<label htmlFor="email" className="flex gap-[1.5rem] items-center">
-							<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
-								Your email
-							</p>
-							<div className="flex flex-col w-[100%] relative">
+							)}
+							{formik.errors.lastname &&
+								formik.touched.lastname &&
+								ErrorMessageText(formik.errors.lastname)}
+						</div>
+					</label>
+				</li>
+				<li>
+					<label htmlFor="email" className="flex gap-[1.5rem] items-center">
+						<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
+							Your email
+						</p>
+						<div className="flex flex-col w-[100%] relative">
+							{load ? (
+								<Skeleton className="py-4" />
+							) : (
 								<input
 									disabled
 									required
@@ -188,15 +192,19 @@ export const SendFormUser = () => {
 									)} bg-[#cfd6d8]`}
 									value={profile?.email}
 								/>
-							</div>
-						</label>
-					</li>
-					<li>
-						<label htmlFor="phone" className="flex gap-[1.5rem] items-center">
-							<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
-								Phone number<span className="text-[red]">*</span>
-							</p>
-							<div className="flex flex-col w-[100%] relative">
+							)}
+						</div>
+					</label>
+				</li>
+				<li>
+					<label htmlFor="phone" className="flex gap-[1.5rem] items-center">
+						<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
+							Phone number<span className="text-[red]">*</span>
+						</p>
+						<div className="flex flex-col w-[100%] relative">
+							{load ? (
+								<Skeleton className="py-4" />
+							) : (
 								<input
 									required
 									type="tel"
@@ -211,18 +219,22 @@ export const SendFormUser = () => {
 									onBlur={formik.handleBlur}
 									value={formik.values.phonenumber}
 								/>
-								{formik.errors.phonenumber &&
-									formik.touched.phonenumber &&
-									ErrorMessageText(formik.errors.phonenumber)}
-							</div>
-						</label>
-					</li>
-					<li>
-						<label htmlFor="age" className="flex gap-[1.5rem] items-center">
-							<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
-								Your age<span className="text-[red]">*</span>
-							</p>
-							<div className="flex flex-col w-[100%] relative">
+							)}
+							{formik.errors.phonenumber &&
+								formik.touched.phonenumber &&
+								ErrorMessageText(formik.errors.phonenumber)}
+						</div>
+					</label>
+				</li>
+				<li>
+					<label htmlFor="age" className="flex gap-[1.5rem] items-center">
+						<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
+							Your age<span className="text-[red]">*</span>
+						</p>
+						<div className="flex flex-col w-[100%] relative">
+							{load ? (
+								<Skeleton className="py-4" />
+							) : (
 								<input
 									value={formik.values.age}
 									required
@@ -236,18 +248,22 @@ export const SendFormUser = () => {
 									}
 									onBlur={formik.handleBlur}
 								/>
-								{formik.errors.age &&
-									formik.touched.age &&
-									ErrorMessageText('Your age is required')}
-							</div>
-						</label>
-					</li>
-					<li>
-						<label htmlFor="country" className="flex gap-[1.5rem] items-center">
-							<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
-								Country<span className="text-[red]">*</span>
-							</p>
-							<div className="flex flex-col w-[100%] relative">
+							)}
+							{formik.errors.age &&
+								formik.touched.age &&
+								ErrorMessageText('Your age is required')}
+						</div>
+					</label>
+				</li>
+				<li>
+					<label htmlFor="country" className="flex gap-[1.5rem] items-center">
+						<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
+							Country<span className="text-[red]">*</span>
+						</p>
+						<div className="flex flex-col w-[100%] relative">
+							{load ? (
+								<Skeleton className="py-4" />
+							) : (
 								<input
 									required
 									type="text"
@@ -262,18 +278,22 @@ export const SendFormUser = () => {
 									onBlur={formik.handleBlur}
 									value={formik.values.country}
 								/>
-								{formik.errors.country &&
-									formik.touched.country &&
-									ErrorMessageText(formik.errors.country)}
-							</div>
-						</label>
-					</li>
-					<li>
-						<label htmlFor="city" className="flex gap-[1.5rem] items-center">
-							<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
-								City<span className="text-[red]">*</span>
-							</p>
-							<div className="flex flex-col w-[100%] relative">
+							)}
+							{formik.errors.country &&
+								formik.touched.country &&
+								ErrorMessageText(formik.errors.country)}
+						</div>
+					</label>
+				</li>
+				<li>
+					<label htmlFor="city" className="flex gap-[1.5rem] items-center">
+						<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
+							City<span className="text-[red]">*</span>
+						</p>
+						<div className="flex flex-col w-[100%] relative">
+							{load ? (
+								<Skeleton className="py-4" />
+							) : (
 								<input
 									required
 									type="text"
@@ -288,18 +308,22 @@ export const SendFormUser = () => {
 									onBlur={formik.handleBlur}
 									value={formik.values.city}
 								/>
-								{formik.errors.city &&
-									formik.touched.city &&
-									ErrorMessageText(formik.errors.city)}
-							</div>
-						</label>
-					</li>
-					<li>
-						<label htmlFor="address" className="flex gap-[1.5rem] items-center">
-							<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
-								Address
-							</p>
-							<div className="flex flex-col w-[100%] relative">
+							)}
+							{formik.errors.city &&
+								formik.touched.city &&
+								ErrorMessageText(formik.errors.city)}
+						</div>
+					</label>
+				</li>
+				<li>
+					<label htmlFor="address" className="flex gap-[1.5rem] items-center">
+						<p className="block w-[12.5rem] text-[0.875rem] max-lg:hidden">
+							Address
+						</p>
+						<div className="flex flex-col w-[100%] relative">
+							{load ? (
+								<Skeleton className="py-4" />
+							) : (
 								<input
 									type="text"
 									placeholder="Address"
@@ -313,22 +337,22 @@ export const SendFormUser = () => {
 									onBlur={formik.handleBlur}
 									value={formik.values.address}
 								/>
-								{formik.errors.address &&
-									formik.touched.address &&
-									ErrorMessageText(formik.errors.address)}
-							</div>
-						</label>
-					</li>
-				</ul>
-				<div className="flex justify-end">
-					<button
-						type="submit"
-						className={`${btnHoverOrange} px-2 py-[0.625rem]  text-[#fff] whitespace-nowrap text-center bg-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[10rem] rounded-[0.625rem]`}
-					>
-						Save
-					</button>
-				</div>
-			</form>
-		)
+							)}
+							{formik.errors.address &&
+								formik.touched.address &&
+								ErrorMessageText(formik.errors.address)}
+						</div>
+					</label>
+				</li>
+			</ul>
+			<div className="flex justify-end">
+				<button
+					type="submit"
+					className={`${btnHoverOrange} px-2 py-[0.625rem]  text-[#fff] whitespace-nowrap text-center bg-orange text-ellipsis font-Comfortaa text-sm font-semibold w-[10rem] rounded-[0.625rem]`}
+				>
+					Save
+				</button>
+			</div>
+		</form>
 	)
 }

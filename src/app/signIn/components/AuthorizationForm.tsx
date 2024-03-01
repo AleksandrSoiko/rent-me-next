@@ -24,12 +24,13 @@ const AuthorizationForm: React.FC = () => {
 		() => AuthService.main('login', { email, password }), // Функція, яка буде виконуватися при мутації
 		{
 			onSuccess: () => {
+				window.location.reload()
 				toastr.success('Successfully login!')
 				setEmail('')
 				setPassword('')
 				push('/')
 			},
-			onError: (err: any) => {
+			onError: () => {
 				toastr.error('Login or password invalid')
 			},
 		}
