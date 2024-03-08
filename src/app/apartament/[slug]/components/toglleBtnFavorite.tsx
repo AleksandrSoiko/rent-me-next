@@ -1,5 +1,4 @@
-import 'toastr/build/toastr.css'
-import toastr from 'toastr'
+import { toast } from 'sonner'
 import Image from 'next/image'
 import { IUser } from 'types/user.types'
 
@@ -19,7 +18,7 @@ export const togleBtnFavorite = (
 
 	if (!profile) {
 		return (
-			<button onClick={() => toastr.error('Log in to add to favorites')}>
+			<button onClick={() => toast.error('Log in to add to favorites')}>
 				<Image src="/header/like.svg" width="34" height="34" alt="like" />
 			</button>
 		)

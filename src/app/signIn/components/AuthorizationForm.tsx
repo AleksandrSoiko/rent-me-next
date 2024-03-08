@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { btnHoverOrange } from '../../page'
 import { useRouter } from 'next/navigation'
-import 'toastr/build/toastr.css'
-import toastr from 'toastr'
+
+import { toast } from 'sonner'
 import { useMutation } from 'react-query'
 import AuthService from 'service/auth/auth.service'
 
@@ -25,13 +25,13 @@ const AuthorizationForm: React.FC = () => {
 		{
 			onSuccess: () => {
 				window.location.reload()
-				toastr.success('Successfully login!')
+				toast.success('Successfully login!')
 				setEmail('')
 				setPassword('')
 				push('/')
 			},
 			onError: () => {
-				toastr.error('Login or password invalid')
+				toast.error('Login or password invalid')
 			},
 		}
 	)

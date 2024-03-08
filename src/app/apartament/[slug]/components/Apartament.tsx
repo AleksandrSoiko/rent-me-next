@@ -9,9 +9,7 @@ import { Apartament } from 'types/apartament.types'
 import FullScreenImage from './openImgModal'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Navigation, Autoplay } from 'swiper/modules'
-
-import 'toastr/build/toastr.css'
-import toastr from 'toastr'
+import { toast } from 'sonner'
 
 import { useEffect, useState } from 'react'
 import { togleBtnFavorite } from './toglleBtnFavorite'
@@ -44,7 +42,7 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 
 	useEffect(() => {
 		if (error) {
-			toastr.error(error)
+			toast.error(error)
 		} else if (data && typeof data === 'object') {
 			const responseData = data as responseData
 			setFavorite((prevFavorites) => {
@@ -56,7 +54,7 @@ const Apartament: React.FC<{ apartament: Apartament }> = ({ apartament }) => {
 					return [...prevFavorites, responseData.idApartament]
 				}
 			})
-			toastr.success(responseData.message)
+			toast.success(responseData.message)
 		}
 	}, [error, data])
 

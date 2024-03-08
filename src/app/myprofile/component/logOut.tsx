@@ -3,13 +3,13 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { removeFromStorage } from 'service/auth/auth-token.service'
 import { UserService } from 'service/user.service.ts/user.service'
-import toastr from 'toastr'
-import 'toastr/build/toastr.css'
+import { toast } from 'sonner'
+
 const LogOut = () => {
 	const { push } = useRouter()
 
 	const logOut = async () => {
-		toastr.error('You have successfully exited')
+		toast.error('You have successfully exited')
 		await UserService.logOut()
 		removeFromStorage()
 		push('/')

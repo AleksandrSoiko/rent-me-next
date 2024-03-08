@@ -2,8 +2,8 @@
 import { useEffect, useState } from 'react'
 import { btnHoverOrange } from '../../../page'
 import useAxiosPost from 'hooks/useAxios'
-import 'toastr/build/toastr.css'
-import toastr from 'toastr'
+
+import { toast } from 'sonner'
 
 export const SendFomrEmail = () => {
 	const { data, loading, error, fetchAxios } = useAxiosPost()
@@ -21,11 +21,11 @@ export const SendFomrEmail = () => {
 
 	useEffect(() => {
 		if (error) {
-			toastr.error(error)
+			toast.error(error)
 		} else if (data) {
 			setEmail('')
 			setPassword('')
-			toastr.success('You successfully register')
+			toast.success('You successfully register')
 		}
 	}, [error, data])
 

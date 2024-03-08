@@ -9,7 +9,7 @@ const MyFavorites = async () => {
 				<p className="lg:hidden text-xl height-[1.8rem] mt-[1.5rem] ml-[1.5rem]">
 					Favorites
 				</p>
-				<ul className="flex flex-col gap-[1.5rem] m-[1.5rem] ">
+				<ul className="flex  gap-[1.5rem] m-[1.5rem] ">
 					<ApratamentReserv />
 				</ul>
 			</div>

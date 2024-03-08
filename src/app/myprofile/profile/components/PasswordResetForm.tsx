@@ -4,8 +4,8 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { ErrorMessageText } from './SendFormUser'
 import useAxiosPost from 'hooks/useAxios'
-import 'toastr/build/toastr.css'
-import toastr from 'toastr'
+
+import { toast } from 'sonner'
 import { useEffect } from 'react'
 
 const validationSchema = Yup.object().shape({
@@ -52,7 +52,7 @@ export const PasswordResetForm: React.FC = () => {
 			const { currPassword, newPass, confNewPass } = values
 
 			if (newPass !== confNewPass) {
-				toastr.error('Passwords do not match')
+				toast.error('Passwords do not match')
 				return
 			}
 
@@ -67,7 +67,7 @@ export const PasswordResetForm: React.FC = () => {
 	useEffect(() => {
 		if (data && !error) {
 			formik.resetForm()
-			toastr.success('You successfully change password')
+			toast.success('You successfully change password')
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data])

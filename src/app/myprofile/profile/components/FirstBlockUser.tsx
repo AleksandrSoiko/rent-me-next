@@ -3,8 +3,8 @@ import Link from 'next/link'
 import { btnHoverOrangeReverse } from '../../../page'
 import Image from 'next/image'
 import useAxiosPost from 'hooks/useAxios'
-import 'toastr/build/toastr.css'
-import toastr from 'toastr'
+
+import { toast } from 'sonner'
 import { useEffect } from 'react'
 import useProfileGet from 'hooks/useProfile'
 import Skeleton from 'react-loading-skeleton'
@@ -58,15 +58,15 @@ export const FirstBlockUser = () => {
 
 	useEffect(() => {
 		if (error1) {
-			toastr.error(error1)
+			toast.error(error1)
 		} else if (data1) {
-			toastr.success('You successfully change photo')
+			toast.success('You successfully change photo')
 			window.location.reload()
 		}
 		if (error2) {
-			toastr.error(error2)
+			toast.error(error2)
 		} else if (data2) {
-			toastr.success('You successfully delete photo')
+			toast.success('You successfully delete photo')
 			window.location.reload()
 		}
 	}, [error1, data1, error2, data2])

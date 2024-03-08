@@ -5,8 +5,8 @@ import * as Yup from 'yup'
 import { IUser, formikVal } from 'types/user.types'
 import useAxiosPost from 'hooks/useAxios'
 import { useEffect } from 'react'
-import 'toastr/build/toastr.css'
-import toastr from 'toastr'
+
+import { toast } from 'sonner'
 import useProfileGet from 'hooks/useProfile'
 import Skeleton from 'react-loading-skeleton'
 
@@ -92,9 +92,9 @@ export const SendFormUser = () => {
 
 	useEffect(() => {
 		if (error) {
-			toastr.error(error)
+			toast.error(error)
 		} else if (data) {
-			toastr.success('Your contact information has been successfully changed')
+			toast.success('Your contact information has been successfully changed')
 		}
 	}, [error, data])
 

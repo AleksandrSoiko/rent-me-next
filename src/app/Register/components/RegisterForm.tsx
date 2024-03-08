@@ -1,7 +1,6 @@
 'use client'
 
-import 'toastr/build/toastr.css'
-import toastr from 'toastr'
+import { toast } from 'sonner'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -37,13 +36,13 @@ const RegisterForm = () => {
 
 	useEffect(() => {
 		if (error) {
-			toastr.error(error)
+			toast.error(error)
 		} else if (data) {
 			setEmail('')
 			setPassword('')
 			setName('')
 			route.push('/')
-			toastr.success('Email has been successfully changed')
+			toast.success('Email has been successfully changed')
 		}
 	}, [error, data, route])
 

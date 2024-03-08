@@ -2,8 +2,8 @@
 import { useEffect, useState } from 'react'
 import { btnHoverOrange } from '../../../page'
 import useProfile from 'hooks/useAxios'
-import 'toastr/build/toastr.css'
-import toastr from 'toastr'
+
+import { toast } from 'sonner'
 
 const SupportForm = () => {
 	const { data, loading, error, fetchAxios } = useProfile()
@@ -22,12 +22,12 @@ const SupportForm = () => {
 
 	useEffect(() => {
 		if (data) {
-			toastr.success('Your support letter has been sent successfully')
+			toast.success('Your support letter has been sent successfully')
 			setQuestionText('')
 			setUserEmail('')
 		}
 		if (error) {
-			toastr.success('An error occurred, please try again later')
+			toast.success('An error occurred, please try again later')
 		}
 	}, [data, error])
 

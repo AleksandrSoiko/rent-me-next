@@ -1,8 +1,8 @@
 'use client'
 import useProfile from 'hooks/useAxios'
 import { useEffect, useState } from 'react'
-import 'toastr/build/toastr.css'
-import toastr from 'toastr'
+
+import { toast } from 'sonner'
 
 // А form component for sending a password reset request
 const FormForgotPassword = () => {
@@ -22,11 +22,11 @@ const FormForgotPassword = () => {
 
 	useEffect(() => {
 		if (data) {
-			toastr.success('A new password has been sent to your address')
+			toast.success('A new password has been sent to your address')
 			setEmail('')
 		}
 		if (error) {
-			toastr.success(error)
+			toast.success(error)
 		}
 	}, [data, error])
 

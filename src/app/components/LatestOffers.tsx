@@ -5,11 +5,11 @@ import { btnHoverOrange, btnHoverOrangeReverse } from '../page'
 import { Apartament } from 'types/apartament.types'
 import useProfile from 'hooks/useAxios'
 import { useEffect, useState } from 'react'
-import 'toastr/build/toastr.css'
-import toastr from 'toastr'
 import { IUser } from 'types/user.types'
 import useProfileGet from 'hooks/useProfile'
 import Cookies from 'js-cookie'
+import { toast } from 'sonner'
+import { usePathname } from 'next/navigation'
 
 interface ApartamentArray {
 	apartament: Apartament[]
@@ -21,13 +21,13 @@ interface responseData {
 	idApartament: string
 	message: string
 }
-export const dynamic = 'force-dynamic'
 
 const LatestOffers: React.FC<LatestOffersProps> = ({ apartament }) => {
 	const { load, errors, profile } = useProfileGet()
 	const { data, loading, error, fetchAxios } = useProfile()
 	const [inFavorite, setFavorite] = useState<string[]>([])
 	const isAuth = Cookies.get('accessToken')
+	const pathname = usePathname()
 
 	useEffect(() => {
 		if (!errors && profile && isAuth) {
@@ -37,11 +37,12 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament }) => {
 
 	useEffect(() => {
 		if (error) {
-			toastr.error(error)
+			toast.error(error)
 		} else if (data && typeof data === 'object') {
 			const responseData = data as responseData
 			setFavorite((prevFavorites) => {
 				if (prevFavorites.includes(responseData.idApartament)) {
+					if (pathname === '/myprofile/favorites') window.location.reload()
 					return prevFavorites.filter(
 						(favId) => favId !== responseData.idApartament
 					)
@@ -49,9 +50,9 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament }) => {
 					return [...prevFavorites, responseData.idApartament]
 				}
 			})
-			toastr.success(responseData.message)
+			toast.success(responseData.message)
 		}
-	}, [error, data])
+	}, [error, data, pathname])
 
 	return (
 		!load &&
@@ -63,7 +64,7 @@ const LatestOffers: React.FC<LatestOffersProps> = ({ apartament }) => {
 					<Link href={`/apartament/${query._id}`} className="inline-block">
 						<Image
 							src={query.pictures[0]}
-							width="328"
+							width="336"
 							height="336"
 							alt="photo"
 						/>
@@ -165,7 +166,7 @@ const renderFavoriteButton = (
 
 	if (!profile) {
 		return (
-			<button onClick={() => toastr.error('Log in to add to favorites')}>
+			<button onClick={() => toast.error('Log in to add to favorites')}>
 				<Image src="/header/like.svg" width="34" height="34" alt="like" />
 			</button>
 		)
